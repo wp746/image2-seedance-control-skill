@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image2 Seedance Control"
+  short_description: "把创意、脚本、资产或单集内容转成 Seedance 2.0 可读取的 Image2 控制图，并支持连续性圣经、接缝审核和返修 SOP。"
+  default_prompt: "把我的想法、脚本或资产整理成一个 Image2 控制图提示词文件，用于 Seedance 2.0 按图生成视频，并帮我锁定角色、场景、风格和镜头衔接。"
