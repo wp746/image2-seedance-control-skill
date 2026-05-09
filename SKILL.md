@@ -44,8 +44,11 @@ The prompts must be separated into two groups:
 
 1. Asset design prompts: generate character, scene, and prop assets as separate reference images.
 2. Storyboard prompts: generate shot/timing boards for Seedance 2.0, using the asset images as external references.
+3. Seedance 2.0 text prompts: after every storyboard prompt, include one matching Seedance 2.0 prompt that translates the storyboard into explicit shot-by-shot motion, camera, dialogue, sound, emotion, continuity, and negative instructions.
 
 Do not force asset design and storyboard planning into one single image. Asset details consume visual space and reduce storyboard readability.
+
+Do not rely on vague Seedance wording such as "please follow the storyboard". The storyboard image and the Seedance text prompt are a dual-control pair. The board controls visual reference; the text prompt controls execution.
 
 Final assistant response should only link to the created file and briefly say it is ready. Do not paste the full prompt in chat unless the user asks.
 
@@ -175,6 +178,22 @@ The storyboard may reference assets by labels, e.g. `CHAR_A`, `SCENE_01`, `PROP_
 When user-provided assets exist, every storyboard prompt must explicitly lock to those asset labels and visible invariants. Do not redesign the character, scene, or prop in the storyboard prompt. The storyboard controls only shot order, timing, staging, action, camera, dialogue, sound, edit point, and continuity.
 
 The user will upload both the asset image(s) and storyboard image(s) to Seedance 2.0 as all-purpose references.
+
+Every storyboard prompt must be immediately followed by a corresponding Seedance 2.0 prompt. This Seedance prompt must not be generic. It must restate the storyboard content in executable language:
+
+- reference stack and each reference image's job.
+- exact segment duration and aspect ratio.
+- start state and end state.
+- shot-by-shot timeline with timecode.
+- who appears in each shot.
+- scene geography and spatial direction.
+- camera movement, shot size, lens feel, and pacing.
+- physical action, facial performance, dialogue, sound, and emotional beat.
+- VFX state changes and object/prop continuity.
+- shot handoff from previous segment and to next segment.
+- forbidden drift and common failure prevention.
+
+For multi-segment work, the Seedance prompt must also state the previous segment's final frame and the next segment's required starting frame when relevant.
 
 ## Industrial Production Control
 
@@ -465,7 +484,7 @@ The one output file should use this structure:
 - 生产策略:
 
 ## Usage
-如果你已经有角色、场景、道具资产图，先把这些资产图与“资产设计提示词”一起放进 GPT Image 2，生成正规的角色/场景/道具连续性资产板。再复制“故事板提示词”去 GPT Image 2 出镜头时间轴图。进 Seedance 2.0 时，把用户原始资产图、正规资产板和故事板图一起作为全能参考上传，并输入：“请严格参考这些图片中的角色、场景、道具、镜头编号、秒级动作、台词、拍摄手法、拍摄参数和连续性标注，生成连续镜头。人物、场景、道具以我上传的资产图为最高优先级，不得重新设计。”
+如果你已经有角色、场景、道具资产图，先把这些资产图与“资产设计提示词”一起放进 GPT Image 2，生成正规的角色/场景/道具连续性资产板。再复制“故事板提示词”去 GPT Image 2 出镜头时间轴图。进 Seedance 2.0 时，把用户原始资产图、正规资产板、故事板图一起作为全能参考上传，然后复制该故事板后面对应的“Seedance 2.0 视频提示词”。不要只输入“参考故事板生成”，必须使用逐镜头文字提示词形成双重控制。
 
 ## Production Control / 工业化连续性控制
 - 项目圣经:
@@ -495,6 +514,23 @@ The one output file should use this structure:
 ### Prompt S01 - Scene 01 Segment 01 Storyboard
 ```text
 ...
+```
+
+### Seedance Prompt S01 - Scene 01 Segment 01 Video
+```text
+参考图职责：
+@[AssetRef] = 角色/场景/道具身份锁。
+@[CurrentStoryboardRef] = 当前故事板，负责镜头顺序和画面构图。
+
+生成 [时长] 秒 [画幅] 视频。严格执行以下逐镜头时间线：
+S01 / [timecode]：[画面、人物、动作、运镜、台词、声音、情绪]
+S02 / [timecode]：[画面、人物、动作、运镜、台词、声音、情绪]
+...
+
+起始状态：[上一段结尾或本段开头状态]
+结尾状态：[下一段必须接住的状态]
+连续性：[角色、服装、场景、道具、空间方向、光线、VFX]
+禁止：[换脸、换装、跳镜头、合并镜头、随机加人、乱码字幕、水印、UI 错乱]
 ```
 ```
 
@@ -539,7 +575,7 @@ For storyboard prompts, also specify these visible table columns or panel labels
 
 ## Seedance Compatibility Rules
 
-Design boards so that the user can use minimal Seedance text.
+Design boards and Seedance text prompts as dual-control pairs. The board must be readable as an image, and the matching Seedance prompt must be strong enough to execute the same storyboard even if Seedance misses part of the visual intent.
 
 Asset boards must visually encode:
 
@@ -558,6 +594,15 @@ Storyboard boards must visually encode:
 - shot size and framing
 - dialogue or line intention
 - camera parameters
+- start state, end state, and next-shot handoff
+
+Seedance prompts must textually encode:
+
+- the same shot order and timecodes as the storyboard.
+- the same character, scene, prop, VFX, dialogue, sound, and emotion details.
+- the same camera and movement logic.
+- the exact start and end state for the segment.
+- explicit continuity and forbidden drift rules.
 - what emotion changes
 - what the final frame should look like
 - exact asset codes used in each shot
