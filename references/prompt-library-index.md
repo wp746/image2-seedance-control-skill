@@ -26,7 +26,7 @@ Current files:
 - `master-character-reference-sheet.md`: clean 4:3 single-character master reference sheet for Seedance identity control, with dominant scale sheet, exact expression progression, micro-expressions, head angles, posture, close-up, wardrobe callouts, optional prop, and hand gestures.
 - `simple-seedance-character-reference-sheet.md`: lightweight clean Seedance character reference sheet for stylized 3D characters, robots, mascots, simple creatures, and fast identity locking.
 - `cultural-child-character-card.md`: culturally grounded child/teen character card pattern for regional authenticity, child proportions, height scale, local wardrobe logic, and actor-like micro-performance.
-- `animated-cinematic-character-pitch-board.md`: high-budget animated cinematic character pitch-board pattern for GPT Image 2, emphasizing art-directed asymmetric composition, character psychology, actor-like performance direction, wardrobe/material accuracy, strict turnaround, head studies, cinematic portrait, and production-ready notes for film, Seedance, merchandising, and pitch decks.
+- `animated-cinematic-character-pitch-board.md`: high-budget animated cinematic character pitch-board pattern for GPT Image 2, emphasizing art-directed asymmetric composition, human vs stylized creature layout choices, character psychology, actor-like performance direction, signature quote, action/idle poses, wardrobe/material accuracy, strict turnaround, head studies, cinematic portrait, always-present props, color/texture guide, and production-ready fidelity notes for film, Seedance, merchandising, and pitch decks.
 
 ### Storyboard Prompt Branch
 
