@@ -54,6 +54,7 @@ Current files:
 - `vertical-fragrance-mood-ad.md`: 9:16 vertical 12-shot mood storyboard pattern for fragrance, skincare, beauty, quiet UGC-style premium ads, and 15-second atmosphere films.
 - `sports-highlight-sequence-board.md`: sports highlight storyboard pattern for tackle-to-goal, fast break, race overtake, or other action chains requiring ball/object continuity, broadcast camera logic, and realistic sports physics.
 - `traditional-storyboard-table-board.md`: traditional storyboard table pattern for Seedance-readable 5-8 shot boards with shot number, timing, shot size, frame thumbnail, camera movement, action, dialogue, sound/music, and continuity notes.
+- `cinematic-production-plan-sheet.md`: compact GPT Image 2 cinematic pre-production plan sheet pattern for turning one simple idea into a Seedance-readable board containing character references, environment, top-down floor plan, movement paths, numbered camera positions, 4-6 shot storyboard, color palette, lighting, mood, and style notes.
 
 ### Seedance Prompt Branch
 
@@ -73,6 +74,7 @@ Current files:
 
 - `romantic-couple-introduction.md`: Seedance relationship-introduction prompt using a couple character sheet, detail -> identity -> relationship -> presence -> full reveal.
 - `product-ad-timeline.md`: concise product ad timeline prompt structure for 12-20 second commercials using product boards/storyboards.
+- `cinematic-production-sheet-timeline.md`: Seedance prompt pattern that treats an uploaded Image2 cinematic production plan sheet as a strict directing document, preserving character identity, scene geography, CAM positions, shot order, color, lighting, VFX, and continuity for a 4-15 second segment.
 
 ### Production SOP Branch
 
