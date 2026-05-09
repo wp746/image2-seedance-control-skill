@@ -56,6 +56,7 @@ Current files:
 - `sports-highlight-sequence-board.md`: sports highlight storyboard pattern for tackle-to-goal, fast break, race overtake, or other action chains requiring ball/object continuity, broadcast camera logic, and realistic sports physics.
 - `traditional-storyboard-table-board.md`: traditional storyboard table pattern for Seedance-readable 5-8 shot boards with shot number, timing, shot size, frame thumbnail, camera movement, action, dialogue, sound/music, and continuity notes.
 - `cinematic-production-plan-sheet.md`: compact GPT Image 2 cinematic pre-production plan sheet pattern for turning one simple idea into a Seedance-readable board containing character references, environment, top-down floor plan, movement paths, numbered camera positions, 4-6 shot storyboard, color palette, lighting, mood, and style notes.
+- `one-line-smartshot-storyboard.md`: fast Smartshot-style pattern for expanding one short idea into a detailed 6-9 panel storyboard image with character locks, environment lock, camera style, color/VFX notes, ready video prompt summary, and continuation-friendly final frame.
 
 ### Seedance Prompt Branch
 
@@ -77,6 +78,7 @@ Current files:
 - `product-ad-timeline.md`: concise product ad timeline prompt structure for 12-20 second commercials using product boards/storyboards.
 - `cinematic-production-sheet-timeline.md`: Seedance prompt pattern that treats an uploaded Image2 cinematic production plan sheet as a strict directing document, preserving character identity, scene geography, CAM positions, shot order, color, lighting, VFX, and continuity for a 4-15 second segment.
 - `character-storyboard-first-pass-continuation.md`: Seedance prompt pattern for using a character/location sheet plus 3x3 storyboard as first-pass references, then using the previous 15-second video's last frame as the main reference for seamless 15-30 second continuation while keeping original sheets as secondary continuity anchors.
+- `named-reference-stack-action-prompt.md`: Seedance prompt pattern for multi-reference action scenes using explicit labels such as `@[CurrentStoryboardRef]`, `@[HeroRef]`, `@[VillainRef]`, and `@[LocationRef]` so each uploaded image has one clear responsibility: shot flow, identity lock, antagonist lock, or environment lock.
 
 ### Production SOP Branch
 
