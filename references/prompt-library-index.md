@@ -57,6 +57,7 @@ Current files:
 - `traditional-storyboard-table-board.md`: traditional storyboard table pattern for Seedance-readable 5-8 shot boards with shot number, timing, shot size, frame thumbnail, camera movement, action, dialogue, sound/music, and continuity notes.
 - `cinematic-production-plan-sheet.md`: compact GPT Image 2 cinematic pre-production plan sheet pattern for turning one simple idea into a Seedance-readable board containing character references, environment, top-down floor plan, movement paths, numbered camera positions, 4-6 shot storyboard, color palette, lighting, mood, and style notes.
 - `one-line-smartshot-storyboard.md`: fast Smartshot-style pattern for expanding one short idea into a detailed 6-9 panel storyboard image with character locks, environment lock, camera style, color/VFX notes, ready video prompt summary, and continuation-friendly final frame.
+- `integrated-15s-commercial-production-board.md`: one-page 15-second commercial production board pattern for food, drink, tourism-specialty, mascot, kids/family, anime, and stylized brand ads, combining light asset locks, product/prop design, set design, camera map, palette, sound notes, negative notes, and a 5-shot timeline table.
 
 ### Seedance Prompt Branch
 
