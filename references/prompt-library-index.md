@@ -76,6 +76,7 @@ Current files:
 - `romantic-couple-introduction.md`: Seedance relationship-introduction prompt using a couple character sheet, detail -> identity -> relationship -> presence -> full reveal.
 - `product-ad-timeline.md`: concise product ad timeline prompt structure for 12-20 second commercials using product boards/storyboards.
 - `cinematic-production-sheet-timeline.md`: Seedance prompt pattern that treats an uploaded Image2 cinematic production plan sheet as a strict directing document, preserving character identity, scene geography, CAM positions, shot order, color, lighting, VFX, and continuity for a 4-15 second segment.
+- `character-storyboard-first-pass-continuation.md`: Seedance prompt pattern for using a character/location sheet plus 3x3 storyboard as first-pass references, then using the previous 15-second video's last frame as the main reference for seamless 15-30 second continuation while keeping original sheets as secondary continuity anchors.
 
 ### Production SOP Branch
 
