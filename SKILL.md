@@ -50,6 +50,10 @@ Do not force asset design and storyboard planning into one single image. Asset d
 
 Do not rely on vague Seedance wording such as "please follow the storyboard". The storyboard image and the Seedance text prompt are a dual-control pair. The board controls visual reference; the text prompt controls execution.
 
+Before finalizing the file, perform a prompt self-review pass and revise any prompt that could cause logical drift, role confusion, UI text errors, duplicated responsibilities, or ambiguous model guessing.
+
+For multi-segment video generation, every storyboard and its matching Seedance 2.0 prompt must use local segment timecode. Each segment starts at `0:00` and ends at or before `0:15`. Do not write cumulative episode timecodes such as `0:59-1:14` or `1:14-1:30` inside a Seedance generation prompt. Track total runtime only in the editing/continuity notes.
+
 Final assistant response should only link to the created file and briefly say it is ready. Do not paste the full prompt in chat unless the user asks.
 
 ## Input Routing
@@ -182,9 +186,9 @@ The user will upload both the asset image(s) and storyboard image(s) to Seedance
 Every storyboard prompt must be immediately followed by a corresponding Seedance 2.0 prompt. This Seedance prompt must not be generic. It must restate the storyboard content in executable language:
 
 - reference stack and each reference image's job.
-- exact segment duration and aspect ratio.
+- exact local segment duration and aspect ratio.
 - start state and end state.
-- shot-by-shot timeline with timecode.
+- shot-by-shot local timeline with timecode starting from `0:00`.
 - who appears in each shot.
 - scene geography and spatial direction.
 - camera movement, shot size, lens feel, and pacing.
@@ -194,6 +198,8 @@ Every storyboard prompt must be immediately followed by a corresponding Seedance
 - forbidden drift and common failure prevention.
 
 For multi-segment work, the Seedance prompt must also state the previous segment's final frame and the next segment's required starting frame when relevant.
+
+The previous/next segment relationship should be described as start/end state, not as cumulative timecode.
 
 ## Industrial Production Control
 
@@ -513,6 +519,7 @@ The one output file should use this structure:
 
 ### Prompt S01 - Scene 01 Segment 01 Storyboard
 ```text
+本故事板为独立 Seedance 片段，时间码从 0:00 开始，最大不超过 0:15。
 ...
 ```
 
@@ -522,7 +529,7 @@ The one output file should use this structure:
 @[AssetRef] = 角色/场景/道具身份锁。
 @[CurrentStoryboardRef] = 当前故事板，负责镜头顺序和画面构图。
 
-生成 [时长] 秒 [画幅] 视频。严格执行以下逐镜头时间线：
+生成 [时长，最长 15 秒] [画幅] 视频。本提示词使用本片段内部时间码，不使用整片累计时间。严格执行以下逐镜头时间线：
 S01 / [timecode]：[画面、人物、动作、运镜、台词、声音、情绪]
 S02 / [timecode]：[画面、人物、动作、运镜、台词、声音、情绪]
 ...
@@ -616,6 +623,35 @@ Avoid:
 - overly dense 25-panel boards for a single Seedance clip.
 - showing multiple incompatible costume or face options unless clearly marked as forbidden or alternate.
 - asking Image2 to generate exact long paragraphs in-image.
+
+## Prompt Self-Review Rules
+
+Before delivering any prompt file, audit and fix it against these rules:
+
+1. Responsibility separation:
+   - Character boards lock identity, face, body, wardrobe, expressions, and status variants.
+   - Scene boards lock space, light, material, geography, and usable camera areas.
+   - Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
+   - Storyboard boards lock shot order, timing, staging, camera, action, dialogue intention, and handoff.
+   Do not let one board accidentally perform another board's job unless the chosen reference pattern explicitly requires an integrated board.
+
+2. No accidental identity sources:
+   Scene boards should not show clear main-character faces unless the board is intentionally asset-locked. Use empty locations, distant passersby, silhouettes, or placeholders for scale.
+
+3. UI and text control:
+   If exact text matters, keep it short, large, and isolated. Do not ask Image2 to recreate complex app interfaces with many small labels. Prefer a separate UI/prop board for phone screens, signs, documents, chat messages, contracts, brand slogans, and curse rules.
+
+4. Specific but not over-constrained:
+   Lock non-negotiables: identity, wardrobe, scene geography, prop shape, UI text, story order, start/end state, and forbidden drift. Leave creative room for lighting texture, performance nuance, natural background detail, and cinematic composition.
+
+5. Logical consistency:
+   Check that every asset code used in storyboards exists. Check that every Seedance prompt references the same asset names as the storyboard. Check that character state changes happen in the right order and are not introduced early.
+
+6. Segment timecode:
+   For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts. Put total runtime and edit order only in the production notes.
+
+7. Production readability:
+   Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.
 
 ## Final Response Rule
 
