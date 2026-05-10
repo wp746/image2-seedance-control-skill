@@ -162,6 +162,8 @@ For user-provided assets, each asset prompt must include:
 
 Use this group to create Seedance-readable shot boards.
 
+Storyboard boards are director execution boards, not character design boards. They must not redesign faces, wardrobe, body proportions, or identity when separate asset boards exist. Character identity belongs to asset boards. Storyboards should use asset labels, silhouettes, backs, faceless placeholders, or simple position markers to show staging and action without creating competing identity references.
+
 Storyboard boards should focus on:
 
 - duration
@@ -174,6 +176,13 @@ Storyboard boards should focus on:
 - dialogue or subtitle intention
 - camera technique
 - camera parameters
+- scene geography and camera map
+- character placeholders and blocking
+- prop state and hand/object relationship
+- color palette and lighting direction
+- sound/music direction
+- VFX trigger and visual behavior
+- safety/negative notes
 - transition / edit-out frame
 - continuity notes that matter for this segment
 
@@ -200,6 +209,32 @@ Every storyboard prompt must be immediately followed by a corresponding Seedance
 For multi-segment work, the Seedance prompt must also state the previous segment's final frame and the next segment's required starting frame when relevant.
 
 The previous/next segment relationship should be described as start/end state, not as cumulative timecode.
+
+## Director Execution Storyboard Standard
+
+When creating storyboard prompts for Seedance 2.0, select the board structure according to the dramatic function of the segment. Do not force every scene into the same layout.
+
+Use these defaults unless the project calls for a different specialist pattern:
+
+- dialogue/emotional beat: 3-5 shots, prioritize eyeline, blocking, reaction, pauses, sound bed, and emotional turn.
+- rule reveal/comedy chain: 5-6 shots, prioritize cause -> effect -> reaction, VFX trigger, and clear punchline.
+- action/chase/fight: 5-7 shots, prioritize floor plan, movement arrows, impact timing, physical feedback, and edit handoff.
+- suspense/reveal: 3-5 shots, prioritize concealment, gaze direction, slow reveal, sound drop, and final frame.
+- product/ad beat: 5 shots, prioritize product state, sensory detail, sound logo, brand endpoint.
+- transition/connector beat: 2-4 shots, prioritize in-state, movement, out-state, and next segment handoff.
+
+The storyboard image should usually contain these regions:
+
+1. `Segment Info`: segment id, local duration, aspect ratio, scene function, emotion goal.
+2. `Reference Duties`: which uploaded asset controls character, scene, prop/UI, style, and current storyboard.
+3. `Scene / Prop / Camera Control`: scene code, key props, floor plan or camera map, character placeholders, movement arrows.
+4. `Style / Sound / VFX`: palette, lighting, music bed, sound effects, VFX trigger and behavior.
+5. `Shot Table`: shot number, local timecode, main content, camera/movement, character action, dialogue, sound/music, emotion, VFX/continuity when needed.
+6. `Negative Notes`: only production-critical constraints that prevent drift.
+
+Keep the shot count story-driven. Around 5 shots is often stable for a 15-second segment, but choose fewer shots for emotional clarity and more shots only when the visual logic requires it. Never add shots just to fill the board.
+
+The matching Seedance 2.0 prompt must mirror the storyboard exactly. If the storyboard has S01-S05, the Seedance prompt must have S01-S05 with the same timecodes, same action, same camera intent, same dialogue, same sound/VFX, and same end state. Do not introduce new actions, locations, props, or character changes in the Seedance prompt that are not in the storyboard.
 
 ## Industrial Production Control
 
@@ -638,19 +673,28 @@ Before delivering any prompt file, audit and fix it against these rules:
 2. No accidental identity sources:
    Scene boards should not show clear main-character faces unless the board is intentionally asset-locked. Use empty locations, distant passersby, silhouettes, or placeholders for scale.
 
-3. UI and text control:
+3. Storyboard as execution board:
+   Check that the storyboard focuses on props, scene, camera map, placeholders, palette, sound, VFX, notes, and shot table. It should not contain detailed character turnarounds, facial identity studies, wardrobe breakdowns, or competing character designs when separate asset boards exist.
+
+4. UI and text control:
    If exact text matters, keep it short, large, and isolated. Do not ask Image2 to recreate complex app interfaces with many small labels. Prefer a separate UI/prop board for phone screens, signs, documents, chat messages, contracts, brand slogans, and curse rules.
 
-4. Specific but not over-constrained:
+5. Specific but not over-constrained:
    Lock non-negotiables: identity, wardrobe, scene geography, prop shape, UI text, story order, start/end state, and forbidden drift. Leave creative room for lighting texture, performance nuance, natural background detail, and cinematic composition.
 
-5. Logical consistency:
+6. Logical consistency:
    Check that every asset code used in storyboards exists. Check that every Seedance prompt references the same asset names as the storyboard. Check that character state changes happen in the right order and are not introduced early.
 
-6. Segment timecode:
+7. Segment timecode:
    For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts. Put total runtime and edit order only in the production notes.
 
-7. Production readability:
+8. Shot count and rhythm:
+   Check that the number of shots fits the segment function. Avoid too many shots that make the rhythm rushed, and avoid too few shots that make the beat feel empty. Around 5 shots is common but not mandatory.
+
+9. Storyboard/Seedance mirror check:
+   For every storyboard shot row, verify the matching Seedance prompt has the same shot number, local timecode, main content, camera/movement, character action, dialogue, sound/music, emotion, VFX, and end-state logic. Remove anything in the Seedance prompt that is not supported by the storyboard.
+
+10. Production readability:
    Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.
 
 ## Final Response Rule
