@@ -31,13 +31,15 @@ Lock non-negotiables: identity, wardrobe, scene geography, prop shape, UI text, 
 
 Check that every asset code used in storyboards exists. Check that every Seedance prompt references the same asset names as the storyboard. Check that character state changes happen in the right order and are not introduced early.
 
-## 7. Segment Timecode
+## 7. Segment Timecode + Character Limit
 
-For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts. Put total runtime and edit order only in the production notes.
+For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts.
+
+**Seedance prompt MUST be ≤ 2000 characters.** This is a hard limit — if exceeded, Seedance 2.0 will truncate the prompt. Count characters before delivering. If >2000, compress using the techniques in `storyboard-seedance-pairing-principle.md` (merge reference stack, symbols over connecting words, imperative fragments, inline specs). If compression still fails, reduce shot count — the segment has too many shots to describe with quality.
 
 ## 8. Shot Count and Rhythm
 
-Check that the number of shots fits the segment function. Avoid too many shots that make the rhythm rushed, and avoid too few shots that make the beat feel empty. Around 5 shots is common but not mandatory.
+Shot count is driven by emotion, not formula. One continuous take can carry a scene. Two shots — one wide, one close — can be enough. Check that every shot has an emotional reason to exist; remove shots added just to fill panels. Use rhythm logic: space needs fewer cuts, impact needs more cuts, stillness needs locked-off camera, immersion needs handheld.
 
 ## 9. Storyboard/Seedance Mirror Check
 

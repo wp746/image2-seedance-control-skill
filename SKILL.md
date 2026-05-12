@@ -40,7 +40,7 @@ The file may contain multiple Image2 prompts depending on project length, but it
 **Critical rules:**
 - Never force asset design and storyboard into one image.
 - The Image2 board + Seedance text prompt form a **complementary dual-control pair** — not redundant, not conflicting. The board visualizes what words can't precisely express (movement paths, camera positions, light direction, emotional arc). The Seedance prompt writes what the image can't show (micro-expressions, camera texture, light quality, sound design, performance timing). See `references/production-sop/storyboard-seedance-pairing-principle.md` for the full philosophy.
-- Storyboard text is minimal: logic labels and annotations only. Seedance prompt uses the full 2000-character limit for rich nuance.
+- Storyboard text is minimal: logic labels and annotations only. Seedance prompt ≤ 2000 characters (**hard limit** — count before delivering, compress if over). See `references/production-sop/storyboard-seedance-pairing-principle.md` for compression techniques.
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
 - For multi-segment work, every segment's timecode starts at `0:00` and ends ≤ `0:15`. Track total runtime only in production notes.
 - Final response: only link to the created file and say it's ready. Do not paste the full prompt in chat unless asked.
