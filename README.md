@@ -271,6 +271,9 @@ Input Intake
 - `simple-seedance-character-reference-sheet.md`
 - `ue5-metahuman-technical-sheet.md`
 - `animated-cinematic-character-pitch-board.md`
+- `scene-asset-board.md`
+- `prop-asset-board.md`
+- `scene-continuity-board.md`
 
 ### 故事板提示词分支
 

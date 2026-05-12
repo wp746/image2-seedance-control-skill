@@ -35,6 +35,28 @@ Every storyboard prompt should ask Image2 to include readable labels:
 - 10-12 panels: detailed planning overview or slow micro-beat only; avoid by default for direct Seedance execution
 - 16-25 panels: planning overview only, not one Seedance generation
 
+## Shot Count by Dramatic Function
+
+Select the board structure according to the dramatic function of the segment. Do not force every scene into the same shot count.
+
+- **Dialogue / emotional beat**: 3-5 shots. Prioritize eyeline, blocking, reaction, pauses, sound bed, and emotional turn.
+- **Rule reveal / comedy chain**: 5-6 shots. Prioritize cause → effect → reaction, VFX trigger, and clear punchline.
+- **Action / chase / fight**: 5-7 shots. Prioritize floor plan, movement arrows, impact timing, physical feedback, and edit handoff.
+- **Suspense / reveal**: 3-5 shots. Prioritize concealment, gaze direction, slow reveal, sound drop, and final frame.
+- **Product / ad beat**: 5 shots. Prioritize product state, sensory detail, sound logo, brand endpoint.
+- **Transition / connector beat**: 2-4 shots. Prioritize in-state, movement, out-state, and next segment handoff.
+
+## Storyboard Image Regions
+
+The storyboard image should usually contain these labeled regions:
+
+1. **Segment Info**: segment id, local duration, aspect ratio, scene function, emotion goal.
+2. **Reference Duties**: which uploaded asset controls character, scene, prop/UI, style, and current storyboard.
+3. **Scene / Prop / Camera Control**: scene code, key props, floor plan or camera map, character placeholders, movement arrows.
+4. **Style / Sound / VFX**: palette, lighting, music bed, sound effects, VFX trigger and behavior.
+5. **Shot Table**: shot number, local timecode, main content, camera/movement, character action, dialogue, sound/music, emotion, VFX/continuity when needed.
+6. **Negative Notes**: only production-critical constraints that prevent drift.
+
 ## Seedance Readability Rules
 
 The board must visually encode:

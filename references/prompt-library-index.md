@@ -21,6 +21,14 @@ Before writing prompts, use this table to load only the files needed for the cur
 | 双人 / 情侣角色 | `+ couple-character-reference-sheet.md` |
 | 动画电影级角色提案板 | `+ animated-cinematic-character-pitch-board.md` |
 
+### Asset Prompts — Scene / Prop / Continuity
+
+| 项目条件 | 加载文件 |
+|---|---|
+| 重复出现或有固定布局的场景 | `scene-asset-board.md` |
+| 特写/重复/推动剧情/品牌展示的道具 | `prop-asset-board.md` |
+| 场景复杂、多角色互动、情绪在空间中变化 | `+ scene-continuity-board.md` |
+
 ### Storyboard Prompts — Segment Function
 
 | 段落功能 | 加载文件 |
@@ -78,6 +86,9 @@ Current files:
 - `simple-seedance-character-reference-sheet.md`: lightweight clean Seedance character reference sheet for stylized 3D characters, robots, mascots, simple creatures, and fast identity locking.
 - `cultural-child-character-card.md`: culturally grounded child/teen character card pattern for regional authenticity, child proportions, height scale, local wardrobe logic, and actor-like micro-performance.
 - `couple-character-reference-sheet.md`: couple/dual-character reference sheet for romantic or relationship-driven scenes.
+- `scene-asset-board.md`: scene asset board pattern for recurring locations — multiple angles, entrance/exit, camera-safe zones, light direction, key objects, color palette, forbidden layout/weather drift.
+- `prop-asset-board.md`: prop asset board pattern for repeating/close-up/plot-driving props — multi-view, material/scale/color, hand relationship, story context, forbidden shape/color/scale drift.
+- `scene-continuity-board.md`: scene continuity board pattern bridging scene asset and storyboard — character positions, movement paths, light/atmosphere, emotional state flow, edit in/out frames.
 - `animated-cinematic-character-pitch-board.md`: high-budget animated cinematic character pitch-board pattern for GPT Image 2, emphasizing art-directed asymmetric composition, human vs stylized creature layout choices, character psychology, actor-like performance direction, signature quote, action/idle poses, wardrobe/material accuracy, strict turnaround, head studies, cinematic portrait, always-present props, color/texture guide, and production-ready fidelity notes for film, Seedance, merchandising, and pitch decks.
 
 ### Storyboard Prompt Branch
