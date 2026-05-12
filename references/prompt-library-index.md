@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-12 | Version: 1.1.0
+> Last updated: 2026-05-12 | Version: 1.2.0
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -65,6 +65,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 | 多段 / 多场景 / 分集 / 长片 | `project-continuity-bible.md` |
 | 多镜头 / 多 Seedance 段落 | `shot-seam-review.md` |
 | Seedance 输出有漂移/动作/连续性问题 | `seedance-repair-sop.md` |
+| **设计任何故事板之前** | **`storyboard-seedance-pairing-principle.md`** |
 | **任何提示词文件交付前** | `prompt-self-review-checklist.md` |
 
 ---
@@ -139,6 +140,7 @@ Current files:
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
 - `shot-seam-review.md`: shot-to-shot and segment-to-segment continuity review SOP using IN state, action, OUT state, next handoff, direction, emotion, light, sound, and edit checks.
 - `seedance-repair-sop.md`: post-generation defect diagnosis and repair workflow for identity drift, scene drift, prop drift, motion failure, camera failure, emotion failure, style failure, and seam failure.
+- `storyboard-seedance-pairing-principle.md`: master design philosophy for the complementary dual-control pair — storyboard visualizes what words can't express (movement paths, camera positions, light, emotion keywords, sound/VFX markers), Seedance prompt writes what images can't show (micro-expressions, camera texture, light quality, sound design, performance timing) using the full 2000-character limit. Film-level quality standard.
 - `prompt-self-review-checklist.md`: mandatory 10-point delivery checklist: responsibility separation, identity isolation, storyboard purity, UI/text control, constraint balance, logical consistency, timecode check, shot rhythm, storyboard/seedance mirror, and production readability.
 
 ## Selection Rule

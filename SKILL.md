@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.1.0
+version: 1.2.0
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", or "只给我 image2 的提示词文件".
 ---
 
@@ -39,7 +39,8 @@ The file may contain multiple Image2 prompts depending on project length, but it
 
 **Critical rules:**
 - Never force asset design and storyboard into one image.
-- Never use vague Seedance wording like "请参考此图". The Image2 board + Seedance text prompt form a **dual-control pair** — board controls visual reference, text controls execution.
+- The Image2 board + Seedance text prompt form a **complementary dual-control pair** — not redundant, not conflicting. The board visualizes what words can't precisely express (movement paths, camera positions, light direction, emotional arc). The Seedance prompt writes what the image can't show (micro-expressions, camera texture, light quality, sound design, performance timing). See `references/production-sop/storyboard-seedance-pairing-principle.md` for the full philosophy.
+- Storyboard text is minimal: logic labels and annotations only. Seedance prompt uses the full 2000-character limit for rich nuance.
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
 - For multi-segment work, every segment's timecode starts at `0:00` and ends ≤ `0:15`. Track total runtime only in production notes.
 - Final response: only link to the created file and say it's ready. Do not paste the full prompt in chat unless asked.
@@ -135,6 +136,7 @@ Load these SOPs by condition:
 | Recurring characters/scenes/props, multi-episode | `references/production-sop/project-continuity-bible.md` |
 | Multiple shots or segments | `references/production-sop/shot-seam-review.md` |
 | Seedance output has drift/motion/continuity failure | `references/production-sop/seedance-repair-sop.md` |
+| **Before designing any storyboard** | **`references/production-sop/storyboard-seedance-pairing-principle.md`** |
 | Before delivering any prompt file | `references/production-sop/prompt-self-review-checklist.md` |
 
 Pipeline for long productions:
@@ -151,7 +153,30 @@ Choose board count by story need, not by maximum capacity:
 - 30-60s short: assets for all recurring elements + 3-5 storyboards
 - 1-3min drama: per-episode assets + storyboards per scene
 - Each Seedance segment: 4-15s (15s is the max, not the default)
-- Panel counts: 4 for emotional moments, 5-6 for hooks, 8 for turns, 12 for standard 10-15s, 16-25 for planning overview only
+
+### Rhythm-Driven Shot Count
+
+Shot count is **driven by rhythm and emotion, never a formula.** One continuous take can carry a scene better than 8 cuts. Two shots — one wide, one close — can be enough if the performance is rich.
+
+```
+情绪需要空间 → 少切，长镜头
+情绪需要冲击 → 快切，短镜头
+情绪需要审视 → 固定机位
+情绪需要代入 → 手持
+一镜到底也是一种表达
+```
+
+Start from the emotion. Ask: how few shots can carry this? Add shots only when the story demands a new perspective.
+
+### Film-Level Quality Standard
+
+Every output must aim for film quality — not "AI video" quality:
+
+- Motivated camera: every move has a story reason. No floating orbits.
+- Source-motivated light: light originates from windows, practicals, sky — not generic "cinematic."
+- Physical weight: gravity, inertia, effort in every movement.
+- Natural imperfections: asymmetry, skin texture, human irregularity — no AI plastic.
+- Performance space: room for actors to breathe, react, exist — not just hit marks.
 
 ## Image2 Board Design Standard
 
