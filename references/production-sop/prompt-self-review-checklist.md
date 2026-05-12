@@ -1,0 +1,48 @@
+# Prompt Self-Review Checklist
+
+Use this before delivering any Image2 prompt file. Audit and fix against every rule.
+
+## 1. Responsibility Separation
+
+- Character boards lock identity, face, body, wardrobe, expressions, and status variants.
+- Scene boards lock space, light, material, geography, and usable camera areas.
+- Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
+- Storyboard boards lock shot order, timing, staging, camera, action, dialogue intention, and handoff.
+
+Do not let one board accidentally perform another board's job unless the chosen reference pattern explicitly requires an integrated board.
+
+## 2. No Accidental Identity Sources
+
+Scene boards should not show clear main-character faces unless the board is intentionally asset-locked. Use empty locations, distant passersby, silhouettes, or placeholders for scale.
+
+## 3. Storyboard as Execution Board
+
+Check that the storyboard focuses on props, scene, camera map, placeholders, palette, sound, VFX, notes, and shot table. It should not contain detailed character turnarounds, facial identity studies, wardrobe breakdowns, or competing character designs when separate asset boards exist.
+
+## 4. UI and Text Control
+
+If exact text matters, keep it short, large, and isolated. Do not ask Image2 to recreate complex app interfaces with many small labels. Prefer a separate UI/prop board for phone screens, signs, documents, chat messages, contracts, brand slogans, and curse rules.
+
+## 5. Specific but Not Over-Constrained
+
+Lock non-negotiables: identity, wardrobe, scene geography, prop shape, UI text, story order, start/end state, and forbidden drift. Leave creative room for lighting texture, performance nuance, natural background detail, and cinematic composition.
+
+## 6. Logical Consistency
+
+Check that every asset code used in storyboards exists. Check that every Seedance prompt references the same asset names as the storyboard. Check that character state changes happen in the right order and are not introduced early.
+
+## 7. Segment Timecode
+
+For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts. Put total runtime and edit order only in the production notes.
+
+## 8. Shot Count and Rhythm
+
+Check that the number of shots fits the segment function. Avoid too many shots that make the rhythm rushed, and avoid too few shots that make the beat feel empty. Around 5 shots is common but not mandatory.
+
+## 9. Storyboard/Seedance Mirror Check
+
+For every storyboard shot row, verify the matching Seedance prompt has the same shot number, local timecode, main content, camera/movement, character action, dialogue, sound/music, emotion, VFX, and end-state logic. Remove anything in the Seedance prompt that is not supported by the storyboard.
+
+## 10. Production Readability
+
+Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.

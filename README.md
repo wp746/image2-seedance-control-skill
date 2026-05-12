@@ -1,5 +1,7 @@
 # Image2 Seedance Control Skill
 
+> v1.1.0 | 2026-05-12
+
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
 它不是简单帮你写一条视频提示词，而是把模糊创意、剧本、AI 真人剧单集、漫剧单集、广告脚本、已有角色/场景/道具资产，整理成 Seedance 2.0 能看懂的 **Image2 视觉控制图提示词文件**。
@@ -37,6 +39,7 @@
 - [项目连续性圣经 SOP](references/production-sop/project-continuity-bible.md)
 - [镜头接缝审核 SOP](references/production-sop/shot-seam-review.md)
 - [Seedance 返修 SOP](references/production-sop/seedance-repair-sop.md)
+- [提示词自检清单](references/production-sop/prompt-self-review-checklist.md)
 
 ## 它能解决什么问题
 
@@ -267,6 +270,7 @@ Input Intake
 - `cultural-child-character-card.md`
 - `simple-seedance-character-reference-sheet.md`
 - `ue5-metahuman-technical-sheet.md`
+- `animated-cinematic-character-pitch-board.md`
 
 ### 故事板提示词分支
 
@@ -274,7 +278,10 @@ Input Intake
 - `traditional-storyboard-table-board.md`
 - `asset-locked-lookbook-camera-storyboard.md`
 - `smart-shot-directing-sheet.md`
+- `cinematic-production-plan-sheet.md`
+- `one-line-smartshot-storyboard.md`
 - `two-part-cinematic-production-board.md`
+- `integrated-15s-commercial-production-board.md`
 - `previs-action-vfx-music-timeline.md`
 - `luxury-ad-creative-direction-board.md`
 - `infographic-8-shot-poster.md`
@@ -286,12 +293,16 @@ Input Intake
 
 - `romantic-couple-introduction.md`
 - `product-ad-timeline.md`
+- `cinematic-production-sheet-timeline.md`
+- `character-storyboard-first-pass-continuation.md`
+- `named-reference-stack-action-prompt.md`
 
 ### 工业化 SOP 分支
 
 - `project-continuity-bible.md`
 - `shot-seam-review.md`
 - `seedance-repair-sop.md`
+- `prompt-self-review-checklist.md`
 
 ## 安装地址
 
@@ -444,17 +455,10 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-已沉淀多类真实案例方法：
+v1.1.0 | 2026-05-12
 
-- 单角色母版参考表
-- 情侣角色参考表
-- 传统表格式分镜
-- 资产锁定型故事板
-- 高端广告创意指导板
-- 动作/VFX/music timeline
-- 竖屏美妆/香水氛围广告
-- 项目连续性圣经
-- 镜头接缝审核
-- Seedance 返修 SOP
+已沉淀多类真实案例方法，覆盖角色、场景、道具资产板、多种故事板模式、连续性圣经、接缝审核、返修 SOP 和提示词自检清单。
 
-当前仓库已可作为 OpenClaw / Hermes / Codex 等智能体工具的独立 skill 安装使用。
+SKILL.md 已精简为调度器，完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+
+当前仓库已可作为 CodeBuddy / OpenClaw / Hermes / Codex 等智能体工具的独立 skill 安装使用。
