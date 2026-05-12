@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.2.0
+version: 1.3.0
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", or "只给我 image2 的提示词文件".
 ---
 
@@ -42,6 +42,7 @@ The file may contain multiple Image2 prompts depending on project length, but it
 - The Image2 board + Seedance text prompt form a **complementary dual-control pair** — not redundant, not conflicting. The board visualizes what words can't precisely express (movement paths, camera positions, light direction, emotional arc). The Seedance prompt writes what the image can't show (micro-expressions, camera texture, light quality, sound design, performance timing). See `references/production-sop/storyboard-seedance-pairing-principle.md` for the full philosophy.
 - Storyboard text is minimal: logic labels and annotations only. Seedance prompt ≤ 2000 characters (**hard limit** — count before delivering, compress if over). See `references/production-sop/storyboard-seedance-pairing-principle.md` for compression techniques.
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
+- The ultimate quality benchmark is `references/production-sop/film-industry-master-checklist.md` — 10 departments, a master checklist covering every professional filmmaking discipline. Before delivery, verify all applicable items.
 - For multi-segment work, every segment's timecode starts at `0:00` and ends ≤ `0:15`. Track total runtime only in production notes.
 - Final response: only link to the created file and say it's ready. Do not paste the full prompt in chat unless asked.
 
@@ -138,6 +139,7 @@ Load these SOPs by condition:
 | Seedance output has drift/motion/continuity failure | `references/production-sop/seedance-repair-sop.md` |
 | **Before designing any storyboard** | **`references/production-sop/storyboard-seedance-pairing-principle.md`** |
 | Before delivering any prompt file | `references/production-sop/prompt-self-review-checklist.md` |
+| **Quality benchmark — all projects** | **`references/production-sop/film-industry-master-checklist.md`** |
 
 Pipeline for long productions:
 

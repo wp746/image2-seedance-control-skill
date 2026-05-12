@@ -48,3 +48,17 @@ For every storyboard shot row, verify the matching Seedance prompt has the same 
 ## 10. Production Readability
 
 Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.
+
+## 11. Film Industry Master Checklist
+
+Before final delivery, run through the `film-industry-master-checklist.md` — 10 departments, 40+ items. Mark each as satisfied or N/A with reason. At minimum, verify these high-risk items:
+
+- Model capability boundary: can Seedance actually execute what we're asking?
+- Color constitution declared: main/secondary/accent/neutral/forbidden colors
+- Film stock color science declared
+- Every camera movement has a story motivation (no AI orbiting/floating)
+- Every light source has a physical origin (practical or clear environmental source)
+- Four sound layers addressed (room tone/ambience/foley/dialogue intent)
+- Every key emotional moment has a complete reaction chain (breath→micro-expression→body language→recovery)
+- Segment rhythm has breathing (inhale→pause→exhale→suspend)
+- Segment-to-segment handoff is at a breath boundary, not mid-action

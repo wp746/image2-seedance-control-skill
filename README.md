@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.2.0 | 2026-05-12
+> v1.3.0 | 2026-05-13
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -307,6 +307,7 @@ Input Intake
 - `seedance-repair-sop.md`
 - `storyboard-seedance-pairing-principle.md`
 - `prompt-self-review-checklist.md`
+- `film-industry-master-checklist.md`
 
 ## 安装地址
 
@@ -459,10 +460,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.2.0 | 2026-05-12
+v1.3.0 | 2026-05-13
 
-核心升级：故事板与 Seedance prompt 的**互补双控哲学**。故事板画文字表达不精准的东西（动线、机位、灯光、情绪关键词、声效标注），Seedance prompt 用满 2000 字符写图画不出来的东西（微表情、运镜质感、光线纹理、声音设计、表演节奏）。节奏驱动镜头数，电影级质量标准——不要 AI 塑料味。
-
-SKILL.md 作为调度器，完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
-
-当前仓库已可作为 CodeBuddy / OpenClaw / Hermes / Codex 等智能体工具的独立 skill 安装使用。
+核心升级：**影视工业级母版 SOP**。新增 `film-industry-master-checklist.md`——覆盖 10 大影视制作部门（制片统筹/美术指导/摄影/灯光/录音/表演/剪辑/服化道/VFX/节奏呼吸），40+ 项质量检查清单。不漏掉任何一个专业级、高级、影视级的视听环节。SKILL.md 作为调度器，完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
