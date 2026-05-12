@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.3.0 | 2026-05-13
+> v1.4.0 | 2026-05-13
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -40,6 +40,8 @@
 - [镜头接缝审核 SOP](references/production-sop/shot-seam-review.md)
 - [Seedance 返修 SOP](references/production-sop/seedance-repair-sop.md)
 - [提示词自检清单](references/production-sop/prompt-self-review-checklist.md)
+- [场景类型策略剧本](references/production-sop/scene-type-playbook.md)
+- [影视工业级母版标准](references/production-sop/film-industry-master-checklist.md)
 
 ## 它能解决什么问题
 
@@ -306,6 +308,7 @@ Input Intake
 - `shot-seam-review.md`
 - `seedance-repair-sop.md`
 - `storyboard-seedance-pairing-principle.md`
+- `scene-type-playbook.md`
 - `prompt-self-review-checklist.md`
 - `film-industry-master-checklist.md`
 
@@ -460,6 +463,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.3.0 | 2026-05-13
+v1.4.0 | 2026-05-13
 
-核心升级：**影视工业级母版 SOP**。新增 `film-industry-master-checklist.md`——覆盖 10 大影视制作部门（制片统筹/美术指导/摄影/灯光/录音/表演/剪辑/服化道/VFX/节奏呼吸），40+ 项质量检查清单。不漏掉任何一个专业级、高级、影视级的视听环节。SKILL.md 作为调度器，完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+核心升级：**场景类型策略剧本系统**。新增 `scene-type-playbook.md`——6 大戏剧功能（文戏/武戏/悬疑/过渡/产品/氛围）各自独立的战术手册。文戏拍微表情和反应链，武戏拍空间关系和物理重量——不同的戏用不同的拍法。A-roll vs B-roll 设计原则，场景类型自动识别机制。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。

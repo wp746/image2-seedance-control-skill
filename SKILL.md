@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.3.0
+version: 1.4.0
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", or "只给我 image2 的提示词文件".
 ---
 
@@ -122,6 +122,8 @@ Always split into **asset prompts** and **storyboard prompts**.
 
 Every storyboard prompt must be immediately followed by a corresponding **Seedance 2.0 text prompt** that restates the same shot order, timecodes, action, camera, dialogue, sound/VFX, emotion, start/end state, and forbidden drift — as executable language, not generic instruction.
 
+**Scene type determines strategy.** Before designing any segment, classify its dramatic function (DIALOGUE/ACTION/SUSPENSE/TRANSITION/PRODUCT/ATMOSPHERE) and whether it's A-roll or B-roll. Load `references/production-sop/scene-type-playbook.md` for the corresponding design playbook — each type has its own storyboard structure, Seedance character allocation strategy, camera language, and sound design approach. A martial arts scene is not shot like a dialogue scene.
+
 For multi-segment work: Seedance prompts describe previous/next segment relationship as start/end state, not cumulative timecode.
 
 See the index's Loading Decision Table for which specific asset/storyboard/seedance pattern files to load per project condition.
@@ -138,6 +140,7 @@ Load these SOPs by condition:
 | Multiple shots or segments | `references/production-sop/shot-seam-review.md` |
 | Seedance output has drift/motion/continuity failure | `references/production-sop/seedance-repair-sop.md` |
 | **Before designing any storyboard** | **`references/production-sop/storyboard-seedance-pairing-principle.md`** |
+| **Scene type playbook — per segment** | **`references/production-sop/scene-type-playbook.md`** |
 | Before delivering any prompt file | `references/production-sop/prompt-self-review-checklist.md` |
 | **Quality benchmark — all projects** | **`references/production-sop/film-industry-master-checklist.md`** |
 
