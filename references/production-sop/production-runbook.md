@@ -86,6 +86,7 @@ Lock:
 - source assets or references
 - episode or scene scope
 - deadline and review owner if relevant
+- source text encoding. If Chinese `.txt` files are GBK/GB18030/Big5, convert or decode to UTF-8 before analysis. Never feed mojibake or unreadable characters into prompt generation.
 
 If the user gives only an idea, clarify before writing prompts.
 
@@ -128,15 +129,18 @@ For each segment:
 
 1. load `storyboard-seedance-pairing-principle.md`
 2. load `scene-type-playbook.md`
-3. choose the storyboard pattern by scene function
-4. create one storyboard prompt for the segment
-5. create one matching Seedance prompt immediately after it
+3. load `realism-clean-frame-rhythm-gate.md` when the project is realist, historical, war, documentary, or text-risk
+4. choose the storyboard pattern by scene function
+5. create one storyboard prompt for the segment
+6. create one matching Seedance prompt immediately after it
 
 Gate to continue:
 
 - Storyboard and Seedance prompt have the same shot numbers and local timecodes.
 - Board text stays minimal.
+- Seedance prompt explicitly forbids rendered subtitles, captions, shot labels, UI text, watermarks, random text, and garbled text.
 - Seedance prompt is at or below 2000 characters.
+- Shot count matches dramatic rhythm. Slow emotional beats are not allowed to become fast-cut coverage.
 - Segment duration is 4-15s unless the user explicitly asks for shorter.
 
 ### 5. Reference Upload
@@ -235,4 +239,3 @@ Before telling the user the prompt file is ready:
 4. Confirm upload order is included or referenced.
 5. Confirm each segment has acceptance criteria.
 6. Mention unresolved assumptions only if they affect production.
-

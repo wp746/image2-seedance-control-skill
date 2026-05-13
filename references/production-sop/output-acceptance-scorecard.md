@@ -18,7 +18,10 @@ Hard fail overrides score:
 - wrong character identity
 - wrong product or brand-critical prop
 - wrong location for a continuity scene
+- subtitles, shot labels, random visible text, UI overlays, watermarks, or garbled characters appear in a clean narrative frame
+- realist live-action project turns into game, CG, anime, glossy concept art, or digital illustration texture
 - impossible or broken main action
+- slow dramatic beat is cut so fast that the intended emotion cannot be read
 - segment cannot connect to previous/next segment
 - unsafe, unwanted, or policy-breaking content
 
@@ -35,7 +38,7 @@ Hard fail overrides score:
 | Light And Style | 8 | source-motivated light, palette, film texture, no sudden style shift |
 | Performance And Emotion | 10 | micro-expression, reaction chain, breath, body language, no instant emotion jump |
 | Sound/Editability | 7 | sound cues, room tone, usable in/out frames, no broken handoff |
-| Prompt Compliance | 5 | follows timecode, aspect ratio, negative notes, no extra characters/props |
+| Prompt Compliance | 5 | follows timecode, aspect ratio, negative notes, no extra characters/props, no rendered text contamination |
 
 ## Review Template
 
@@ -66,6 +69,9 @@ Hard fail overrides score:
 - Wrong identity: YES/NO
 - Wrong prop/product: YES/NO
 - Wrong scene: YES/NO
+- Text/label contamination: YES/NO
+- Wrong visual medium/style: YES/NO
+- Rhythm destroys story beat: YES/NO
 - Broken main action: YES/NO
 - Broken segment handoff: YES/NO
 - Unsafe/unwanted content: YES/NO
@@ -90,6 +96,9 @@ Use this table to choose the smallest next action:
 | Motion low | too many actions or complex physics | split segment, one action per shot |
 | Camera low | storyboard over-ambitious | simplify camera, lock CAM position |
 | Emotion low | prompt lacks reaction chain | add breath, pause, micro-expression timing |
+| Text contamination | board labels/subtitles leaked into video | add clean-frame line, remove dialogue text from storyboard thumbnails, regenerate |
+| Game/CG look | asset board style was too concept-art oriented | rebuild asset board with realist war-film lock |
+| Fast-cut drama | too many story beats in one 15s segment | rewrite as 1-3 shots or split into more segments |
 | Editability low | no in/out state | rewrite handoff and final frame |
 
 ## Segment Acceptance Gate
@@ -101,4 +110,3 @@ A segment may move to edit only when:
 - the first frame can inherit previous state or the segment is a first segment
 - the final frame can hand off to the next segment or serve as an intentional ending
 - the user-facing story beat is understandable without reading the prompt
-

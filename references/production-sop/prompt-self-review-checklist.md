@@ -23,6 +23,16 @@ Check that the storyboard focuses on props, scene, camera map, placeholders, pal
 
 If exact text matters, keep it short, large, and isolated. Do not ask Image2 to recreate complex app interfaces with many small labels. Prefer a separate UI/prop board for phone screens, signs, documents, chat messages, contracts, brand slogans, and curse rules.
 
+For narrative footage, the final Seedance frame must be clean. Storyboard labels, `S01/S02/S03`, timecodes, dialogue lines, camera notes, arrows, subtitles, captions, and production annotations are control-board information only. They must never be rendered into the video image.
+
+Every narrative Seedance prompt must include a clean-frame negative line:
+
+```text
+纯净电影画面；不要字幕、不要标题、不要画面内文字、不要 S01/S02/S03 分镜编号、不要 UI、不要水印、不要随机中文/英文、不要乱码文字。
+```
+
+If the project uses Chinese board labels, verify that they are Simplified Chinese unless the user explicitly requested Traditional Chinese.
+
 ## 5. Specific but Not Over-Constrained
 
 Lock non-negotiables: identity, wardrobe, scene geography, prop shape, UI text, story order, start/end state, and forbidden drift. Leave creative room for lighting texture, performance nuance, natural background detail, and cinematic composition.
@@ -40,6 +50,15 @@ For Seedance generation segments, verify every storyboard and matching Seedance 
 ## 8. Shot Count and Rhythm
 
 Shot count is driven by emotion, not formula. One continuous take can carry a scene. Two shots — one wide, one close — can be enough. Check that every shot has an emotional reason to exist; remove shots added just to fill panels. Use rhythm logic: space needs fewer cuts, impact needs more cuts, stillness needs locked-off camera, immersion needs handheld.
+
+For 15-second dramatic segments, fail the prompt if it tries to solve a slow emotional beat with fast coverage. Use this gate:
+
+- waiting / fear / command hesitation / grief / moral pressure: 1-3 shots, long holds, visible breath
+- dialogue / interrogation / order delivery: 2-4 shots, let the line land before cutting
+- attack / impact / chaos: 4-7 shots only when the script calls for acceleration
+- if more than 5 shots are needed to tell the beat clearly, split into multiple Seedance segments instead of cramming
+
+Do not add shots to "fill 15 seconds." A one-shot 15-second segment is valid when the emotion is alive.
 
 ## 9. Storyboard/Seedance Mirror Check
 
@@ -62,3 +81,6 @@ Before final delivery, run through the `film-industry-master-checklist.md` — 1
 - Every key emotional moment has a complete reaction chain (breath→micro-expression→body language→recovery)
 - Segment rhythm has breathing (inhale→pause→exhale→suspend)
 - Segment-to-segment handoff is at a breath boundary, not mid-action
+- Final video prompt contains a clean-frame/no-text line
+- Realist projects explicitly forbid game/CG/illustration texture
+- Chinese project boards use Simplified Chinese unless otherwise requested

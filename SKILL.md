@@ -147,6 +147,7 @@ Load these SOPs by condition:
 | **Industrial team workflow, versioning, generation logs** | **`references/production-sop/production-runbook.md`** |
 | **Multi-reference Seedance generation** | **`references/production-sop/reference-upload-order.md`** |
 | **After Seedance output, before repair/delivery** | **`references/production-sop/output-acceptance-scorecard.md`** |
+| **Realist war / documentary live-action / text-risk outputs** | **`references/production-sop/realism-clean-frame-rhythm-gate.md`** |
 | Before delivering any prompt file | `references/production-sop/prompt-self-review-checklist.md` |
 | **Quality benchmark — all projects** | **`references/production-sop/film-industry-master-checklist.md`** |
 
@@ -179,6 +180,8 @@ Shot count is **driven by rhythm and emotion, never a formula.** One continuous 
 
 Start from the emotion. Ask: how few shots can carry this? Add shots only when the story demands a new perspective.
 
+Hard rule for drama and war-film segments: do not compress a full plot paragraph into one 15-second clip by fast cutting. If the emotional beat needs silence, fear, waiting, command hesitation, mourning, or moral weight, use 1-3 shots or one continuous take. Split into more Seedance segments instead of forcing 6-8 cuts into a beat that should breathe.
+
 ### Film-Level Quality Standard
 
 Every output must aim for film quality — not "AI video" quality:
@@ -198,6 +201,8 @@ Every Image2 prompt must ask for a visual control chart Seedance can read from t
 - Clear panel numbers and arrows for order. Color-coded zones.
 - One consistent visual style across all boards in the same project.
 - Visuals carry identity, action, staging, camera, and continuity — do not rely on long in-image text.
+- For realist live-action, historical, war, documentary, police, period, or serious drama projects: lock photographic cinema realism. Do not allow game concept art, UE/CG look, glossy illustration, heroic poster faces, plastic skin, or stylized digital-painting texture unless the user explicitly asks for it.
+- Use Simplified Chinese for Chinese project boards by default. Do not use Traditional Chinese unless the project region, era document, or user request specifically requires it.
 
 ## Image2 Prompt Writing Rules
 
@@ -214,6 +219,7 @@ Design boards and Seedance text prompts as dual-control pairs — the board is r
 - **Asset boards** visually encode: stable references, drift prohibitions, exact identity, source-of-truth when based on user assets.
 - **Storyboard boards** visually encode: who appears, where, what changes over time, camera movement, shot size, dialogue intention, start/end state, next-shot handoff.
 - **Seedance prompts** textually encode: same shot order/timecodes as storyboard, same character/scene/prop/VFX/dialogue/sound/emotion, same camera logic, explicit continuity and forbidden drift.
+- **Clean-frame boundary**: storyboard labels, S01/S02 markers, dialogue notes, and production annotations exist only on the control board. They must not appear in the generated video frame. Seedance prompts for narrative footage must explicitly say: no subtitles, no captions, no shot labels, no UI text, no random Chinese/English text, no watermarks, clean cinematic image only.
 
 Avoid: tiny text labels, abstract mood boards, random decorative UI, 25+ panel boards for single Seedance clips, incompatible costume/face options, asking Image2 to generate exact long paragraphs in-image.
 

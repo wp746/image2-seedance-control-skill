@@ -23,6 +23,26 @@ TIMECODE_RE = re.compile(
     r"(?P<start_min>\d+):(?P<start_sec>\d{2})(?:\.\d+)?\s*[-–]\s*(?P<end_min>\d+):(?P<end_sec>\d{2})(?:\.\d+)?"
 )
 ASSET_RE = re.compile(r"\b(?:CHAR|SCENE|PROP|PRODUCT|VEHICLE|STYLE)_[A-Z0-9]+\b")
+CLEAN_FRAME_TOKENS = (
+    "不要字幕",
+    "无字幕",
+    "no subtitles",
+    "no captions",
+    "不要画面内文字",
+    "no on-screen text",
+    "不要乱码",
+)
+STYLE_FORBID_TOKENS = (
+    "不要游戏",
+    "非游戏",
+    "不是游戏",
+    "no game",
+    "not game",
+    "不要CG",
+    "非CG",
+    "照片级",
+    "真人电影写实",
+)
 
 
 def seconds(minutes: str, secs: str) -> int:
@@ -51,7 +71,11 @@ def line_for_offset(text: str, offset: int) -> int:
 
 
 def lint_file(path: Path) -> list[str]:
-    text = path.read_text(encoding="utf-8")
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError as exc:
+        return [f"{path}: not valid UTF-8 ({exc.reason}); decode/convert source text before prompt lint"]
+
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -105,6 +129,14 @@ def lint_file(path: Path) -> list[str]:
         if not any(token in body for token in ("禁止", "DO NOT", "不得", "no ")):
             warnings.append(f"{path}:{line}: {title}: no negative/forbidden drift instruction detected")
 
+        if not any(token.lower() in body.lower() for token in CLEAN_FRAME_TOKENS):
+            warnings.append(f"{path}:{line}: {title}: missing clean-frame/no-subtitle/no-random-text guard")
+
+        if any(token in text for token in ("战争", "历史", "军", "战场", "部队")) and not any(
+            token.lower() in body.lower() for token in STYLE_FORBID_TOKENS
+        ):
+            warnings.append(f"{path}:{line}: {title}: possible realist war/historical project without game/CG/style guard")
+
         if index > len(storyboard_titles):
             warnings.append(f"{path}:{line}: {title}: more Seedance prompts than storyboard headings")
 
@@ -126,7 +158,15 @@ def main() -> int:
     for msg in all_messages:
         print(msg)
 
-    has_error = any("exceeds Seedance" in msg or "missing local start" in msg or "ends after" in msg or "no fenced" in msg or "file not found" in msg for msg in all_messages)
+    has_error = any(
+        "exceeds Seedance" in msg
+        or "missing local start" in msg
+        or "ends after" in msg
+        or "no fenced" in msg
+        or "file not found" in msg
+        or "not valid UTF-8" in msg
+        for msg in all_messages
+    )
     if not all_messages:
         print("prompt_lint: PASS")
     elif not has_error:
