@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.4.0 | 2026-05-13
+> v1.5.0 | 2026-05-13
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -42,10 +42,13 @@
 - [提示词自检清单](references/production-sop/prompt-self-review-checklist.md)
 - [场景类型策略剧本](references/production-sop/scene-type-playbook.md)
 - [影视工业级母版标准](references/production-sop/film-industry-master-checklist.md)
+- [工业化执行手册](references/production-sop/production-runbook.md)
+- [Seedance 多参考图上传顺序](references/production-sop/reference-upload-order.md)
+- [出片验收评分表](references/production-sop/output-acceptance-scorecard.md)
 
 ## 它能解决什么问题
 
-这个 skill 主要解决 Image2 + Seedance 2.0 视频生产里的 10 个关键问题：
+这个 skill 主要解决 Image2 + Seedance 2.0 视频生产里的 13 个关键问题：
 
 1. 用户只有模糊想法，不知道怎么补齐时长、画幅、风格、冲突和结尾。
 2. 用户有剧本，但不知道如何拆成资产板和 Seedance 可执行故事板。
@@ -57,6 +60,9 @@
 8. 多镜头之间没有入点、出点、方向、声音和情绪接力，剪起来割裂。
 9. 几分钟或分集项目没有项目级连续性圣经，越做越失控。
 10. 出片后脸漂、动作错、运镜乱、接不上时，不知道该局部返修还是重做。
+11. 多参考图上传顺序混乱，原始资产、资产板、故事板、上段末帧互相抢控制权。
+12. 生成结果只凭主观感觉判断，没有可复盘的验收分数和硬失败标准。
+13. 提示词交付前缺少机械检查，容易遗漏 2000 字符、0:00 起始、15 秒上限等硬规则。
 
 ## 核心能力
 
@@ -197,6 +203,44 @@ IN STATE -> ACTION -> OUT STATE -> NEXT SHOT HANDOFF
 
 然后决定是提示词收紧、单段重生、故事板重写，还是资产板重建。
 
+### 9. 工业化执行手册
+
+针对团队协作或连续剧生产，skill 现在包含生产运行手册：
+
+- 项目 / 集 / 场 / 段 / 镜 / take / patch 命名规范
+- 资产、故事板、Seedance prompt、生成结果、返修记录的文件结构
+- 每一阶段的通过门槛
+- Seedance 生成日志
+- 制片状态表
+- 最终交付 gate
+
+### 10. 多参考图上传顺序
+
+Seedance 多参考图必须明确职责：
+
+```text
+原始资产 -> 角色板 -> 场景板 -> 道具板 -> 当前故事板 -> 上段末帧
+```
+
+每张图只做一件事。原始资产锁身份，资产板锁连续性，故事板锁镜头和动线，上段末帧锁续生成第一帧状态。
+
+### 11. 出片验收评分表
+
+生成后按 100 分评分，而不是只看“像不像好看”：
+
+- 身份一致
+- 场景连续
+- 道具/产品连续
+- 故事执行
+- 动作物理
+- 摄影构图
+- 光线风格
+- 表演情绪
+- 声音和可剪辑性
+- prompt 合规
+
+低于 75 分进入返修；硬失败直接重做或重建资产/故事板。
+
 ## 标准工作流
 
 默认生产链路：
@@ -209,7 +253,10 @@ Input Intake
 -> 场景空间 / 道具 / 风格锁定
 -> 分段故事板提示词
 -> 镜头接缝检查
+-> 多参考图上传顺序
+-> prompt lint 机械检查
 -> Seedance 2.0 全能参考生成
+-> 出片验收评分
 -> 出片后返修 SOP
 ```
 
@@ -222,6 +269,24 @@ Input Intake
 - 15 秒段落优先 5-6 镜，最多 8 镜。
 - 长片按集、按场、按段拆分。
 - 每段都要有上一段接点和下一段交接。
+- 每张上传参考图必须有明确职责，不允许多个参考互相冲突。
+- 出片后先评分，再决定保留、局部返修、单段重生或重建资产。
+
+## Prompt Lint
+
+仓库内置一个轻量检查脚本，用于交付前检查硬规则：
+
+```bash
+python3 scripts/prompt_lint.py image2_seedance_control_prompts.md
+```
+
+它会检查：
+
+- Seedance prompt 是否超过 2000 字符
+- 是否从 `0:00` 开始
+- 时间码是否超过 `0:15`
+- 是否存在基础故事板/Seedance 结构风险
+- 是否缺少禁止漂移指令
 
 ## 适用场景
 
@@ -262,6 +327,7 @@ Input Intake
 - `references/storyboard-prompts/` — 故事板提示词分支
 - `references/seedance-prompts/` — Seedance 视频提示词分支
 - `references/production-sop/` — 工业化生产 SOP 分支
+- `scripts/prompt_lint.py` — prompt 文件机械检查脚本
 
 ### 资产提示词分支
 
@@ -463,6 +529,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.4.0 | 2026-05-13
+v1.5.0 | 2026-05-13
 
-核心升级：**场景类型策略剧本系统**。新增 `scene-type-playbook.md`——6 大戏剧功能（文戏/武戏/悬疑/过渡/产品/氛围）各自独立的战术手册。文戏拍微表情和反应链，武戏拍空间关系和物理重量——不同的戏用不同的拍法。A-roll vs B-roll 设计原则，场景类型自动识别机制。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+核心升级：**工业化执行闭环**。新增 `production-runbook.md`、`reference-upload-order.md`、`output-acceptance-scorecard.md` 和 `scripts/prompt_lint.py`，把原来的创作 SOP 扩展成可执行、可验收、可返修、可复盘的生产管线。现在不仅能写资产板和故事板，还能规定多参考图上传顺序、生成日志、出片评分、返修决策和交付前硬规则检查。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。

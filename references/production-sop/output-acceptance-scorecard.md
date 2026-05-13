@@ -1,0 +1,104 @@
+# Output Acceptance Scorecard — 出片验收评分表
+
+Use this after Seedance generates a video segment. The goal is to decide whether to pass, edit, repair, regenerate, or rebuild the source prompt/board.
+
+Do not judge only by whether the clip "looks good". Judge by whether it fulfills the production contract.
+
+## Verdict Bands
+
+| Score | Verdict | Meaning |
+|---|---|---|
+| 90-100 | `PASS` | ready for edit or delivery |
+| 75-89 | `CONDITIONAL` | usable with small edit, crop, timing, or minor repair |
+| 60-74 | `REPAIR` | core idea works, but one or more defects need targeted repair |
+| 0-59 | `FAIL` | regenerate or rebuild prompt/storyboard/assets |
+
+Hard fail overrides score:
+
+- wrong character identity
+- wrong product or brand-critical prop
+- wrong location for a continuity scene
+- impossible or broken main action
+- segment cannot connect to previous/next segment
+- unsafe, unwanted, or policy-breaking content
+
+## 100-Point Scorecard
+
+| Category | Points | What To Check |
+|---|---:|---|
+| Identity Lock | 15 | face, age, body, hair, wardrobe, performance baseline |
+| Scene Continuity | 10 | layout, doors/windows, light direction, weather/time, fixed objects |
+| Prop/Product Continuity | 10 | shape, color, material, scale, hand relationship, readable short text/logo |
+| Story Execution | 15 | main beat, cause/effect, emotional turn, no missing required action |
+| Motion And Physics | 10 | gravity, weight, speed, no melting, no impossible body behavior |
+| Camera And Composition | 10 | correct shot size, motivated movement, no random orbit/floating, usable framing |
+| Light And Style | 8 | source-motivated light, palette, film texture, no sudden style shift |
+| Performance And Emotion | 10 | micro-expression, reaction chain, breath, body language, no instant emotion jump |
+| Sound/Editability | 7 | sound cues, room tone, usable in/out frames, no broken handoff |
+| Prompt Compliance | 5 | follows timecode, aspect ratio, negative notes, no extra characters/props |
+
+## Review Template
+
+```markdown
+## Output Acceptance Review
+- Project:
+- EP / Scene / Segment:
+- Prompt version:
+- Take:
+- Reviewer:
+- Verdict: PASS / CONDITIONAL / REPAIR / FAIL
+- Total Score:
+
+| Category | Score | Notes |
+|---|---:|---|
+| Identity Lock /15 | | |
+| Scene Continuity /10 | | |
+| Prop/Product Continuity /10 | | |
+| Story Execution /15 | | |
+| Motion And Physics /10 | | |
+| Camera And Composition /10 | | |
+| Light And Style /8 | | |
+| Performance And Emotion /10 | | |
+| Sound/Editability /7 | | |
+| Prompt Compliance /5 | | |
+
+## Hard Fail Check
+- Wrong identity: YES/NO
+- Wrong prop/product: YES/NO
+- Wrong scene: YES/NO
+- Broken main action: YES/NO
+- Broken segment handoff: YES/NO
+- Unsafe/unwanted content: YES/NO
+
+## Decision
+- Keep:
+- Repair:
+- Regenerate:
+- Rebuild:
+- Next prompt change:
+```
+
+## Repair Mapping
+
+Use this table to choose the smallest next action:
+
+| Score Pattern | Likely Cause | Next Action |
+|---|---|---|
+| Identity low, story high | references weak or far faces | stronger character reference, closer framing |
+| Scene low, identity high | floor plan under-specified | add scene board or camera map |
+| Prop low | prop board missing or hand relationship unclear | add prop board, close-up, hand lock |
+| Motion low | too many actions or complex physics | split segment, one action per shot |
+| Camera low | storyboard over-ambitious | simplify camera, lock CAM position |
+| Emotion low | prompt lacks reaction chain | add breath, pause, micro-expression timing |
+| Editability low | no in/out state | rewrite handoff and final frame |
+
+## Segment Acceptance Gate
+
+A segment may move to edit only when:
+
+- no hard fail exists
+- score is 75 or higher
+- the first frame can inherit previous state or the segment is a first segment
+- the final frame can hand off to the next segment or serve as an intentional ending
+- the user-facing story beat is understandable without reading the prompt
+

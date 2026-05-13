@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-13 | Version: 1.4.0
+> Last updated: 2026-05-13 | Version: 1.5.0
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -67,6 +67,9 @@ Before writing prompts, use this table to load only the files needed for the cur
 | Seedance 输出有漂移/动作/连续性问题 | `seedance-repair-sop.md` |
 | **设计任何故事板之前** | **`storyboard-seedance-pairing-principle.md`** |
 | **场景类型策略 — 每段必加载** | **`scene-type-playbook.md`** |
+| **工业化团队执行 / 版本管理 / 生成记录** | **`production-runbook.md`** |
+| **多参考图上传 / 上段末帧续生成** | **`reference-upload-order.md`** |
+| **Seedance 出片验收 / 返修前评分** | **`output-acceptance-scorecard.md`** |
 | **任何提示词文件交付前** | `prompt-self-review-checklist.md` |
 | **影视工业级母版标准 — 所有项目** | **`film-industry-master-checklist.md`** |
 
@@ -140,6 +143,9 @@ Use for industrialized long-form or multi-segment production control: project co
 Current files:
 
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
+- `production-runbook.md`: execution-layer SOP for team handoff, production units, folder/file naming, asset/storyboard/generation gates, generation logs, status boards, prompt linting, and final delivery gates.
+- `reference-upload-order.md`: Seedance multi-reference upload order and conflict rules. Defines the duty of original assets, formal asset boards, storyboard boards, previous final frames, and style references.
+- `output-acceptance-scorecard.md`: post-generation 100-point review sheet with hard-fail overrides, verdict bands, category scoring, and repair decision mapping.
 - `shot-seam-review.md`: shot-to-shot and segment-to-segment continuity review SOP using IN state, action, OUT state, next handoff, direction, emotion, light, sound, and edit checks.
 - `seedance-repair-sop.md`: post-generation defect diagnosis and repair workflow for identity drift, scene drift, prop drift, motion failure, camera failure, emotion failure, style failure, and seam failure.
 - `storyboard-seedance-pairing-principle.md`: master design philosophy for the complementary dual-control pair — storyboard visualizes what words can't express (movement paths, camera positions, light, emotion keywords, sound/VFX markers), Seedance prompt writes what images can't show (micro-expressions, camera texture, light quality, sound design, performance timing) using the full 2000-character limit. Film-level quality standard.
