@@ -67,11 +67,13 @@ The storyboard image visualizes what text cannot precisely express. Text on the 
    - Physical constraints (hand position, posture, walking speed)
    - Interaction rules (who touches what, eye contact rules)
 
-**Keep text minimal.** Short labels only. Bilingual: `S03 / 4-7s / CU / 愤怒`. No paragraphs. No descriptions that belong in the Seedance prompt.
+**Keep text minimal.** Short labels only. Bilingual: `S03 / 0:04-0:07 / CU / 愤怒`. No paragraphs. No descriptions that belong in the Seedance prompt.
+
+Dialogue belongs to sound and performance. Storyboards may show `低声命令`, `犹豫回答`, `RADIO VOICE`, or `PA SPEECH`, but should not place full dialogue paragraphs inside frame thumbnails. If exact dialogue is needed, write it in the Seedance prompt as spoken audio timing and explicitly forbid subtitles. See `dialogue-audio-subtitle-boundary.md`.
 
 ### Seedance Prompt's Job (Textual — 2000字符上限)
 
-The Seedance prompt fills in everything the storyboard image cannot express. Use the full 2000-character limit for rich, nuanced text description.
+The Seedance prompt fills in everything the storyboard image cannot express. Stay under the 2000-character hard limit; prioritize clarity over density and do not try to use all available characters unless the segment truly needs it.
 
 **Must describe (in detail the board only hints at):**
 
@@ -139,7 +141,7 @@ The Seedance prompt fills in everything the storyboard image cannot express. Use
 | Emotion | ✅ Keywords | ✅ Detail micro-expressions |
 | Sound | ✅ Cue markers | ✅ Describe sound design |
 | VFX | ✅ Trigger frames | ✅ Describe VFX behavior |
-| Dialogue intention | ✅ Short intent note | ❌ Write actual dialogue in prompt |
+| Dialogue intention | ✅ Short intent note outside thumbnails | ✅ Write spoken delivery only when needed; never render as subtitles |
 | Micro-expressions | ❌ Cannot show | ✅ Must describe fully |
 | Texture/grain/patina | ❌ Cannot show | ✅ Must describe fully |
 | Performance timing | ❌ Cannot show | ✅ Must describe fully |
@@ -193,7 +195,14 @@ The storyboard exists to serve the emotion, not to fill panels. Choose the minim
 
 ## 2000-Character Hard Limit
 
-**Seedance 2.0 accepts a maximum of 2000 characters per prompt. This is a HARD limit, not a suggestion.** If you exceed it, the prompt will be truncated — losing critical continuity, micro-expression, or forbidden-drift instructions.
+**Seedance 2.0 accepts a maximum of 2000 characters per prompt. This is a HARD limit, not a target.** If you exceed it, the prompt will be truncated — losing critical continuity, micro-expression, or forbidden-drift instructions.
+
+Recommended ranges:
+
+- transition / B-roll: 400-800 characters
+- dialogue / suspense / emotional drama: 900-1500 characters
+- action / product / multi-reference segments: 1200-1800 characters
+- only approach 2000 when complexity is justified and the segment budget remains safe
 
 Before delivering any Seedance prompt, count the characters. If >2000, compress using the techniques below. Do NOT split the prompt — one prompt per segment.
 
@@ -235,13 +244,13 @@ After: `CHAR_A撑透明伞从下方走入窄巷，步频1.2步/s微前倾。`
 
 Before:
 ```
-S01 / 0:00-6:00 / WS / 35mm / CAM 1 手持跟拍
+S01 / 0:00-0:06 / WS / 35mm / CAM 1 手持跟拍
 CAM 1 在右侧距人物 3m，高度 1.6m 视线水平，操机者有轻微呼吸——画面有 2-3 像素的周期性微动...
 ```
 
 After:
 ```
-S01/0:00-6:00 WS/35mm/CAM1手持跟拍 高度1.6m 右侧30°。CAM1呼吸微动2-3px，偶尔滞后0.3s修正。
+S01/0:00-0:06 WS/35mm/CAM1手持跟拍 高度1.6m 右侧30°。CAM1呼吸微动2-3px，偶尔滞后0.3s修正。
 ```
 
 **Technique 5: Merge continuity and forbidden into compact form**
@@ -296,7 +305,7 @@ S01 0-3s: Character walks into room, looks around, sits down. Camera follows. Sa
 
 A strong prompt (dense, film-level, 2000-char fit):
 ```
-S01/0:00-3:20 WS/35mm/CAM2手持胸高 呼吸微动2px。CHAR_A左手推门，指节触木纹，门有阻力不轻不重。迈门槛右脚先落，体重转移在地板旧木上出声。0:45停步——眼球从左到右跳转(非扫视)，依次定格:窗(0:52)/空椅(1:10)/桌上照片(1:35)。微表情1:35:下唇收紧2mm→释放。屏息0.8s→鼻呼。走向椅4步每步不同木板呻吟。2:50坐下——控制下降非塌，手放大腿手指微蜷入布。
+S01/0:00-0:03.2 WS/35mm/CAM2手持胸高 呼吸微动2px。CHAR_A左手推门，指节触木纹，门有阻力不轻不重。迈门槛右脚先落，体重转移在地板旧木上出声。0:45停步——眼球从左到右跳转(非扫视)，依次定格:窗(0:52)/空椅(1:10)/桌上照片(1:35)。微表情1:35:下唇收紧2mm→释放。屏息0.8s→鼻呼。走向椅4步每步不同木板呻吟。2:50坐下——控制下降非塌，手放大腿手指微蜷入布。
 光:下午4时窗光画面右,4300K,薄纱柔化,尘粒可见光束中。影侧落至近黑，无补光。台灯灭。
 声:房间音小空间木面，窗外远处车流。脚步旧皮鞋橡木每步不同，第三步轻咯吱。坐下时布摩擦。呼吸鼻息克制，坐下后一次深呼。无声乐。
 

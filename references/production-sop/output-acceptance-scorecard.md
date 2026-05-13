@@ -22,6 +22,8 @@ Hard fail overrides score:
 - realist live-action project turns into game, CG, anime, glossy concept art, or digital illustration texture
 - user-provided style reference or STYLE_BIBLE is ignored, replaced by a generic default look, or applied so strongly that it changes story/identity/geography
 - group scenes show repeated same-face extras, cloned soldiers, or the main character's face copied into the crowd
+- spoken dialogue is rushed, lacks reaction time, or appears as unwanted subtitles/text
+- segment complexity exceeds model capacity and the required story beat is unreadable
 - impossible or broken main action
 - slow dramatic beat is cut so fast that the intended emotion cannot be read
 - segment cannot connect to previous/next segment
@@ -77,6 +79,8 @@ Hard fail overrides score:
 - Wrong visual medium/style: YES/NO
 - User style reference ignored/misapplied: YES/NO
 - Cloned crowd/extras: YES/NO
+- Dialogue/subtitle failure: YES/NO
+- Segment over-complexity: YES/NO
 - Rhythm destroys story beat: YES/NO
 - Broken main action: YES/NO
 - Broken segment handoff: YES/NO
@@ -106,6 +110,8 @@ Use this table to choose the smallest next action:
 | Game/CG look | asset board style was too concept-art oriented | rebuild asset board with realist war-film lock |
 | User style mismatch | style was vague, missing, or treated as identity/story reference | create STYLE_BIBLE, add compact style lock to prompts, limit style reference duty |
 | Cloned crowd | prompt over-locked one face or treated uniform group as one identity | add crowd diversity guard, reduce hero-face references in wide crowd shots, regenerate |
+| Dialogue failure | lines were too long, rushed, or became subtitles | split line, add speech rate/pause/reaction, add no-subtitle boundary |
+| Over-complex segment | too many jobs in one generation | return to segment complexity budget and split |
 | Fast-cut drama | too many story beats in one 15s segment | rewrite as 1-3 shots or split into more segments |
 | Editability low | no in/out state | rewrite handoff and final frame |
 

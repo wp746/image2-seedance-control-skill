@@ -13,6 +13,38 @@ The goal is not to regenerate blindly. Diagnose the defect, choose the smallest 
 5. Regenerate or patch.
 6. Re-check seams.
 
+## Repair Discipline
+
+Change one primary variable per patch whenever possible. Otherwise the team cannot know what fixed or broke the take.
+
+For each patch record:
+
+- kept
+- changed
+- reason
+- expected fix
+- reference stack change
+- prompt version / patch version
+- new score after regeneration
+
+If the same defect persists twice, escalate repair level instead of adding more negative words.
+
+## Root Cause Tree
+
+Before choosing repair level, classify root cause:
+
+- script beat failure
+- segment overload
+- asset unreadable
+- storyboard impossible
+- prompt ambiguous
+- reference conflict
+- model limitation
+- edit assembly issue
+- sound post issue
+
+If the root cause is script beat failure or segment overload, do not solve it with prompt tightening. Return to `script-breakdown-segment-plan.md` or `segment-complexity-budget.md`.
+
 ## Defect Categories
 
 ### 1. Identity Drift
@@ -169,14 +201,19 @@ When producing a repair prompt, write:
 - 问题类型:
 - 影响镜头:
 - 原因:
+- 根因层级:
 - 保留可用部分:
 - 需要重做部分:
 
 ## Repair Strategy
 - 修复等级:
+- 本次只改变的主变量:
+- 保持不变:
+- 预期修复:
 - 参考资产:
 - 关键锁定:
 - 接缝要求:
+- 新版本号: P01 / P02 / ...
 
 ## Seedance Repair Prompt
 ```text

@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.5.0 | 2026-05-13
+> v1.8.0 | 2026-05-14
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -45,10 +45,15 @@
 - [工业化执行手册](references/production-sop/production-runbook.md)
 - [Seedance 多参考图上传顺序](references/production-sop/reference-upload-order.md)
 - [出片验收评分表](references/production-sop/output-acceptance-scorecard.md)
+- [剧本拆解与段落生产单](references/production-sop/script-breakdown-segment-plan.md)
+- [段落复杂度预算](references/production-sop/segment-complexity-budget.md)
+- [对白/声音/字幕边界](references/production-sop/dialogue-audio-subtitle-boundary.md)
+- [用户风格参考 SOP](references/production-sop/user-style-reference-sop.md)
+- [部门签核门](references/production-sop/department-signoff-gates.md)
 
 ## 它能解决什么问题
 
-这个 skill 主要解决 Image2 + Seedance 2.0 视频生产里的 13 个关键问题：
+这个 skill 主要解决 Image2 + Seedance 2.0 视频生产里的 18 个关键问题：
 
 1. 用户只有模糊想法，不知道怎么补齐时长、画幅、风格、冲突和结尾。
 2. 用户有剧本，但不知道如何拆成资产板和 Seedance 可执行故事板。
@@ -63,6 +68,11 @@
 11. 多参考图上传顺序混乱，原始资产、资产板、故事板、上段末帧互相抢控制权。
 12. 生成结果只凭主观感觉判断，没有可复盘的验收分数和硬失败标准。
 13. 提示词交付前缺少机械检查，容易遗漏 2000 字符、0:00 起始、15 秒上限等硬规则。
+14. 剧本没有先拆成节拍和 Seedance 段落，导致把原文硬塞进 15 秒视频。
+15. 用户提供参考风格时，系统默认审美覆盖了用户风格。
+16. 群众/士兵/路人被模型生成成同一张脸，破坏真实感。
+17. 台词被当成字幕或画面文字渲染，或者说话太赶没有表演呼吸。
+18. 单段复杂度超出模型可执行范围，导致镜头乱、动作乱、叙事读不清。
 
 ## 核心能力
 
@@ -529,6 +539,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.5.0 | 2026-05-13
+v1.8.0 | 2026-05-14
 
-核心升级：**工业化执行闭环**。新增 `production-runbook.md`、`reference-upload-order.md`、`output-acceptance-scorecard.md` 和 `scripts/prompt_lint.py`，把原来的创作 SOP 扩展成可执行、可验收、可返修、可复盘的生产管线。现在不仅能写资产板和故事板，还能规定多参考图上传顺序、生成日志、出片评分、返修决策和交付前硬规则检查。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+核心升级：**工业级 AIGC 制片闭环**。在原有资产板、故事板、Seedance prompt、上传顺序、出片评分和返修 SOP 基础上，补齐剧本拆解、段落复杂度预算、用户风格参考、纯净画面、群演差异化、对白/字幕边界、部门签核和更严格的 lint gate。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。

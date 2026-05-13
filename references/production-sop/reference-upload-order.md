@@ -54,7 +54,7 @@ previous final frame -> original assets -> asset boards -> current storyboard
 In the prompt, state:
 
 ```text
-上一段末帧负责本段第一帧姿态、站位、光线、情绪和道具状态；资产板负责身份与空间不漂移；当前故事板负责本段镜头顺序和动作。
+本段本地时间 0:00-0:15；上一段末帧只负责本段 0:00 首帧姿态、站位、光线、情绪和道具状态；原始资产/角色板仍是身份最高源；当前故事板负责本段镜头顺序和动作。
 ```
 
 If identity drifts when the previous final frame is first, move original character asset and character board before it, but explicitly say previous final frame controls only pose and lighting.
@@ -100,6 +100,19 @@ When references disagree:
 5. User-provided style references override the skill's default taste, but style references never override identity, wardrobe, scene geography, prop shape, story facts, clean-frame rules, or crowd diversity.
 
 Do not upload two different faces for the same character unless one is explicitly labeled as "old version / do not use".
+
+## Reference Conflict Gate
+
+If references conflict, do not continue by hoping the model will resolve it.
+
+| Conflict | Status | Fix |
+|---|---|---|
+| two different faces for one character | `HOLD` | pick one identity source or label old version as do-not-use |
+| style reference changes wardrobe/identity | `FIX` | limit style duty to look only |
+| previous final frame overrides identity | `FIX` | move original character/board before final frame; final frame controls only start state |
+| storyboard redesigns asset | `REBUILD` | rebuild storyboard as execution board only |
+| exact text appears in multiple inconsistent refs | `FIX` | create one UI/text prop board |
+| too many references for one segment | `SPLIT` | reduce to source asset + needed board + current storyboard |
 
 ## Prompt Reference Line Template
 

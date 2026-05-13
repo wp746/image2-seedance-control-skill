@@ -4,6 +4,7 @@ Use this before delivering any Image2 prompt file. Audit and fix against every r
 
 ## 1. Responsibility Separation
 
+- Script breakdown locks dramatic beats, segment jobs, asset needs, and risk before prompt writing.
 - Character boards lock identity, face, body, wardrobe, expressions, and status variants.
 - Scene boards lock space, light, material, geography, and usable camera areas.
 - Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
@@ -52,6 +53,8 @@ For Seedance generation segments, verify every storyboard and matching Seedance 
 
 **Seedance prompt MUST be ≤ 2000 characters.** This is a hard limit — if exceeded, Seedance 2.0 will truncate the prompt. Count characters before delivering. If >2000, compress using the techniques in `storyboard-seedance-pairing-principle.md` (merge reference stack, symbols over connecting words, imperative fragments, inline specs). If compression still fails, reduce shot count — the segment has too many shots to describe with quality.
 
+Run `segment-complexity-budget.md` before writing each pair. Do not allow high-risk segments to pass by relying on stronger wording.
+
 ## 8. Shot Count and Rhythm
 
 Shot count is driven by emotion, not formula. One continuous take can carry a scene. Two shots — one wide, one close — can be enough. Check that every shot has an emotional reason to exist; remove shots added just to fill panels. Use rhythm logic: space needs fewer cuts, impact needs more cuts, stillness needs locked-off camera, immersion needs handheld.
@@ -69,6 +72,8 @@ Do not add shots to "fill 15 seconds." A one-shot 15-second segment is valid whe
 
 For every storyboard shot row, verify the matching Seedance prompt has the same shot number, local timecode, main content, camera/movement, character action, dialogue, sound/music, emotion, VFX, and end-state logic. Remove anything in the Seedance prompt that is not supported by the storyboard.
 
+For dialogue, use `dialogue-audio-subtitle-boundary.md`: full lines belong in Seedance only as spoken delivery timing, not as rendered subtitles or storyboard thumbnail text.
+
 ## 10. Production Readability
 
 Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.
@@ -78,6 +83,8 @@ Remove contradictory instructions, repeated labels, dense tiny paragraphs, and v
 Before final delivery, run through the `film-industry-master-checklist.md` — 10 departments, 40+ items. Mark each as satisfied or N/A with reason. At minimum, verify these high-risk items:
 
 - Model capability boundary: can Seedance actually execute what we're asking?
+- Script breakdown and segment plan exist for scripts/multi-beat ideas
+- Segment complexity budget is low/medium or the segment has been split
 - Color constitution declared: main/secondary/accent/neutral/forbidden colors
 - Film stock color science declared
 - User style reference extracted and scoped when provided
@@ -91,3 +98,5 @@ Before final delivery, run through the `film-industry-master-checklist.md` — 1
 - Realist projects explicitly forbid game/CG/illustration texture
 - Chinese project boards use Simplified Chinese unless otherwise requested
 - Crowd/extras prompt includes no-clone / varied-face guard when group scenes appear
+- Dialogue/speech lines include rate, pause, listener reaction, and no-subtitle boundary when applicable
+- Department signoff is PASS for industrial-grade packages

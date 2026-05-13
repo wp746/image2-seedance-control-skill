@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-14 | Version: 1.7.0
+> Last updated: 2026-05-14 | Version: 1.8.0
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -27,6 +27,8 @@ Before writing prompts, use this table to load only the files needed for the cur
 |---|---|
 | 重复出现或有固定布局的场景 | `scene-asset-board.md` |
 | 特写/重复/推动剧情/品牌展示的道具 | `prop-asset-board.md` |
+| 用户提供参考风格 / 要提取电影风格 | `+ style-look-bible-board.md` |
+| 手机/合同/招牌/字幕卡/聊天记录/文字道具 | `+ ui-text-prop-board.md` |
 | 场景复杂、多角色互动、情绪在空间中变化 | `+ scene-continuity-board.md` |
 
 ### Storyboard Prompts — Segment Function
@@ -55,7 +57,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 | 情侣/双人介绍 | `romantic-couple-introduction.md` |
 | 产品广告 (12-20 秒) | `product-ad-timeline.md` |
 | 影视制作计划板执行 | `cinematic-production-sheet-timeline.md` |
-| 角色+故事板首通 → 续生成 (15-30 秒延续) | `character-storyboard-first-pass-continuation.md` |
+| 角色+故事板首通 → 本地 0:00-0:15 续生成 | `character-storyboard-first-pass-continuation.md` |
 | 多参考动作场景 (明确标签职责) | `named-reference-stack-action-prompt.md` |
 
 ### Production SOP — 工业化控制
@@ -63,11 +65,15 @@ Before writing prompts, use this table to load only the files needed for the cur
 | 生产条件 | 加载文件 |
 |---|---|
 | 多段 / 多场景 / 分集 / 长片 | `project-continuity-bible.md` |
+| 剧本 / 大纲 / 分集 / 多节拍创意 | `script-breakdown-segment-plan.md` |
 | 多镜头 / 多 Seedance 段落 | `shot-seam-review.md` |
 | Seedance 输出有漂移/动作/连续性问题 | `seedance-repair-sop.md` |
 | **设计任何故事板之前** | **`storyboard-seedance-pairing-principle.md`** |
 | **场景类型策略 — 每段必加载** | **`scene-type-playbook.md`** |
+| **每个故事板 + Seedance 对生成前** | **`segment-complexity-budget.md`** |
+| **对白 / 旁白 / 电台 / 字幕 / 文本风险** | **`dialogue-audio-subtitle-boundary.md`** |
 | **工业化团队执行 / 版本管理 / 生成记录** | **`production-runbook.md`** |
+| **工业级最终交付签核** | **`department-signoff-gates.md`** |
 | **用户给参考图/参考片/电影风格/要求提取风格** | **`user-style-reference-sop.md`** |
 | **多参考图上传 / 上段末帧续生成** | **`reference-upload-order.md`** |
 | **Seedance 出片验收 / 返修前评分** | **`output-acceptance-scorecard.md`** |
@@ -98,6 +104,8 @@ Current files:
 - `prop-asset-board.md`: prop asset board pattern for repeating/close-up/plot-driving props — multi-view, material/scale/color, hand relationship, story context, forbidden shape/color/scale drift.
 - `scene-continuity-board.md`: scene continuity board pattern bridging scene asset and storyboard — character positions, movement paths, light/atmosphere, emotional state flow, edit in/out frames.
 - `animated-cinematic-character-pitch-board.md`: high-budget animated cinematic character pitch-board pattern for GPT Image 2, emphasizing art-directed asymmetric composition, human vs stylized creature layout choices, character psychology, actor-like performance direction, signature quote, action/idle poses, wardrobe/material accuracy, strict turnaround, head studies, cinematic portrait, always-present props, color/texture guide, and production-ready fidelity notes for film, Seedance, merchandising, and pitch decks.
+- `style-look-bible-board.md`: visual STYLE_BIBLE board pattern for extracting a user's reference image/video/film look into palette, contrast, lens, light, texture, composition, camera mood, and forbidden drift without controlling identity/story facts.
+- `ui-text-prop-board.md`: isolated board pattern for phone screens, documents, signs, slogans, maps, title cards, and other text-bearing props, keeping exact text out of storyboards and clean narrative frames.
 
 ### Storyboard Prompt Branch
 
@@ -133,7 +141,7 @@ Current files:
 - `romantic-couple-introduction.md`: Seedance relationship-introduction prompt using a couple character sheet, detail -> identity -> relationship -> presence -> full reveal.
 - `product-ad-timeline.md`: concise product ad timeline prompt structure for 12-20 second commercials using product boards/storyboards.
 - `cinematic-production-sheet-timeline.md`: Seedance prompt pattern that treats an uploaded Image2 cinematic production plan sheet as a strict directing document, preserving character identity, scene geography, CAM positions, shot order, color, lighting, VFX, and continuity for a 4-15 second segment.
-- `character-storyboard-first-pass-continuation.md`: Seedance prompt pattern for using a character/location sheet plus 3x3 storyboard as first-pass references, then using the previous 15-second video's last frame as the main reference for seamless 15-30 second continuation while keeping original sheets as secondary continuity anchors.
+- `character-storyboard-first-pass-continuation.md`: Seedance prompt pattern for using a character/location sheet plus 3x3 storyboard as first-pass references, then using the previous 15-second video's last frame only as the next segment's local 0:00 opening-state reference while original sheets remain the highest identity/space anchors.
 - `named-reference-stack-action-prompt.md`: Seedance prompt pattern for multi-reference action scenes using explicit labels such as `@[CurrentStoryboardRef]`, `@[HeroRef]`, `@[VillainRef]`, and `@[LocationRef]` so each uploaded image has one clear responsibility: shot flow, identity lock, antagonist lock, or environment lock.
 
 ### Production SOP Branch
@@ -145,7 +153,11 @@ Use for industrialized long-form or multi-segment production control: project co
 Current files:
 
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
+- `script-breakdown-segment-plan.md`: pre-prompt workflow that converts raw scripts/outlines into dramatic beats, asset lists, Seedance segment plans, storyboard duties, and prompt duties before any Image2 or Seedance prompt is written.
 - `production-runbook.md`: execution-layer SOP for team handoff, production units, folder/file naming, asset/storyboard/generation gates, generation logs, status boards, prompt linting, and final delivery gates.
+- `segment-complexity-budget.md`: preflight budget for each Seedance segment covering characters, crowds, actions, camera moves, locations, props, dialogue, VFX, text, and style references; high-risk segments must be simplified or split.
+- `dialogue-audio-subtitle-boundary.md`: boundary rules for spoken lines, voiceover, radio, PA, subtitles, title cards, and text contamination; dialogue is performance/sound timing, subtitles are normally post-production.
+- `department-signoff-gates.md`: industrial prompt-package signoff table covering producer, director, script supervisor, production design, cinematography, editor, sound, Image2 board expert, Seedance prompt expert, and QA.
 - `user-style-reference-sop.md`: user-style-first workflow for extracting STYLE_BIBLE from reference images, videos, film titles, director/cinematographer references, or brand looks, then applying it as palette/lens/light/texture/composition/pacing treatment without overriding identity, story, props, geography, clean-frame rules, or crowd diversity.
 - `reference-upload-order.md`: Seedance multi-reference upload order and conflict rules. Defines the duty of original assets, formal asset boards, storyboard boards, previous final frames, and style references.
 - `output-acceptance-scorecard.md`: post-generation 100-point review sheet with hard-fail overrides, verdict bands, category scoring, and repair decision mapping.

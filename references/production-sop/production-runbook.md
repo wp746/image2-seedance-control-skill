@@ -41,6 +41,7 @@ Recommended production folder:
 ```text
 PROJECT_SLUG/
   00_brief/
+  00_script_breakdown/
   01_project_bible/
   01_style_bible/
   02_assets/
@@ -56,6 +57,7 @@ Recommended filenames:
 
 ```text
 PROJECT_EP01_bible_v001.md
+PROJECT_EP01_segment_plan_v001.md
 PROJECT_EP01_STYLE_BIBLE_v001.md
 PROJECT_EP01_CHAR_A_asset_v001.png
 PROJECT_EP01_SCENE_01_asset_v001.png
@@ -97,6 +99,7 @@ If the user gives only an idea, clarify before writing prompts.
 
 Create or write:
 
+- script breakdown and Seedance segment plan when source is a script, outline, episode, or multi-beat idea
 - style reference analysis / STYLE_BIBLE when the user provides a style image, reference video, film title, or asks for a specific look
 - project continuity bible for recurring elements
 - scene type map: DIALOGUE / ACTION / SUSPENSE / TRANSITION / PRODUCT / ATMOSPHERE
@@ -109,6 +112,7 @@ Gate to continue:
 - Every recurring character has a code.
 - Every repeated scene has a code.
 - Every plot-critical prop has a code.
+- Every script beat is assigned to one or more Seedance segments.
 - If a user style reference exists, STYLE_BIBLE exists and states scope: global / scene / segment / shot.
 - Every segment has a dramatic function and target duration.
 
@@ -135,17 +139,21 @@ For each segment:
 
 1. load `storyboard-seedance-pairing-principle.md`
 2. load `scene-type-playbook.md`
-3. load `user-style-reference-sop.md` when the user provides style references or asks to extract a film look
-4. load `realism-clean-frame-rhythm-gate.md` when the project is realist, historical, war, documentary, or text-risk
-5. choose the storyboard pattern by scene function
-6. create one storyboard prompt for the segment
-7. create one matching Seedance prompt immediately after it
+3. load `segment-complexity-budget.md` and simplify/split high-risk segments
+4. load `dialogue-audio-subtitle-boundary.md` when spoken lines, voiceover, radio, PA, subtitles, signs, or documents appear
+5. load `user-style-reference-sop.md` when the user provides style references or asks to extract a film look
+6. load `realism-clean-frame-rhythm-gate.md` when the project is realist, historical, war, documentary, or text-risk
+7. choose the storyboard pattern by scene function
+8. create one storyboard prompt for the segment
+9. create one matching Seedance prompt immediately after it
 
 Gate to continue:
 
 - Storyboard and Seedance prompt have the same shot numbers and local timecodes.
+- Segment complexity is low/medium or has been split.
 - Board text stays minimal.
 - If STYLE_BIBLE exists, storyboard and Seedance prompt include the relevant compact style lock.
+- Dialogue is scoped as sound/performance and not as rendered subtitles unless the user explicitly asks.
 - Seedance prompt explicitly forbids rendered subtitles, captions, shot labels, UI text, watermarks, random text, and garbled text.
 - Seedance prompt is at or below 2000 characters.
 - Shot count matches dramatic rhythm. Slow emotional beats are not allowed to become fast-cut coverage.
@@ -246,4 +254,5 @@ Before telling the user the prompt file is ready:
 3. Run the prompt lint script if a prompt file exists locally.
 4. Confirm upload order is included or referenced.
 5. Confirm each segment has acceptance criteria.
-6. Mention unresolved assumptions only if they affect production.
+6. Run `department-signoff-gates.md` for industrial-grade packages.
+7. Mention unresolved assumptions only if they affect production.

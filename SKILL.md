@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.5.0
+version: 1.8.0
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, reference upload order, output acceptance scoring, prompt linting, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", "出片验收", "多参考图上传顺序", or "只给我 image2 的提示词文件".
 ---
 
@@ -44,6 +44,9 @@ The file may contain multiple Image2 prompts depending on project length, but it
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
 - The ultimate quality benchmark is `references/production-sop/film-industry-master-checklist.md` — 10 departments, a master checklist covering every professional filmmaking discipline. Before delivery, verify all applicable items.
 - For production or multi-reference work, include or follow `references/production-sop/reference-upload-order.md` so every uploaded image has one clear duty.
+- For script-driven work, create a segment plan before prompt writing. Do not compress raw script paragraphs directly into Seedance segments.
+- For dialogue, treat lines as sound/performance timing, not on-screen subtitles. Add subtitles/title cards in post unless explicitly requested.
+- For industrial-grade delivery, run department signoff gates and do not call the package industrial if any gate is unresolved.
 - For local prompt files, run `scripts/prompt_lint.py` before delivery when possible. It checks Seedance character limits, segment timecodes, and basic structural risks.
 - For multi-segment work, every segment's timecode starts at `0:00` and ends ≤ `0:15`. Track total runtime only in production notes.
 - Final response: only link to the created file and say it's ready. Do not paste the full prompt in chat unless asked.
@@ -60,6 +63,7 @@ Output file skeleton:
 (中文使用说明：资产板→故事板→Seedance双重控制流程)
 
 ## Production Control
+- 剧本拆解 / 段落生产单 / 复杂度预算 / 部门签核
 - 项目圣经 / 角色状态 / 场景空间 / 道具状态 / 风格光线 / 声音VFX / 情绪递进 / 镜头接缝 / 禁止漂移
 - 参考图上传顺序 / 出片验收标准 / 版本与返修策略
 
@@ -123,6 +127,19 @@ Always split into **asset prompts** and **storyboard prompts**.
 
 **Storyboard prompts** are director execution boards, not character design boards. They must not redesign faces, wardrobe, or identity when separate asset boards exist. They control shot order, timing, staging, action, camera, dialogue, sound, edit points, and continuity.
 
+Board responsibility matrix:
+
+| Board Type | Controls | Must Not Control |
+|---|---|---|
+| Character board | identity, face, body, wardrobe, expression baseline | shot order or scene geography |
+| Scene board | geography, scale, light sources, fixed objects, camera-safe zones | character identity |
+| Prop/UI board | object shape, material, scale, hand use, short required text | subtitles or story pacing |
+| Style board / STYLE_BIBLE | palette, contrast, lens, light, grain, composition mood | identity, props, geography, story facts |
+| Scene continuity board | blocking, movement paths, emotional state in space | new character designs |
+| Storyboard board | shot order, timing, camera, action, handoff | full asset redesign or dense prose |
+
+Integrated boards are lightweight exceptions for one-off/simple clips or ads. For recurring characters, recurring locations, or multi-segment drama, create formal asset boards first and let the storyboard reference them by code.
+
 Every storyboard prompt must be immediately followed by a corresponding **Seedance 2.0 text prompt** that restates the same shot order, timecodes, action, camera, dialogue, sound/VFX, emotion, start/end state, and forbidden drift — as executable language, not generic instruction.
 
 **Scene type determines strategy.** Before designing any segment, classify its dramatic function (DIALOGUE/ACTION/SUSPENSE/TRANSITION/PRODUCT/ATMOSPHERE) and whether it's A-roll or B-roll. Load `references/production-sop/scene-type-playbook.md` for the corresponding design playbook — each type has its own storyboard structure, Seedance character allocation strategy, camera language, and sound design approach. A martial arts scene is not shot like a dialogue scene.
@@ -140,11 +157,15 @@ Load these SOPs by condition:
 | Condition | Load |
 |---|---|
 | Recurring characters/scenes/props, multi-episode | `references/production-sop/project-continuity-bible.md` |
+| Script, outline, episode, or multi-beat idea | `references/production-sop/script-breakdown-segment-plan.md` |
 | Multiple shots or segments | `references/production-sop/shot-seam-review.md` |
 | Seedance output has drift/motion/continuity failure | `references/production-sop/seedance-repair-sop.md` |
 | **Before designing any storyboard** | **`references/production-sop/storyboard-seedance-pairing-principle.md`** |
 | **Scene type playbook — per segment** | **`references/production-sop/scene-type-playbook.md`** |
+| **Before each storyboard + Seedance pair** | **`references/production-sop/segment-complexity-budget.md`** |
+| **Dialogue / voice / subtitles / text-risk scenes** | **`references/production-sop/dialogue-audio-subtitle-boundary.md`** |
 | **Industrial team workflow, versioning, generation logs** | **`references/production-sop/production-runbook.md`** |
+| **Industrial-grade final package signoff** | **`references/production-sop/department-signoff-gates.md`** |
 | **User provides style image/video/film reference or asks to extract a film look** | **`references/production-sop/user-style-reference-sop.md`** |
 | **Multi-reference Seedance generation** | **`references/production-sop/reference-upload-order.md`** |
 | **After Seedance output, before repair/delivery** | **`references/production-sop/output-acceptance-scorecard.md`** |
@@ -155,7 +176,7 @@ Load these SOPs by condition:
 Pipeline for long productions:
 
 ```text
-style extraction if provided → project bible → production runbook → asset boards → scene geography → storyboard segments → seam review → reference upload order → prompt lint → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
+style extraction if provided → script breakdown + segment plan → complexity budget → project bible → production runbook → asset boards → scene geography → storyboard segments → seam review → reference upload order → prompt lint → department signoff → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
 ```
 
 ## Board Planning Rules

@@ -39,6 +39,22 @@
 3. 与触发信号表匹配，确定主类型
 4. 如果一段内混合多种功能（如"追跑+最后对峙"），按主导功能分类，次要功能在策略中作为变体处理
 
+### HYBRID 混合段落规则
+
+如果一段同时包含两种需要不同节奏的戏剧功能，不要用一个类型吞掉另一个类型。
+
+Examples:
+
+- 追逐 + 台词揭露：拆成 ACTION 段和 DIALOGUE/SUSPENSE 段。
+- 爆炸 + 悼念：拆成 ACTION 冲击段和 ATMOSPHERE/DRAMA 余韵段。
+- 产品展示 + 情绪表演：先 PRODUCT 感官段，再 DIALOGUE/ATMOSPHERE 反应段。
+
+Priority:
+
+- `realism-clean-frame-rhythm-gate.md` and `prompt-self-review-checklist.md` override scene-type playbook defaults.
+- Short dialogue cross-cutting of 5-8 shots only applies to explicit rapid argument, comedy timing, or actionized verbal exchange.
+- It does not apply to fear, silence, grief, interrogation, moral pressure, military command hesitation, or any beat that needs breath.
+
 ---
 
 ## DIALOGUE 文戏策略

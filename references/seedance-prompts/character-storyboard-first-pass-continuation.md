@@ -16,7 +16,7 @@ Do not feed Seedance a vague story and hope for continuity.
 Use a reference hierarchy:
 
 1. For the first pass, use the character/location sheet and 3x3 storyboard as strict visual references.
-2. For the next segment, use the final frame of the previous 15-second video as the main reference.
+2. For the next segment, use the final frame of the previous 15-second video as the opening-state reference.
 3. Keep the original character sheet and storyboard as secondary references so identity, costume, location, weapon, palette, and action logic do not drift.
 
 ## Best For
@@ -46,20 +46,20 @@ Reference responsibilities:
 
 ## Continuation Reference Priority
 
-For seconds `15-30`, tell Seedance:
+For a continuation segment, tell Seedance:
 
 ```text
-Use the last frame of the first 15-second video as the main reference.
-Use the character sheet and storyboard as secondary references.
-This prompt is for seconds 15-30.
-Continue seamlessly from the final frame of the previous video.
+本段本地时间 0:00-0:15。上一段末帧只负责本段 0:00 首帧姿态/站位/光线/情绪/道具状态。
+原始角色/地点设定表仍是身份与空间最高源。
+当前故事板负责本段镜头顺序和动作。
+从上一段最后一帧无缝继续，不要重启故事。
 ```
 
 Reference responsibilities:
 
-- last frame: exact starting pose, camera direction, location state, lighting, debris, water, smoke, VFX residue, character spacing, enemy condition
-- original character sheet: prevents identity and costume drift
-- original storyboard: keeps action logic and style consistent
+- last frame: exact 0:00 starting pose, camera direction, location state, lighting, debris, water, smoke, VFX residue, character spacing, enemy condition
+- original character sheet: highest identity and costume source
+- original storyboard/current storyboard: keeps action logic and style consistent
 - continuation prompt: defines what happens next, not a reset of the scene
 
 ## Prompt Anatomy
@@ -136,7 +136,7 @@ Use this structure:
 ## Continuation Reusable Seedance Prompt
 
 ```text
-使用第一段 15 秒视频的最后一帧作为最高优先级主参考。角色/地点设定表和 3x3 故事板作为次级参考。本提示用于第 15-30 秒。
+本段本地时间 0:00-0:15。使用上一段 15 秒视频的最后一帧作为 0:00 首帧姿态/站位/光线/情绪/道具状态参考。角色/地点设定表仍是身份与空间最高优先级参考，当前故事板负责本段镜头顺序和动作。
 
 请从上一段视频最后一帧无缝继续，不要重新开场，不要重置角色站位，不要更换地点，不要改变光线、天气、破坏状态、烟雾、水花、火花、VFX 残留和角色相对距离。
 
@@ -147,17 +147,17 @@ Use this structure:
 从上一段最后一帧继承：角色位置、姿势、朝向、武器状态、敌人受损状态、地面水花/灰尘/碎片、光线方向、背景建筑、烟雾/VFX 残留、镜头方向。
 
 [CONTINUATION ACTION]
-接下来发生：[第 15-30 秒的动作升级、反击、追击、二次危机、情绪转折或悬念]。
+接下来发生：[本段 0:00-0:15 内的动作升级、反击、追击、二次危机、情绪转折或悬念]。
 
 [CHARACTER LOCK]
 继续保持 [CHARACTER_A] 和 [CHARACTER_B] 的脸、身形、服装、武器、VFX 颜色、动作风格和关系张力，与角色设定表完全一致。
 
-[SHOT SEQUENCE 15-30]
-15-18秒：[从上一段结尾动作自然延续，不能跳切重启]
-18-21秒：[新的攻击/闪避/反击，保持空间方向]
-21-24秒：[角色互动、台词或战术变化]
-24-27秒：[冲突升级，敌人/环境产生真实物理反馈]
-27-30秒：[段落结尾，给下一段留下清晰可接的最后一帧]
+[SHOT SEQUENCE 0:00-0:15]
+S01/0:00-0:03：[从上一段结尾动作自然延续，不能跳切重启]
+S02/0:03-0:06：[新的攻击/闪避/反击，保持空间方向]
+S03/0:06-0:09：[角色互动、台词或战术变化]
+S04/0:09-0:12：[冲突升级，敌人/环境产生真实物理反馈]
+S05/0:12-0:15：[段落结尾，给下一段留下清晰可接的最后一帧]
 
 [CAMERA NOTES]
 延续上一段的镜头语言。可以更激烈，但必须读得清。保持角色运动方向、屏幕左右关系和镜头轴线稳定。不要突然切到陌生机位造成割裂。
@@ -181,7 +181,7 @@ Use this structure:
 For long videos, repeat this cycle:
 
 ```text
-asset sheet + storyboard -> 0-15s first pass -> save last frame -> 15-30s continuation -> save last frame -> 30-45s continuation -> seam review -> edit
+asset sheet + storyboard -> local 0:00-0:15 first pass -> save last frame -> next local 0:00-0:15 continuation -> save last frame -> next local 0:00-0:15 continuation -> seam review -> edit
 ```
 
 Before generating the next segment, identify the last frame's:
