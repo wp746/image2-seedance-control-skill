@@ -7,9 +7,12 @@ Use this before delivering any Image2 prompt file. Audit and fix against every r
 - Character boards lock identity, face, body, wardrobe, expressions, and status variants.
 - Scene boards lock space, light, material, geography, and usable camera areas.
 - Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
+- Style references / STYLE_BIBLE lock palette, contrast, lens language, light quality, grain/texture, composition habits, camera mood, and pacing tendency.
 - Storyboard boards lock shot order, timing, staging, camera, action, dialogue intention, and handoff.
 
 Do not let one board accidentally perform another board's job unless the chosen reference pattern explicitly requires an integrated board.
+
+If the user provides a style reference, the skill must not replace it with a self-invented look. Verify that the extracted style DNA appears in the project bible, asset prompts, storyboard prompts, Seedance prompts, upload duty line, and acceptance criteria.
 
 ## 2. No Accidental Identity Sources
 
@@ -77,6 +80,7 @@ Before final delivery, run through the `film-industry-master-checklist.md` — 1
 - Model capability boundary: can Seedance actually execute what we're asking?
 - Color constitution declared: main/secondary/accent/neutral/forbidden colors
 - Film stock color science declared
+- User style reference extracted and scoped when provided
 - Every camera movement has a story motivation (no AI orbiting/floating)
 - Every light source has a physical origin (practical or clear environmental source)
 - Four sound layers addressed (room tone/ambience/foley/dialogue intent)

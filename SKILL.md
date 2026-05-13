@@ -145,6 +145,7 @@ Load these SOPs by condition:
 | **Before designing any storyboard** | **`references/production-sop/storyboard-seedance-pairing-principle.md`** |
 | **Scene type playbook — per segment** | **`references/production-sop/scene-type-playbook.md`** |
 | **Industrial team workflow, versioning, generation logs** | **`references/production-sop/production-runbook.md`** |
+| **User provides style image/video/film reference or asks to extract a film look** | **`references/production-sop/user-style-reference-sop.md`** |
 | **Multi-reference Seedance generation** | **`references/production-sop/reference-upload-order.md`** |
 | **After Seedance output, before repair/delivery** | **`references/production-sop/output-acceptance-scorecard.md`** |
 | **Realist war / documentary live-action / text-risk outputs** | **`references/production-sop/realism-clean-frame-rhythm-gate.md`** |
@@ -154,7 +155,7 @@ Load these SOPs by condition:
 Pipeline for long productions:
 
 ```text
-project bible → production runbook → asset boards → scene geography → storyboard segments → seam review → reference upload order → prompt lint → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
+style extraction if provided → project bible → production runbook → asset boards → scene geography → storyboard segments → seam review → reference upload order → prompt lint → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
 ```
 
 ## Board Planning Rules
@@ -203,6 +204,7 @@ Every Image2 prompt must ask for a visual control chart Seedance can read from t
 - Visuals carry identity, action, staging, camera, and continuity — do not rely on long in-image text.
 - For realist live-action, historical, war, documentary, police, period, or serious drama projects: lock photographic cinema realism. Do not allow game concept art, UE/CG look, glossy illustration, heroic poster faces, plastic skin, or stylized digital-painting texture unless the user explicitly asks for it.
 - Use Simplified Chinese for Chinese project boards by default. Do not use Traditional Chinese unless the project region, era document, or user request specifically requires it.
+- If the user provides a style reference image/video/film title, extract a STYLE_BIBLE first and apply it to every asset board, storyboard board, and Seedance prompt. The skill's default taste never overrides the user's requested style.
 
 ## Image2 Prompt Writing Rules
 
@@ -219,6 +221,7 @@ Design boards and Seedance text prompts as dual-control pairs — the board is r
 - **Asset boards** visually encode: stable references, drift prohibitions, exact identity, source-of-truth when based on user assets.
 - **Storyboard boards** visually encode: who appears, where, what changes over time, camera movement, shot size, dialogue intention, start/end state, next-shot handoff.
 - **Seedance prompts** textually encode: same shot order/timecodes as storyboard, same character/scene/prop/VFX/dialogue/sound/emotion, same camera logic, explicit continuity and forbidden drift.
+- **Style reference boundary**: style references control palette, contrast, lighting, lens language, grain/texture, composition, camera mood, and pacing tendencies. They must not override character identity, scene geography, props, story facts, clean-frame rules, or crowd diversity.
 - **Clean-frame boundary**: storyboard labels, S01/S02 markers, dialogue notes, and production annotations exist only on the control board. They must not appear in the generated video frame. Seedance prompts for narrative footage must explicitly say: no subtitles, no captions, no shot labels, no UI text, no random Chinese/English text, no watermarks, clean cinematic image only.
 - **Crowd identity boundary**: named recurring characters stay locked; background soldiers, civilians, workers, crowds, and extras must not inherit the same face. Group scenes need varied ages, face shapes, heights, body builds, skin texture, hairlines, fatigue, posture, and micro-reactions while keeping wardrobe/era/unit continuity.
 

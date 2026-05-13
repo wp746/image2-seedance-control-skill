@@ -55,6 +55,25 @@ CROWD_GUARD_TOKENS = (
     "varied faces",
     "distinct faces",
 )
+STYLE_REFERENCE_TOKENS = (
+    "参考风格",
+    "风格参考",
+    "参考片",
+    "参考电影",
+    "电影风格",
+    "提取风格",
+    "style reference",
+    "reference style",
+    "STYLE_REF",
+)
+STYLE_LOCK_TOKENS = (
+    "STYLE_BIBLE",
+    "STYLE_LOCK",
+    "风格圣经",
+    "风格锁",
+    "色彩/光线/镜头",
+    "色彩、光线、镜头",
+)
 
 
 def seconds(minutes: str, secs: str) -> int:
@@ -153,6 +172,11 @@ def lint_file(path: Path) -> list[str]:
             token.lower() in body.lower() for token in CROWD_GUARD_TOKENS
         ):
             warnings.append(f"{path}:{line}: {title}: group/crowd scene without no-cloned-faces diversity guard")
+
+        if any(token.lower() in text.lower() for token in STYLE_REFERENCE_TOKENS) and not any(
+            token.lower() in body.lower() for token in STYLE_LOCK_TOKENS
+        ):
+            warnings.append(f"{path}:{line}: {title}: style reference mentioned but Seedance block lacks STYLE_BIBLE/STYLE_LOCK")
 
         if index > len(storyboard_titles):
             warnings.append(f"{path}:{line}: {title}: more Seedance prompts than storyboard headings")

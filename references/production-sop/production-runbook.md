@@ -42,6 +42,7 @@ Recommended production folder:
 PROJECT_SLUG/
   00_brief/
   01_project_bible/
+  01_style_bible/
   02_assets/
   03_storyboards/
   04_seedance_prompts/
@@ -55,6 +56,7 @@ Recommended filenames:
 
 ```text
 PROJECT_EP01_bible_v001.md
+PROJECT_EP01_STYLE_BIBLE_v001.md
 PROJECT_EP01_CHAR_A_asset_v001.png
 PROJECT_EP01_SCENE_01_asset_v001.png
 PROJECT_EP01_PROP_PHONE_asset_v001.png
@@ -84,6 +86,7 @@ Lock:
 - aspect ratio
 - style target
 - source assets or references
+- user style references: image, video, film title, director/cinematographer reference, brand look, or "no style reference"
 - episode or scene scope
 - deadline and review owner if relevant
 - source text encoding. If Chinese `.txt` files are GBK/GB18030/Big5, convert or decode to UTF-8 before analysis. Never feed mojibake or unreadable characters into prompt generation.
@@ -94,6 +97,7 @@ If the user gives only an idea, clarify before writing prompts.
 
 Create or write:
 
+- style reference analysis / STYLE_BIBLE when the user provides a style image, reference video, film title, or asks for a specific look
 - project continuity bible for recurring elements
 - scene type map: DIALOGUE / ACTION / SUSPENSE / TRANSITION / PRODUCT / ATMOSPHERE
 - A-roll / B-roll split
@@ -105,6 +109,7 @@ Gate to continue:
 - Every recurring character has a code.
 - Every repeated scene has a code.
 - Every plot-critical prop has a code.
+- If a user style reference exists, STYLE_BIBLE exists and states scope: global / scene / segment / shot.
 - Every segment has a dramatic function and target duration.
 
 ### 3. Asset Boards
@@ -114,7 +119,7 @@ Generate asset boards before storyboard boards:
 1. character boards
 2. scene boards
 3. prop or product boards
-4. optional style/look bible
+4. style/look bible when user provides or requests a style
 5. optional scene continuity board
 
 Gate to continue:
@@ -122,6 +127,7 @@ Gate to continue:
 - Faces, wardrobe, scene geography, prop shape, and color logic are readable.
 - No board contains contradictory variants unless labeled as state changes.
 - User-provided original assets remain the source of truth.
+- User style references are applied as visual treatment only; they do not redesign identity, props, geography, or story facts.
 
 ### 4. Storyboard Boards
 
@@ -129,15 +135,17 @@ For each segment:
 
 1. load `storyboard-seedance-pairing-principle.md`
 2. load `scene-type-playbook.md`
-3. load `realism-clean-frame-rhythm-gate.md` when the project is realist, historical, war, documentary, or text-risk
-4. choose the storyboard pattern by scene function
-5. create one storyboard prompt for the segment
-6. create one matching Seedance prompt immediately after it
+3. load `user-style-reference-sop.md` when the user provides style references or asks to extract a film look
+4. load `realism-clean-frame-rhythm-gate.md` when the project is realist, historical, war, documentary, or text-risk
+5. choose the storyboard pattern by scene function
+6. create one storyboard prompt for the segment
+7. create one matching Seedance prompt immediately after it
 
 Gate to continue:
 
 - Storyboard and Seedance prompt have the same shot numbers and local timecodes.
 - Board text stays minimal.
+- If STYLE_BIBLE exists, storyboard and Seedance prompt include the relevant compact style lock.
 - Seedance prompt explicitly forbids rendered subtitles, captions, shot labels, UI text, watermarks, random text, and garbled text.
 - Seedance prompt is at or below 2000 characters.
 - Shot count matches dramatic rhythm. Slow emotional beats are not allowed to become fast-cut coverage.

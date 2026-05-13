@@ -24,7 +24,7 @@ Use this order unless a project has a specific reason to change it:
 | 2 | formal character asset board | identity, body, wardrobe, expression baseline |
 | 3 | scene asset board | geography, light source, fixed objects |
 | 4 | prop/product/vehicle asset board | shape, material, scale, hand relationship |
-| 5 | style/look bible | palette, lens language, lighting, texture |
+| 5 | style/look bible or user style reference | palette, contrast, lens language, lighting, texture, grain, composition mood |
 | 6 | scene continuity board | blocking, movement path, emotional state in space |
 | 7 | current storyboard board | shot order, camera positions, timing, action flow |
 | 8 | previous segment final frame | exact in-frame state for continuation |
@@ -97,7 +97,7 @@ When references disagree:
 2. Formal asset board wins normalized continuity if it preserves the original asset.
 3. Current storyboard wins shot order and camera logic.
 4. Previous final frame wins only the opening state of a continuation segment.
-5. Style references never override identity, wardrobe, scene geography, or prop shape.
+5. User-provided style references override the skill's default taste, but style references never override identity, wardrobe, scene geography, prop shape, story facts, clean-frame rules, or crowd diversity.
 
 Do not upload two different faces for the same character unless one is explicitly labeled as "old version / do not use".
 
@@ -107,6 +107,12 @@ Use compact duty labels to save characters:
 
 ```text
 @参考职责: 原始CHAR_A(最高身份源) CHAR_A板(脸/体型/服装/表演基准) SCENE_01板(空间/光源/固定物) PROP_01板(形状/材质/持握) 当前故事板(S01-S05镜头/机位/动线) 上段末帧(首帧姿态/光线/情绪)
+```
+
+When using style references:
+
+```text
+@参考职责: STYLE_BIBLE/风格参考=色彩/光线/镜头质感/颗粒/构图气质，不控制人物身份、剧情、道具或场景布局
 ```
 
 For 2000-character pressure, compress to:
@@ -122,7 +128,7 @@ Before generation:
 - Are all references named in the Seedance prompt?
 - Does each reference have one clear duty?
 - Is there any conflicting face, outfit, prop, or location?
+- If a style reference is uploaded, is its duty limited to style treatment?
 - Is the current storyboard included?
 - For continuation, is the previous final frame included or described?
 - Is the reference order written in the production log?
-

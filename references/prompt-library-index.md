@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-14 | Version: 1.6.0
+> Last updated: 2026-05-14 | Version: 1.7.0
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -68,6 +68,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 | **设计任何故事板之前** | **`storyboard-seedance-pairing-principle.md`** |
 | **场景类型策略 — 每段必加载** | **`scene-type-playbook.md`** |
 | **工业化团队执行 / 版本管理 / 生成记录** | **`production-runbook.md`** |
+| **用户给参考图/参考片/电影风格/要求提取风格** | **`user-style-reference-sop.md`** |
 | **多参考图上传 / 上段末帧续生成** | **`reference-upload-order.md`** |
 | **Seedance 出片验收 / 返修前评分** | **`output-acceptance-scorecard.md`** |
 | **写实战争片 / 历史正剧 / 纯净画面 / 节奏风险** | **`realism-clean-frame-rhythm-gate.md`** |
@@ -145,6 +146,7 @@ Current files:
 
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
 - `production-runbook.md`: execution-layer SOP for team handoff, production units, folder/file naming, asset/storyboard/generation gates, generation logs, status boards, prompt linting, and final delivery gates.
+- `user-style-reference-sop.md`: user-style-first workflow for extracting STYLE_BIBLE from reference images, videos, film titles, director/cinematographer references, or brand looks, then applying it as palette/lens/light/texture/composition/pacing treatment without overriding identity, story, props, geography, clean-frame rules, or crowd diversity.
 - `reference-upload-order.md`: Seedance multi-reference upload order and conflict rules. Defines the duty of original assets, formal asset boards, storyboard boards, previous final frames, and style references.
 - `output-acceptance-scorecard.md`: post-generation 100-point review sheet with hard-fail overrides, verdict bands, category scoring, and repair decision mapping.
 - `realism-clean-frame-rhythm-gate.md`: hard gate for realist war/historical/documentary live-action projects: photographic medium lock, Simplified Chinese label rule, text-clean frame boundary, GBK/GB18030 intake warning, crowd/extras face diversity, and 15-second rhythm/breathing shot-count rules.

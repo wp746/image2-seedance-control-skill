@@ -37,6 +37,8 @@ Include project title, format, total duration, aspect ratio, visual style, genre
 
 Lock color palette, lens language, camera movement language, lighting style, contrast, exposure, texture, frame composition rules, and forbidden style drift.
 
+If the user provides a style image, reference video, film title, director/cinematographer reference, brand look, or asks to extract a movie style, do not invent a default look. First load `user-style-reference-sop.md`, create a STYLE_BIBLE, then summarize only its compact production-ready style lock here.
+
 Example:
 
 ```text

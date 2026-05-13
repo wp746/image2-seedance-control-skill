@@ -20,6 +20,7 @@ Hard fail overrides score:
 - wrong location for a continuity scene
 - subtitles, shot labels, random visible text, UI overlays, watermarks, or garbled characters appear in a clean narrative frame
 - realist live-action project turns into game, CG, anime, glossy concept art, or digital illustration texture
+- user-provided style reference or STYLE_BIBLE is ignored, replaced by a generic default look, or applied so strongly that it changes story/identity/geography
 - group scenes show repeated same-face extras, cloned soldiers, or the main character's face copied into the crowd
 - impossible or broken main action
 - slow dramatic beat is cut so fast that the intended emotion cannot be read
@@ -37,7 +38,7 @@ Hard fail overrides score:
 | Story Execution | 15 | main beat, cause/effect, emotional turn, no missing required action |
 | Motion And Physics | 10 | gravity, weight, speed, no melting, no impossible body behavior |
 | Camera And Composition | 10 | correct shot size, motivated movement, no random orbit/floating, usable framing |
-| Light And Style | 8 | source-motivated light, palette, film texture, no sudden style shift |
+| Light And Style | 8 | source-motivated light, palette, film texture, user style reference match, no sudden style shift |
 | Performance And Emotion | 10 | micro-expression, reaction chain, breath, body language, no instant emotion jump |
 | Sound/Editability | 7 | sound cues, room tone, usable in/out frames, no broken handoff |
 | Prompt Compliance | 5 | follows timecode, aspect ratio, negative notes, no extra characters/props, no rendered text contamination |
@@ -74,6 +75,7 @@ Hard fail overrides score:
 - Wrong scene: YES/NO
 - Text/label contamination: YES/NO
 - Wrong visual medium/style: YES/NO
+- User style reference ignored/misapplied: YES/NO
 - Cloned crowd/extras: YES/NO
 - Rhythm destroys story beat: YES/NO
 - Broken main action: YES/NO
@@ -102,6 +104,7 @@ Use this table to choose the smallest next action:
 | Emotion low | prompt lacks reaction chain | add breath, pause, micro-expression timing |
 | Text contamination | board labels/subtitles leaked into video | add clean-frame line, remove dialogue text from storyboard thumbnails, regenerate |
 | Game/CG look | asset board style was too concept-art oriented | rebuild asset board with realist war-film lock |
+| User style mismatch | style was vague, missing, or treated as identity/story reference | create STYLE_BIBLE, add compact style lock to prompts, limit style reference duty |
 | Cloned crowd | prompt over-locked one face or treated uniform group as one identity | add crowd diversity guard, reduce hero-face references in wide crowd shots, regenerate |
 | Fast-cut drama | too many story beats in one 15s segment | rewrite as 1-3 shots or split into more segments |
 | Editability low | no in/out state | rewrite handoff and final frame |
