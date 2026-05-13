@@ -43,6 +43,18 @@ STYLE_FORBID_TOKENS = (
     "照片级",
     "真人电影写实",
 )
+CROWD_TOKENS = ("群众", "群像", "士兵们", "队列", "人群", "crowd", "extras", "bystanders", "soldiers")
+CROWD_GUARD_TOKENS = (
+    "不同的人",
+    "不同年龄",
+    "不同脸型",
+    "不要同脸",
+    "不要克隆",
+    "no cloned",
+    "no duplicate faces",
+    "varied faces",
+    "distinct faces",
+)
 
 
 def seconds(minutes: str, secs: str) -> int:
@@ -136,6 +148,11 @@ def lint_file(path: Path) -> list[str]:
             token.lower() in body.lower() for token in STYLE_FORBID_TOKENS
         ):
             warnings.append(f"{path}:{line}: {title}: possible realist war/historical project without game/CG/style guard")
+
+        if any(token.lower() in body.lower() for token in CROWD_TOKENS) and not any(
+            token.lower() in body.lower() for token in CROWD_GUARD_TOKENS
+        ):
+            warnings.append(f"{path}:{line}: {title}: group/crowd scene without no-cloned-faces diversity guard")
 
         if index > len(storyboard_titles):
             warnings.append(f"{path}:{line}: {title}: more Seedance prompts than storyboard headings")

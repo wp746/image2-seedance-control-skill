@@ -20,6 +20,7 @@ Hard fail overrides score:
 - wrong location for a continuity scene
 - subtitles, shot labels, random visible text, UI overlays, watermarks, or garbled characters appear in a clean narrative frame
 - realist live-action project turns into game, CG, anime, glossy concept art, or digital illustration texture
+- group scenes show repeated same-face extras, cloned soldiers, or the main character's face copied into the crowd
 - impossible or broken main action
 - slow dramatic beat is cut so fast that the intended emotion cannot be read
 - segment cannot connect to previous/next segment
@@ -29,9 +30,10 @@ Hard fail overrides score:
 
 | Category | Points | What To Check |
 |---|---:|---|
-| Identity Lock | 15 | face, age, body, hair, wardrobe, performance baseline |
+| Identity Lock | 12 | named character face, age, body, hair, wardrobe, performance baseline |
+| Crowd/Extras Diversity | 5 | group faces are differentiated; no cloned soldiers/extras; varied age, build, posture, micro-reactions |
 | Scene Continuity | 10 | layout, doors/windows, light direction, weather/time, fixed objects |
-| Prop/Product Continuity | 10 | shape, color, material, scale, hand relationship, readable short text/logo |
+| Prop/Product Continuity | 8 | shape, color, material, scale, hand relationship, readable short text/logo |
 | Story Execution | 15 | main beat, cause/effect, emotional turn, no missing required action |
 | Motion And Physics | 10 | gravity, weight, speed, no melting, no impossible body behavior |
 | Camera And Composition | 10 | correct shot size, motivated movement, no random orbit/floating, usable framing |
@@ -54,9 +56,10 @@ Hard fail overrides score:
 
 | Category | Score | Notes |
 |---|---:|---|
-| Identity Lock /15 | | |
+| Identity Lock /12 | | |
+| Crowd/Extras Diversity /5 | | |
 | Scene Continuity /10 | | |
-| Prop/Product Continuity /10 | | |
+| Prop/Product Continuity /8 | | |
 | Story Execution /15 | | |
 | Motion And Physics /10 | | |
 | Camera And Composition /10 | | |
@@ -71,6 +74,7 @@ Hard fail overrides score:
 - Wrong scene: YES/NO
 - Text/label contamination: YES/NO
 - Wrong visual medium/style: YES/NO
+- Cloned crowd/extras: YES/NO
 - Rhythm destroys story beat: YES/NO
 - Broken main action: YES/NO
 - Broken segment handoff: YES/NO
@@ -98,6 +102,7 @@ Use this table to choose the smallest next action:
 | Emotion low | prompt lacks reaction chain | add breath, pause, micro-expression timing |
 | Text contamination | board labels/subtitles leaked into video | add clean-frame line, remove dialogue text from storyboard thumbnails, regenerate |
 | Game/CG look | asset board style was too concept-art oriented | rebuild asset board with realist war-film lock |
+| Cloned crowd | prompt over-locked one face or treated uniform group as one identity | add crowd diversity guard, reduce hero-face references in wide crowd shots, regenerate |
 | Fast-cut drama | too many story beats in one 15s segment | rewrite as 1-3 shots or split into more segments |
 | Editability low | no in/out state | rewrite handoff and final frame |
 

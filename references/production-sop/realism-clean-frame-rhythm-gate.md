@@ -75,7 +75,35 @@ Every narrative Seedance prompt must end with:
 
 If the storyboard board contains dialogue text, keep it outside the image thumbnail area. Do not write dialogue directly across the visual frame.
 
-## 4. Rhythm And Breath Gate
+## 4. Crowd And Extras Face Diversity Gate
+
+In war films, historical drama, public meetings, checkpoints, troop formations, evacuation scenes, and battlefield groups, the crowd is part of the realism contract.
+
+Do not let group scenes become same-face duplicates.
+
+Named characters:
+
+- keep exact identity, face, body, wardrobe, rank, injury state, and performance baseline
+- use character asset boards as the only identity source
+
+Extras and crowd:
+
+- must be visibly different people
+- vary age range, face shape, cheekbones, jaw, nose, eyes, hairline, skin texture, height, body build, posture, fatigue, dirt, sweat, scars, and micro-expression
+- keep the same army/unit/civilian style, era, fabric, weathering, and color discipline
+- do not copy the hero face into the crowd
+- do not create repeated clone rows, mirrored faces, or identical background heads
+- for distant crowds, keep faces lower-detail but still varied in silhouettes and posture
+
+Every group-scene Seedance prompt must include:
+
+```text
+群众演员必须是不同的人：不同年龄、脸型、身高、体型、发际线、皮肤质感、疲惫程度、站姿和微表情；只统一军装体系和时代质感，不要同脸复制、不要克隆脸、不要把主角脸复制到群演身上。
+```
+
+Storyboard boards should show crowd variation through silhouette and posture, not through repeated copied heads.
+
+## 5. Rhythm And Breath Gate
 
 Do not use shot count as a quality proxy. Shot count follows the dramatic function.
 
@@ -101,7 +129,7 @@ One-shot 15-second segment is valid when:
 - the sound and atmosphere evolve
 - the end frame hands off cleanly
 
-## 5. Pre-Delivery Mini Gate
+## 6. Pre-Delivery Mini Gate
 
 Before delivery, answer:
 
@@ -109,6 +137,7 @@ Before delivery, answer:
 - Are Chinese labels Simplified Chinese by default?
 - Is there any text that might leak into the video frame?
 - Does the Seedance prompt explicitly forbid subtitles, labels, UI, watermarks, and garbled text?
+- If there are crowds/extras, are they differentiated instead of same-face duplicates?
 - Does every shot exist for an emotional or narrative reason?
 - Would the segment still work if it used fewer shots?
 - If the script says slow, waiting, fear, grief, hesitation, or silence, did we give it screen time?

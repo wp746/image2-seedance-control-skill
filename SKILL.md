@@ -220,6 +220,7 @@ Design boards and Seedance text prompts as dual-control pairs — the board is r
 - **Storyboard boards** visually encode: who appears, where, what changes over time, camera movement, shot size, dialogue intention, start/end state, next-shot handoff.
 - **Seedance prompts** textually encode: same shot order/timecodes as storyboard, same character/scene/prop/VFX/dialogue/sound/emotion, same camera logic, explicit continuity and forbidden drift.
 - **Clean-frame boundary**: storyboard labels, S01/S02 markers, dialogue notes, and production annotations exist only on the control board. They must not appear in the generated video frame. Seedance prompts for narrative footage must explicitly say: no subtitles, no captions, no shot labels, no UI text, no random Chinese/English text, no watermarks, clean cinematic image only.
+- **Crowd identity boundary**: named recurring characters stay locked; background soldiers, civilians, workers, crowds, and extras must not inherit the same face. Group scenes need varied ages, face shapes, heights, body builds, skin texture, hairlines, fatigue, posture, and micro-reactions while keeping wardrobe/era/unit continuity.
 
 Avoid: tiny text labels, abstract mood boards, random decorative UI, 25+ panel boards for single Seedance clips, incompatible costume/face options, asking Image2 to generate exact long paragraphs in-image.
 

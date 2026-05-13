@@ -15,6 +15,8 @@ Do not let one board accidentally perform another board's job unless the chosen 
 
 Scene boards should not show clear main-character faces unless the board is intentionally asset-locked. Use empty locations, distant passersby, silhouettes, or placeholders for scale.
 
+For crowd scenes, do the inverse: do not accidentally clone a named character across background extras. Main characters need identity lock; extras need controlled diversity. Verify that soldiers, civilians, workers, staff, and bystanders have varied faces, heights, body builds, ages, hairlines, posture, fatigue, dirt, and micro-reactions while sharing only the correct uniform/era/style system.
+
 ## 3. Storyboard as Execution Board
 
 Check that the storyboard focuses on props, scene, camera map, placeholders, palette, sound, VFX, notes, and shot table. It should not contain detailed character turnarounds, facial identity studies, wardrobe breakdowns, or competing character designs when separate asset boards exist.
@@ -84,3 +86,4 @@ Before final delivery, run through the `film-industry-master-checklist.md` — 1
 - Final video prompt contains a clean-frame/no-text line
 - Realist projects explicitly forbid game/CG/illustration texture
 - Chinese project boards use Simplified Chinese unless otherwise requested
+- Crowd/extras prompt includes no-clone / varied-face guard when group scenes appear
