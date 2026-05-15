@@ -18,6 +18,12 @@ Use this when exact or semi-exact text appears as a prop or interface:
 
 Text-bearing props should be isolated in a prop/UI board. Do not put complex readable text inside storyboard thumbnails or final clean narrative frames.
 
+For Image2 production:
+
+- EN production boards must not contain readable Chinese text except inside a dedicated `TEXT_PROP_PLATE` whose only job is text.
+- CN review boards may explain the required text in Chinese outside the intended visual frame, but still avoid tiny text.
+- If the text must be readable to the audience, final typography should usually be added in post-production.
+
 ## Reusable Image2 Prompt
 
 ```text
@@ -35,6 +41,5 @@ Text-bearing props should be isolated in a prop/UI board. Do not put complex rea
 7. 场景版本：在真实光线和环境中出现，但不进入故事板缩略图主体。
 8. 禁止项：不要乱码、不要随机字、不要多余文字、不要把这张板当成字幕、不要把文字扩散到背景。
 
-如果最终视频需要字幕、标题或说明文字，标注为“后期添加”，不要要求 Seedance 在画面中生成。
+如果最终视频需要字幕、标题、说明文字、历史资料滚字、地点字幕或可读文件文字，标注为“后期添加”，不要要求 Seedance 在画面中生成。英文生产板中不要混入可读中文小字；场景里的中文招牌/墙字如非剧情关键，一律做模糊时代纹理。
 ```
-

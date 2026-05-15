@@ -15,7 +15,7 @@ The user style source has priority over the skill's default taste.
 
 Do not invent a new style when the user gives a style reference.
 
-First extract a STYLE_BIBLE, then apply it consistently to:
+First extract a STYLE_LOCK_TEXT / STYLE_BIBLE, then apply it consistently to:
 
 - project continuity bible
 - character boards
@@ -26,7 +26,9 @@ First extract a STYLE_BIBLE, then apply it consistently to:
 - reference upload duty line
 - output acceptance criteria
 
-STYLE_BIBLE controls visual treatment, not story facts.
+STYLE_BIBLE controls visual treatment, not story facts. For Seedance safety, the primary deliverable is `STYLE_LOCK_TEXT`: a compact written lock repeated in every Seedance prompt.
+
+Only upload a visual style board if it is `STYLE_LOOK_SAFE`: abstract swatches, light, lens, grain, weather, and material samples with no recognizable people, scene geography, vehicles, props, maps, signs, or readable text. A style bible that contains people/places/props/text is an analysis board, not a global Seedance reference.
 
 ## 2. Style Reference Boundary
 
@@ -81,7 +83,7 @@ Use this compact table:
 The compact prompt lock should be short enough to repeat in every Seedance prompt:
 
 ```text
-STYLE_LOCK: [palette], [contrast/exposure], [lens/DOF], [lighting], [texture], [camera mood]. 不改变人物身份/服装/场景/道具/剧情。
+STYLE_LOCK_TEXT: [palette], [contrast/exposure], [lens/DOF], [lighting], [texture], [camera mood]. 不改变人物身份/服装/场景/道具/车辆/文字/剧情。
 ```
 
 ## 4. Film Style Extraction
@@ -135,7 +137,7 @@ Every asset prompt should include:
 Every Seedance prompt using a style reference should include:
 
 ```text
-STYLE_BIBLE 负责色彩/光线/镜头质感/颗粒/构图气质；角色资产负责身份；场景资产负责空间；故事板负责镜头顺序。不得让风格参考改变人物、服装、道具、地点或剧情。
+STYLE_LOCK_TEXT / STYLE_BIBLE 负责色彩/光线/镜头质感/颗粒/构图气质；角色资产负责身份；场景资产负责空间；故事板负责镜头顺序。不得让风格参考改变人物、服装、道具、车辆、地点、文字或剧情。混有人物/场景/道具/文字的视觉圣经图不要作为全局Seedance参考上传，只把风格转写进每段Seedance提示词。
 ```
 
 ## 7. Acceptance Gate
@@ -149,4 +151,4 @@ Before delivery or after generation, check:
 - Is the style lock repeated consistently across all segments?
 - If a segment intentionally departs from style, is the reason scripted?
 
-If the user style is missing or replaced by the skill's default look, mark the segment as failed and rebuild the STYLE_BIBLE.
+If the user style is missing or replaced by the skill's default look, mark the segment as failed and rebuild the STYLE_LOCK_TEXT / STYLE_BIBLE.

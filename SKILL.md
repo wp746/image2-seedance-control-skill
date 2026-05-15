@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.8.1
+version: 1.8.2
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, reference upload order, output acceptance scoring, prompt linting, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", "出片验收", "多参考图上传顺序", or "只给我 image2 的提示词文件".
 ---
 
@@ -28,6 +28,8 @@ Always load these mandatory production-control modules before writing any final 
 ```text
 references/production-sop/board-format-style-bible.md
 references/production-sop/bilingual-output-contract.md
+references/production-sop/text-rendering-boundary.md
+references/production-sop/visual-bible-reference-boundary.md
 references/asset-prompts/character-asset-layout-bible.md
 references/asset-prompts/scene-nine-view-layout-bible.md
 references/asset-prompts/prop-layout-bible.md
@@ -35,7 +37,7 @@ references/storyboard-prompts/director-storyboard-layout-bible.md
 references/seedance-prompts/dense-reference-stack-timeline.md
 ```
 
-These modules are not optional. They define the fixed board system, bilingual output, character layout, nine-view scene layout, prop layout, director storyboard layout, and dense Seedance prompt structure.
+These modules are not optional. They define the fixed board system, bilingual output, text rendering boundary, visual-bible reference boundary, character layout, nine-view scene layout, prop layout, director storyboard layout, and dense Seedance prompt structure.
 
 Load only the branches and files triggered by the current project type. When the user provides a high-quality reference prompt, save or merge its reusable technique into the proper branch and update the index.
 
@@ -54,6 +56,8 @@ The file may contain multiple Image2 prompts depending on project length, but it
 **Critical rules:**
 - Never force asset design and storyboard into one image.
 - Every Image2 prompt and every Seedance 2.0 prompt must have two production-equivalent versions: `CN` for Chinese review and `EN` for cleaner downstream image-label rendering. CN and EN versions must preserve the same asset codes, layout, modules, shot count, local timecodes, camera, action, dialogue intent, sound/VFX, continuity, and negative constraints.
+- EN production boards must use English labels and asset codes only. Do not ask an English board to render readable Chinese signs, wall slogans, documents, subtitles, or small Chinese labels. Chinese in-world text must be blurred/unreadable texture, isolated into a `TEXT_PROP_PLATE` / `UI_TEXT_PROP_BOARD`, or added in post.
+- CN review boards may use Simplified Chinese labels, but labels must be large and short. Never ask Image2 to render long Chinese paragraphs or many small Chinese labels inside a board.
 - The Image2 board + Seedance text prompt form a **complementary dual-control pair** — not redundant, not conflicting. The board visualizes what words can't precisely express (movement paths, camera positions, light direction, emotional arc). The Seedance prompt writes what the image can't show (micro-expressions, camera texture, light quality, sound design, performance timing). See `references/production-sop/storyboard-seedance-pairing-principle.md` for the full philosophy.
 - Storyboard text is minimal: logic labels and annotations only. Seedance prompt ≤ 2000 characters (**hard limit** — count before delivering, compress if over). When the scene is complex, use most of the available budget with dense, exact execution language instead of short generic instructions. See `references/production-sop/storyboard-seedance-pairing-principle.md` and `references/seedance-prompts/dense-reference-stack-timeline.md`.
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
@@ -119,6 +123,30 @@ Typography rules:
 
 Every Image2 prompt must explicitly inherit `PROJECT_BOARD_SYSTEM`.
 
+## Text Rendering Boundary
+
+Use `references/production-sop/text-rendering-boundary.md` for every final prompt package.
+
+Text duties are split into three modes:
+
+- `CN_REVIEW_BOARD`: Chinese review board for user understanding. Use large, short Simplified Chinese labels and asset codes only.
+- `EN_PRODUCTION_BOARD`: English production board for Image2/Seedance reference. Use English labels and asset codes only; no readable Chinese inside the image.
+- `TEXT_PROP_PLATE`: separate prop/UI/text plate for exact Chinese text, signs, documents, telegrams, maps, or title cards. If the final viewer must read it, prefer post-production typography.
+
+Hard rule: do not mix English production labels with readable Chinese in-world text in the same Image2 board. For historical wall signs, permits, posters, newspapers, or shop signs that are not plot-critical, write them as blurred period texture or unreadable graphic blocks. Seedance narrative frames must stay clean: no subtitles, no captions, no control-board labels, no random Chinese/English text, no watermarks, no corrupted text.
+
+## Visual Bible Reference Boundary
+
+Use `references/production-sop/visual-bible-reference-boundary.md` whenever the project has a global visual bible, style board, look board, mood board, or film reference.
+
+The global visual bible is split into three layers:
+
+- `PROJECT_BOARD_SYSTEM`: controls Image2 board layout only. Prompt text only; do not upload it to Seedance.
+- `STYLE_LOCK_TEXT`: compact global look lock for palette, contrast, lens, grain, light, weather, camera mood, and forbidden style drift. This is the primary global control for Seedance and must be repeated in every Seedance prompt with scene-specific adjustments.
+- `STYLE_LOOK_SAFE`: optional uploaded style image only if it is abstract and non-contaminating: swatches, grain, light direction, lens texture, haze/rain/smoke/dust, material crops. It must not contain recognizable people, scene geography, buildings, vehicles, weapons, hero props, maps, or readable text.
+
+If a visual bible image contains characters, faces, crowds, city streets, buildings, vehicles, props, maps, signs, or readable text, do not upload it globally to Seedance. Extract its look into `STYLE_LOCK_TEXT`, then use separate character, scene, prop, and current-storyboard references.
+
 ## Input Routing
 
 Classify the user input before producing prompts:
@@ -181,7 +209,7 @@ Board responsibility matrix:
 | Character board | identity, face, body, wardrobe, expression baseline | shot order or scene geography |
 | Scene board | geography, scale, light sources, fixed objects, camera-safe zones | character identity |
 | Prop/UI board | object shape, material, scale, hand use, short required text | subtitles or story pacing |
-| Style board / STYLE_BIBLE | palette, contrast, lens, light, grain, composition mood | identity, props, geography, story facts |
+| Style board / STYLE_BIBLE | palette, contrast, lens, light, grain, composition mood | identity, props, geography, story facts, vehicles, signs, readable text |
 | Scene continuity board | blocking, movement paths, emotional state in space | new character designs |
 | Storyboard board | shot order, timing, camera, action, handoff | full asset redesign or dense prose |
 
@@ -219,6 +247,8 @@ Load these SOPs by condition:
 | **Realist war / documentary live-action / text-risk outputs** | **`references/production-sop/realism-clean-frame-rhythm-gate.md`** |
 | **Any Image2 board before writing prompts** | **`references/production-sop/board-format-style-bible.md`** |
 | **Any final prompt package** | **`references/production-sop/bilingual-output-contract.md`** |
+| **Any board or scene with Chinese/English text risk** | **`references/production-sop/text-rendering-boundary.md`** |
+| **Any global visual bible / style bible / look board** | **`references/production-sop/visual-bible-reference-boundary.md`** |
 | **Any character asset board** | **`references/asset-prompts/character-asset-layout-bible.md`** |
 | **Any recurring scene asset board** | **`references/asset-prompts/scene-nine-view-layout-bible.md`** |
 | **Any repeating/hero prop board** | **`references/asset-prompts/prop-layout-bible.md`** |
@@ -230,7 +260,7 @@ Load these SOPs by condition:
 Pipeline for long productions:
 
 ```text
-board system lock → bilingual contract → style extraction if provided → script breakdown + segment plan → complexity budget → project bible → production runbook → asset boards → scene geography → storyboard segments → dense Seedance prompts → seam review → reference upload order → prompt lint → department signoff → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
+board system lock → bilingual contract → text rendering boundary → visual-bible reference boundary → STYLE_LOCK_TEXT → style extraction if provided → script breakdown + segment plan → complexity budget → project bible → production runbook → asset boards → scene geography → storyboard segments → dense Seedance prompts → seam review → reference upload order → prompt lint → department signoff → Seedance generation → output acceptance scorecard → repair SOP → final continuity review
 ```
 
 ## Board Planning Rules
@@ -280,13 +310,13 @@ Every Image2 prompt must ask for a visual control chart Seedance can read from t
 - Visuals carry identity, action, staging, camera, and continuity — do not rely on long in-image text.
 - For realist live-action, historical, war, documentary, police, period, or serious drama projects: lock photographic cinema realism. Do not allow game concept art, UE/CG look, glossy illustration, heroic poster faces, plastic skin, or stylized digital-painting texture unless the user explicitly asks for it.
 - Use Simplified Chinese for Chinese project boards by default. Do not use Traditional Chinese unless the project region, era document, or user request specifically requires it.
-- If the user provides a style reference image/video/film title, extract a STYLE_BIBLE first and apply it to every asset board, storyboard board, and Seedance prompt. The skill's default taste never overrides the user's requested style.
+- If the user provides a style reference image/video/film title, extract a `STYLE_LOCK_TEXT` first and apply it to every asset board, storyboard board, and Seedance prompt. Only create/upload a `STYLE_LOOK_SAFE` image if it contains no people, scene geography, vehicles, props, maps, or readable text. The skill's default taste never overrides the user's requested style.
 
 ## Image2 Prompt Writing Rules
 
 Write Image2 prompts as paired CN and EN versions by default. Use the Chinese version for user understanding and Chinese production review; use the English version to improve in-image label stability and downstream reference clarity.
 
-For CN boards, use only short Simplified Chinese labels plus asset codes. For EN boards, use only short English labels plus the same asset codes. Never ask Image2 to render long Chinese paragraphs inside an image.
+For CN boards, use only short Simplified Chinese labels plus asset codes. For EN boards, use only short English labels plus the same asset codes. Never ask Image2 to render long Chinese paragraphs inside an image. Never ask EN boards to render readable Chinese in-world text; use blurred period texture, a separate `TEXT_PROP_PLATE`, or post-production typography.
 
 Each prompt must specify: canvas ratio, visual style, board title, panel count, region contents, label readability, continuity constraints, negative constraints.
 
@@ -300,6 +330,7 @@ Design boards and Seedance text prompts as dual-control pairs — the board is r
 - **Storyboard boards** visually encode: who appears, where, what changes over time, camera movement, shot size, dialogue intention, start/end state, next-shot handoff.
 - **Seedance prompts** textually encode: same shot order/timecodes as storyboard, same character/scene/prop/VFX/dialogue/sound/emotion, same camera logic, explicit continuity and forbidden drift.
 - **Dense prompt structure**: every Seedance prompt names exact `@` reference duties, global lock, segment setup, start state, per-shot timeline, performance, camera/lens, light/color, sound/VFX, end state, continuity handoff, and multi-dimensional negative constraints under the 2000-character limit.
+- **Style lock boundary**: Seedance should be controlled primarily by `STYLE_LOCK_TEXT` repeated in every segment. Upload `STYLE_LOOK_SAFE` only when it is abstract and free of people, scene geography, vehicles, props, maps, and readable text. Never upload a mixed visual bible globally as a style reference.
 - **Style reference boundary**: style references control palette, contrast, lighting, lens language, grain/texture, composition, camera mood, and pacing tendencies. They must not override character identity, scene geography, props, story facts, clean-frame rules, or crowd diversity.
 - **Clean-frame boundary**: storyboard labels, S01/S02 markers, dialogue notes, and production annotations exist only on the control board. They must not appear in the generated video frame. Seedance prompts for narrative footage must explicitly say: no subtitles, no captions, no shot labels, no UI text, no random Chinese/English text, no watermarks, clean cinematic image only.
 - **Crowd identity boundary**: named recurring characters stay locked; background soldiers, civilians, workers, crowds, and extras must not inherit the same face. Group scenes need varied ages, face shapes, heights, body builds, skin texture, hairlines, fatigue, posture, and micro-reactions while keeping wardrobe/era/unit continuity.

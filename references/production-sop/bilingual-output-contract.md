@@ -44,8 +44,10 @@ For every Seedance prompt, output two blocks:
 - If exact Chinese dialogue appears in a Seedance prompt, keep the original Chinese dialogue inside the English prompt as quoted dialogue, then explain the performance direction in English.
 - Board labels:
   - CN Image2 prompt asks for large Chinese labels plus asset codes.
-  - EN Image2 prompt asks for English labels plus asset codes.
+  - EN Image2 prompt asks for English labels plus asset codes only.
   - Both label systems must use the same layout and same visual modules.
+- EN production boards must not ask Image2 to render readable Chinese signs, wall slogans, documents, newspapers, subtitles, or small Chinese labels. If Chinese text is part of the story world, it becomes blurred period texture unless it is isolated into a `TEXT_PROP_PLATE` / `UI_TEXT_PROP_BOARD` or added in post.
+- CN review boards may show Chinese labels, but they must remain short and large. Do not use CN boards to solve exact small-text rendering.
 
 ## File Structure Additions
 
@@ -70,3 +72,5 @@ Check every pair:
 - same negative constraints
 - no missing English counterpart
 - no missing Chinese counterpart
+- EN board does not contain readable Chinese in-image text
+- exact Chinese text is isolated into text-prop board or post-production

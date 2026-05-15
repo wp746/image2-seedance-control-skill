@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.8.1 | 2026-05-15
+> v1.8.2 | 2026-05-16
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -9,9 +9,10 @@
 核心思路是：
 
 ```text
-先用 GPT Image 2 生成资产板和故事板，
-再把这些图作为 Seedance 2.0 全能参考，
-让视频模型按图执行角色、场景、镜头、动作、台词、音效和连续性。
+先用 GPT Image 2 生成职责清晰的资产板和故事板，
+再按参考职责上传到 Seedance 2.0，
+全局风格主要用 STYLE_LOCK_TEXT 写进每段提示词，
+避免混合视觉圣经图把人物、场景、道具和文字错误带进视频。
 ```
 
 它适合 AI 真人剧、仿真人剧、AI 漫剧、创意短片、广告片、TVC、汽车/香水/美妆/服装大片、文旅片、MV、动作/VFX 短片，以及需要按集稳定生产的长线 AIGC 视频项目。
@@ -48,6 +49,8 @@
 - [剧本拆解与段落生产单](references/production-sop/script-breakdown-segment-plan.md)
 - [段落复杂度预算](references/production-sop/segment-complexity-budget.md)
 - [对白/声音/字幕边界](references/production-sop/dialogue-audio-subtitle-boundary.md)
+- [文字渲染边界](references/production-sop/text-rendering-boundary.md)
+- [视觉圣经参考边界](references/production-sop/visual-bible-reference-boundary.md)
 - [用户风格参考 SOP](references/production-sop/user-style-reference-sop.md)
 - [部门签核门](references/production-sop/department-signoff-gates.md)
 
@@ -73,6 +76,8 @@
 16. 群众/士兵/路人被模型生成成同一张脸，破坏真实感。
 17. 台词被当成字幕或画面文字渲染，或者说话太赶没有表演呼吸。
 18. 单段复杂度超出模型可执行范围，导致镜头乱、动作乱、叙事读不清。
+19. 英文生产板标签清楚，但混入的中文招牌/墙字/文件变成乱码。
+20. 全局视觉圣经图里混有人物、场景、车辆、道具或文字，上传 Seedance 后污染每个镜头。
 
 ## 核心能力
 
@@ -539,6 +544,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.8.1 | 2026-05-15
+v1.8.2 | 2026-05-16
 
-核心升级：**工业级 AIGC 制片闭环**。在原有资产板、故事板、Seedance prompt、上传顺序、出片评分和返修 SOP 基础上，补齐剧本拆解、段落复杂度预算、用户风格参考、纯净画面、群演差异化、对白/字幕边界、部门签核和更严格的 lint gate。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+核心升级：**文字隔离 + 视觉圣经分层**。在原有工业级制片闭环基础上，新增 CN_REVIEW_BOARD / EN_PRODUCTION_BOARD / TEXT_PROP_PLATE 文字边界，以及 PROJECT_BOARD_SYSTEM / STYLE_LOCK_TEXT / STYLE_LOOK_SAFE 三层视觉圣经规则，避免中文乱码和全局风格图污染 Seedance 参考。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。

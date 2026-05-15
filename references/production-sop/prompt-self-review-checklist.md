@@ -8,7 +8,9 @@ Use this before delivering any Image2 prompt file. Audit and fix against every r
 - Character boards lock identity, face, body, wardrobe, expressions, and status variants.
 - Scene boards lock space, light, material, geography, and usable camera areas.
 - Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
-- Style references / STYLE_BIBLE lock palette, contrast, lens language, light quality, grain/texture, composition habits, camera mood, and pacing tendency.
+- Style references / STYLE_LOCK_TEXT / STYLE_BIBLE lock palette, contrast, lens language, light quality, grain/texture, composition habits, camera mood, and pacing tendency.
+- Global style is controlled primarily by `STYLE_LOCK_TEXT` repeated in every Seedance prompt.
+- `STYLE_LOOK_SAFE` may be uploaded only if it is abstract and contains no people, scenes, vehicles, props, maps, signs, or readable text.
 - Storyboard boards lock shot order, timing, staging, camera, action, dialogue intention, and handoff.
 
 Do not let one board accidentally perform another board's job unless the chosen reference pattern explicitly requires an integrated board.
@@ -97,6 +99,8 @@ Before final delivery, run through the `film-industry-master-checklist.md` — 1
 - Final video prompt contains a clean-frame/no-text line
 - Realist projects explicitly forbid game/CG/illustration texture
 - Chinese project boards use Simplified Chinese unless otherwise requested
+- EN production boards use English labels and asset codes only; no readable Chinese in-world text
+- exact Chinese text is isolated into TEXT_PROP_PLATE/UI_TEXT_PROP_BOARD or post-production
 - Crowd/extras prompt includes no-clone / varied-face guard when group scenes appear
 - Dialogue/speech lines include rate, pause, listener reaction, and no-subtitle boundary when applicable
 - Department signoff is PASS for industrial-grade packages

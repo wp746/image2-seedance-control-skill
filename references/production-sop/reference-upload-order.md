@@ -24,12 +24,18 @@ Use this order unless a project has a specific reason to change it:
 | 2 | formal character asset board | identity, body, wardrobe, expression baseline |
 | 3 | scene asset board | geography, light source, fixed objects |
 | 4 | prop/product/vehicle asset board | shape, material, scale, hand relationship |
-| 5 | style/look bible or user style reference | palette, contrast, lens language, lighting, texture, grain, composition mood |
+| 5 | STYLE_LOOK_SAFE only, optional | palette, contrast, lens language, lighting, texture, grain, composition mood; must be abstract and non-contaminating |
 | 6 | scene continuity board | blocking, movement path, emotional state in space |
 | 7 | current storyboard board | shot order, camera positions, timing, action flow |
 | 8 | previous segment final frame | exact in-frame state for continuation |
 
 If the platform visually displays references left-to-right or top-to-bottom, keep the same order.
+
+## Global Visual Bible Upload Boundary
+
+Do not upload a mixed global visual bible to Seedance if it contains people, faces, buildings, city geography, vehicles, weapons, props, maps, floor plans, signs, or readable text. It will contaminate identity, scene, props, vehicles, and text.
+
+Global look should usually be controlled by `STYLE_LOCK_TEXT` inside the Seedance prompt. Upload a style image only when it is explicitly `STYLE_LOOK_SAFE`: abstract swatches, grain, light, lens, weather, and material samples, with no story content.
 
 ## Segment Type Adjustments
 
@@ -97,7 +103,8 @@ When references disagree:
 2. Formal asset board wins normalized continuity if it preserves the original asset.
 3. Current storyboard wins shot order and camera logic.
 4. Previous final frame wins only the opening state of a continuation segment.
-5. User-provided style references override the skill's default taste, but style references never override identity, wardrobe, scene geography, prop shape, story facts, clean-frame rules, or crowd diversity.
+5. User-provided style references override the skill's default taste, but style references never override identity, wardrobe, scene geography, prop shape, vehicles, signs, text, story facts, clean-frame rules, or crowd diversity.
+6. `STYLE_LOCK_TEXT` is safer than uploading a mixed visual bible image. Use it in every Seedance prompt.
 
 Do not upload two different faces for the same character unless one is explicitly labeled as "old version / do not use".
 
@@ -109,6 +116,7 @@ If references conflict, do not continue by hoping the model will resolve it.
 |---|---|---|
 | two different faces for one character | `HOLD` | pick one identity source or label old version as do-not-use |
 | style reference changes wardrobe/identity | `FIX` | limit style duty to look only |
+| visual bible contains characters/scenes/vehicles/props/text | `FIX` | do not upload globally; extract STYLE_LOCK_TEXT and split content into proper asset boards |
 | previous final frame overrides identity | `FIX` | move original character/board before final frame; final frame controls only start state |
 | storyboard redesigns asset | `REBUILD` | rebuild storyboard as execution board only |
 | exact text appears in multiple inconsistent refs | `FIX` | create one UI/text prop board |
@@ -125,7 +133,7 @@ Use compact duty labels to save characters:
 When using style references:
 
 ```text
-@参考职责: STYLE_BIBLE/风格参考=色彩/光线/镜头质感/颗粒/构图气质，不控制人物身份、剧情、道具或场景布局
+@参考职责: STYLE_LOOK_SAFE=仅控制色彩/光线/镜头质感/颗粒/构图气质，不控制人物身份、服装、剧情、道具、车辆、招牌、文字或场景布局；混有人物/场景/道具/文字的视觉圣经图不要上传，只使用STYLE_LOCK_TEXT文字锁
 ```
 
 For 2000-character pressure, compress to:
@@ -142,6 +150,8 @@ Before generation:
 - Does each reference have one clear duty?
 - Is there any conflicting face, outfit, prop, or location?
 - If a style reference is uploaded, is its duty limited to style treatment?
+- Is the style reference truly STYLE_LOOK_SAFE, with no people/scenes/vehicles/props/maps/readable text?
+- If the visual bible is unsafe, was it converted to STYLE_LOCK_TEXT instead of uploaded?
 - Is the current storyboard included?
 - For continuation, is the previous final frame included or described?
 - Is the reference order written in the production log?
