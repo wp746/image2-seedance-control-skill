@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.8.0 | 2026-05-14
+> v1.8.1 | 2026-05-15
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -539,6 +539,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.8.0 | 2026-05-14
+v1.8.1 | 2026-05-15
 
 核心升级：**工业级 AIGC 制片闭环**。在原有资产板、故事板、Seedance prompt、上传顺序、出片评分和返修 SOP 基础上，补齐剧本拆解、段落复杂度预算、用户风格参考、纯净画面、群演差异化、对白/字幕边界、部门签核和更严格的 lint gate。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
