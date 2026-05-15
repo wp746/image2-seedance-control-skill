@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-14 | Version: 1.8.0
+> Last updated: 2026-05-15 | Version: 1.8.1
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -12,6 +12,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 
 | 项目条件 | 加载文件 |
 |---|---|
+| **任何角色资产板** | **`character-asset-layout-bible.md`** |
 | 真人角色 / AI 真人剧 / 生物 / 怪兽 | `character-design-sheet.md` |
 | UE5 / MetaHuman / 游戏影视级角色 | `+ ue5-metahuman-technical-sheet.md` |
 | 用户上传照片 / 文字描述角色 | `+ cinematic-character-card-generator.md` |
@@ -25,6 +26,8 @@ Before writing prompts, use this table to load only the files needed for the cur
 
 | 项目条件 | 加载文件 |
 |---|---|
+| **任何重复场景资产板 / 固定空间** | **`scene-nine-view-layout-bible.md`** |
+| **任何反复出现 / 特写 / 推动剧情的道具** | **`prop-layout-bible.md`** |
 | 重复出现或有固定布局的场景 | `scene-asset-board.md` |
 | 特写/重复/推动剧情/品牌展示的道具 | `prop-asset-board.md` |
 | 用户提供参考风格 / 要提取电影风格 | `+ style-look-bible-board.md` |
@@ -35,6 +38,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 
 | 段落功能 | 加载文件 |
 |---|---|
+| **任何导演故事板 / Seedance 参考故事板** | **`director-storyboard-layout-bible.md`** |
 | **默认基线** (任何 Seedance 段落) | `storyboard-control-board.md` |
 | 对白 / 情感戏 / 短剧节拍 (行式表格) | `traditional-storyboard-table-board.md` |
 | 产品 / 流程 / 生活方式 / 社交媒体广告 (8 帧信息图) | `infographic-8-shot-poster.md` |
@@ -54,6 +58,7 @@ Before writing prompts, use this table to load only the files needed for the cur
 
 | 对应故事板 / 场景类型 | 加载文件 |
 |---|---|
+| **任何 Seedance 2.0 文本提示词** | **`dense-reference-stack-timeline.md`** |
 | 情侣/双人介绍 | `romantic-couple-introduction.md` |
 | 产品广告 (12-20 秒) | `product-ad-timeline.md` |
 | 影视制作计划板执行 | `cinematic-production-sheet-timeline.md` |
@@ -64,6 +69,8 @@ Before writing prompts, use this table to load only the files needed for the cur
 
 | 生产条件 | 加载文件 |
 |---|---|
+| **任何 Image2 画板提示词** | **`board-format-style-bible.md`** |
+| **任何最终提示词包** | **`bilingual-output-contract.md`** |
 | 多段 / 多场景 / 分集 / 长片 | `project-continuity-bible.md` |
 | 剧本 / 大纲 / 分集 / 多节拍创意 | `script-breakdown-segment-plan.md` |
 | 多镜头 / 多 Seedance 段落 | `shot-seam-review.md` |
@@ -93,6 +100,9 @@ Use for Image2 prompts that design stable visual assets: character asset boards,
 
 Current files:
 
+- `character-asset-layout-bible.md`: fixed character asset board bible defining locked 16:9 layout, one main character or max two supporting characters per board, mandatory four-view body sheet, face close-up grid, dynamic story-specific modules, crowd differentiation rules, and no-useless-reference discipline.
+- `scene-nine-view-layout-bible.md`: fixed scene asset bible using one scene per board, 3x3 nine-view scene layout, top-down floor/geography plan, entrance/exit/camera-safe/character-blocking/prop-anchor/light-direction locks, and no character identity faces.
+- `prop-layout-bible.md`: fixed prop asset bible for hero props and multi-prop boards, including multi-view, material, scale, hand logic, state change, scene anchor, reference duties, and readable text/UI isolation.
 - `character-design-sheet.md`: director-level character design sheet pattern for humans, creatures, monsters, and recurring roles.
 - `ue5-metahuman-technical-sheet.md`: technical UE5/MetaHuman-style character reference sheet for strict multi-view continuity, asymmetry, body landmarks, hands/feet, hair/groom, costume/armor/prop detail.
 - `cinematic-character-card-generator.md`: film-production character card generator pattern for text/photo inputs, identity preservation, height scale, wardrobe/material breakdown, and AI真人剧 character continuity.
@@ -115,6 +125,7 @@ Use for Image2 prompts that design Seedance-readable shot boards: timing boards,
 
 Current files:
 
+- `director-storyboard-layout-bible.md`: fixed director storyboard layout bible that forbids character sheets inside storyboards and prioritizes top-down movement floor plan, camera/motion map, lighting, sound/VFX, shot guide, negative locks, and director-driven shot count including valid one-shot 15-second segments.
 - `storyboard-control-board.md`: baseline Seedance 2.0 storyboard control board pattern.
 - `traditional-storyboard-table-board.md`: traditional storyboard table pattern for Seedance-readable 5-8 shot boards with shot number, timing, shot size, frame thumbnail, camera movement, action, dialogue, sound/music, and continuity notes.
 - `infographic-8-shot-poster.md`: clean 8-panel infographic storyboard poster for 12-15 second product/process/lifestyle/social ad sequences.
@@ -138,6 +149,7 @@ Use for Seedance 2.0 video prompts that turn existing Image2 assets/storyboards 
 
 Current files:
 
+- `dense-reference-stack-timeline.md`: dense Seedance 2.0 prompt bible requiring named @ reference duties, global lock, segment setup, start state, shot timeline, performance, camera/lens, light/color, sound/VFX, end state, continuity, and multi-dimensional negative constraints under the prompt budget.
 - `romantic-couple-introduction.md`: Seedance relationship-introduction prompt using a couple character sheet, detail -> identity -> relationship -> presence -> full reveal.
 - `product-ad-timeline.md`: concise product ad timeline prompt structure for 12-20 second commercials using product boards/storyboards.
 - `cinematic-production-sheet-timeline.md`: Seedance prompt pattern that treats an uploaded Image2 cinematic production plan sheet as a strict directing document, preserving character identity, scene geography, CAM positions, shot order, color, lighting, VFX, and continuity for a 4-15 second segment.
@@ -152,6 +164,8 @@ Use for industrialized long-form or multi-segment production control: project co
 
 Current files:
 
+- `board-format-style-bible.md`: mandatory project board system lock for Image2 outputs, controlling matte digital board substrate, fixed palette, sans-serif typography, margins, labels, arrows, icon style, and forbidding random paper texture, mixed fonts, tiny text, and decorative collage.
+- `bilingual-output-contract.md`: mandatory CN/EN output contract requiring production-equivalent Chinese and English variants for every Image2 asset/storyboard prompt and every Seedance 2.0 prompt.
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
 - `script-breakdown-segment-plan.md`: pre-prompt workflow that converts raw scripts/outlines into dramatic beats, asset lists, Seedance segment plans, storyboard duties, and prompt duties before any Image2 or Seedance prompt is written.
 - `production-runbook.md`: execution-layer SOP for team handoff, production units, folder/file naming, asset/storyboard/generation gates, generation logs, status boards, prompt linting, and final delivery gates.
@@ -175,8 +189,9 @@ Current files:
 2. Identify the project type and required assets.
 3. Identify storyboard type by scene function.
 4. For multi-segment/multi-scene/episode-based production, identify required SOP files.
-5. Load only the matched reference file(s).
-6. Adapt the pattern to the user's project. Do not copy reference prompts blindly.
+5. Always load the mandatory board/bilingual/layout/Seedance bible files before project-specific references.
+6. Load only the additional matched reference file(s).
+7. Adapt the pattern to the user's project. Do not copy reference prompts blindly.
 
 ## Update Rule
 
