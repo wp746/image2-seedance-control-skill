@@ -1,6 +1,6 @@
 # Prompt Library Index
 
-> Last updated: 2026-05-15 | Version: 1.8.1
+> Last updated: 2026-05-16 | Version: 1.8.2
 
 This skill uses a modular prompt library. Do not overwrite the core workflow when the user provides a strong reference prompt. Add it to the proper branch and update this index.
 
@@ -71,6 +71,8 @@ Before writing prompts, use this table to load only the files needed for the cur
 |---|---|
 | **任何 Image2 画板提示词** | **`board-format-style-bible.md`** |
 | **任何最终提示词包** | **`bilingual-output-contract.md`** |
+| **任何中文/英文标签、招牌、文件、字幕、地图、UI 文本风险** | **`text-rendering-boundary.md`** |
+| **任何全局视觉圣经 / 风格板 / look board / mood board** | **`visual-bible-reference-boundary.md`** |
 | 多段 / 多场景 / 分集 / 长片 | `project-continuity-bible.md` |
 | 剧本 / 大纲 / 分集 / 多节拍创意 | `script-breakdown-segment-plan.md` |
 | 多镜头 / 多 Seedance 段落 | `shot-seam-review.md` |
@@ -166,6 +168,8 @@ Current files:
 
 - `board-format-style-bible.md`: mandatory project board system lock for Image2 outputs, controlling matte digital board substrate, fixed palette, sans-serif typography, margins, labels, arrows, icon style, and forbidding random paper texture, mixed fonts, tiny text, and decorative collage.
 - `bilingual-output-contract.md`: mandatory CN/EN output contract requiring production-equivalent Chinese and English variants for every Image2 asset/storyboard prompt and every Seedance 2.0 prompt.
+- `text-rendering-boundary.md`: mandatory text boundary SOP separating CN review boards, EN production boards, and TEXT_PROP_PLATE/UI_TEXT_PROP_BOARD outputs so Chinese text does not become mojibake and Seedance frames stay clean.
+- `visual-bible-reference-boundary.md`: mandatory global visual-bible boundary SOP splitting PROJECT_BOARD_SYSTEM, STYLE_LOCK_TEXT, and STYLE_LOOK_SAFE, and forbidding mixed people/scene/prop/text bibles as global Seedance references.
 - `project-continuity-bible.md`: project-level continuity bible for locking characters, scenes, props, timeline, style, sound, VFX, emotion, and forbidden drift across clips, scenes, episodes, or long-form production.
 - `script-breakdown-segment-plan.md`: pre-prompt workflow that converts raw scripts/outlines into dramatic beats, asset lists, Seedance segment plans, storyboard duties, and prompt duties before any Image2 or Seedance prompt is written.
 - `production-runbook.md`: execution-layer SOP for team handoff, production units, folder/file naming, asset/storyboard/generation gates, generation logs, status boards, prompt linting, and final delivery gates.
