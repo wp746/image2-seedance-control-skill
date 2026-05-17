@@ -153,23 +153,12 @@ Use this when the final deliverable should include a visual project bible board:
 6. TIMELINE STATE / 时间线状态：每场戏的时间、天气、角色身体状态、服装状态、道具状态、冲突状态。
 7. EMOTIONAL ARC / 情绪递进：每场戏的进入情绪、压力来源、冲突点、转折、离开情绪。
 8. SOUND + VFX RULES / 声音与视觉特效规则：环境声、音乐动机、静默点、VFX颜色与运动逻辑。
-9. STYLE_LOCK_TEXT / 文字风格锁：把全局色彩、镜头、光线、颗粒、天气、质感写成可复制到每段Seedance提示词里的短文本。
+9. 全局影像风格文本：把全局色彩、镜头、光线、颗粒、天气、质感写成可直接嵌入每段Seedance提示词里的短文本，不输出内部变量名。
 10. DO NOT CHANGE / 禁止漂移：脸、年龄、服装、场景布局、道具、车辆、招牌、文字、光线、风格、方向、情绪承接。
 
-整体要求：像真正影视项目的总导演手册，所有信息服务于长片/分集稳定生产。注意：如果这张总控板含有人物、场景、道具、车辆、地图或文字，不要作为全局 Seedance 参考上传；只把 STYLE_LOCK_TEXT 写进每段 Seedance 提示词，具体人物/场景/道具用各自资产板控制。
+整体要求：像真正影视项目的总导演手册，所有信息服务于长片/分集稳定生产。注意：如果这张总控板含有人物、场景、道具、车辆、地图或文字，不要作为全局 Seedance 参考上传；只把提炼出的风格文字写进每段 Seedance 提示词，具体人物/场景/道具用各自资产板控制。
 ```
 
 ## Output Rule
 
-For longer projects, include a concise `Production Control` section in the user's final Markdown file before asset prompts:
-
-```markdown
-## Production Control / 工业化连续性控制
-- 项目圣经:
-- 角色状态:
-- 场景空间:
-- 声音/VFX:
-- 禁止漂移:
-```
-
-Keep it practical and short. The main deliverable is still the prompts.
+For longer projects, build production control internally, then absorb it into every asset prompt, storyboard prompt, and Seedance prompt. Do not include a user-facing `Production Control` section unless the user explicitly asks for SOP documentation. The main deliverable is only copyable prompts.

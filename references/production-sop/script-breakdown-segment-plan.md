@@ -12,6 +12,27 @@ First convert the script into a production segment plan:
 script -> dramatic beats -> scene units -> Seedance segments -> asset list -> storyboard duties -> prompt duties
 ```
 
+For finished scripts, do not treat the script as raw information to summarize. Treat it as a performed score. Read line by line and beat by beat before designing. Preserve the user's story rhythm, emotional turns, dialogue, and sound intentions. The segment plan exists to protect the script, not to simplify it into generic visuals.
+
+## Script Reading Gate
+
+Before any asset/storyboard/Seedance prompt, build an internal reading map:
+
+- exact scene range and source line numbers
+- beat-by-beat story purpose
+- emotional start, pressure, turn, and exit
+- POV or audience knowledge position
+- verbatim dialogue/voiceover lock
+- required silence, breath, pause, reaction, or withheld information
+- recurring characters and their state at this beat
+- recurring locations and geography constraints
+- recurring props and state changes
+- sound motifs, room tone, ambience, foley, music, VFX cues
+- Image2 risk: text density, crowd cloning, board overcrowding, mixed labels, substrate/font drift
+- Seedance risk: too many characters, too many actions, overlong dialogue, unclear reference priority, exact text rendering, scene/prop/style drift
+
+If the reading map shows a beat is too dense for one 15-second segment, split it. Do not compress the story or delete lines.
+
 ## Dramatic Beat Table
 
 | Field | Meaning |
@@ -41,6 +62,9 @@ Rules:
 - If one beat needs too much story, split it into multiple segments.
 - If one segment contains multiple dramatic functions, decide the dominant function and push the rest into another segment unless the transition is essential.
 - Do not use fast cutting to hide unclear script breakdown.
+- Preserve emotional breath. If a line, silence, look, or command needs time to land, create another segment instead of rushing it.
+- Dialogue/voiceover is not optional metadata. Assign every original line or exact line fragment to one or more segments before writing prompts.
+- Keep every segment's job narrow enough that Seedance can execute it without inventing new action, new faces, new props, or new geography.
 
 ## Asset List Gate
 
@@ -51,6 +75,8 @@ Before storyboards:
 - every plot-critical prop has a prop code
 - crowd/extras are marked as `EXTRAS_GROUP_*`, not treated as a single cloned identity
 - style references are marked as `STYLE_REF_*` or `STYLE_BIBLE`
+- every asset's reference duty is clear: character identity, scene geography, prop shape/material/state, storyboard camera/blocking, or optional abstract style only
+- avoid global mixed visual bibles as Seedance references; split people/scene/prop/map/text into proper asset boards and put global look into prompt text
 
 ## Storyboard / Prompt Duty Split
 
@@ -85,4 +111,6 @@ Before writing final prompts, confirm:
 - every segment has complexity risk checked
 - every storyboard has a matching Seedance prompt planned
 - no raw script paragraph is being compressed into one overfull segment
-
+- no dialogue/voiceover line is omitted, paraphrased, or left unassigned
+- Image2-specific text risks have a plan: large short labels, English production board, blurred in-world text, TEXT_PROP_PLATE, or post-production
+- Seedance-specific drift risks have a plan: character, scene, prop, style, spatial direction, clean frame, and segment handoff guards

@@ -89,8 +89,13 @@ STYLE_REFERENCE_TOKENS = (
 STYLE_LOCK_TOKENS = (
     "STYLE_BIBLE",
     "STYLE_LOCK",
+    "STYLE LOCK",
+    "GLOBAL LOOK",
+    "Global look",
+    "Visual style",
     "风格圣经",
     "风格锁",
+    "影像风格",
     "色彩/光线/镜头",
     "色彩、光线、镜头",
 )

@@ -5,6 +5,8 @@ Use this before delivering any Image2 prompt file. Audit and fix against every r
 ## 1. Responsibility Separation
 
 - Script breakdown locks dramatic beats, segment jobs, asset needs, and risk before prompt writing.
+- Finished scripts are read as performed stories, not summarized as plot data. Verify that the prompt package preserves the user's rhythm, emotional turns, point of view, and exact dialogue/voiceover.
+- The package should reduce the user's need to test. Predict and solve likely Image2/Seedance failures before delivery.
 - Character boards lock identity, face, body, wardrobe, expressions, and status variants.
 - Scene boards lock space, light, material, geography, and usable camera areas.
 - Prop/UI boards lock object shape, usage, hand relationship, and short readable text.
@@ -57,6 +59,8 @@ For Seedance generation segments, verify every storyboard and matching Seedance 
 
 Run `segment-complexity-budget.md` before writing each pair. Do not allow high-risk segments to pass by relying on stronger wording.
 
+If preserving exact dialogue or emotional breath pushes a Seedance prompt over 2000 characters, split the segment instead of deleting dialogue or collapsing the scene. Compress camera adjectives and reference prose first; script lines and continuity are higher priority.
+
 ## 8. Shot Count and Rhythm
 
 Shot count is driven by emotion, not formula. One continuous take can carry a scene. Two shots — one wide, one close — can be enough. Check that every shot has an emotional reason to exist; remove shots added just to fill panels. Use rhythm logic: space needs fewer cuts, impact needs more cuts, stillness needs locked-off camera, immersion needs handheld.
@@ -76,11 +80,34 @@ For every storyboard shot row, verify the matching Seedance prompt has the same 
 
 For dialogue, use `dialogue-audio-subtitle-boundary.md`: full lines belong in Seedance only as spoken delivery timing, not as rendered subtitles or storyboard thumbnail text.
 
-## 10. Production Readability
+For scripts, compare the original script line list against the final prompt file:
+
+- every voiceover/dialogue/radio/chant/crowd line appears verbatim or as exact contiguous fragments
+- no line is polished, paraphrased, shortened, merged, or deleted
+- every split line has a continuation segment
+- every line has speech rhythm, pause, listener reaction, and no-subtitle boundary when applicable
+
+## 10. Model Capability + Bug Risk Gate
+
+Before delivery, inspect the package through Image2 and Seedance limits:
+
+- Image2 board substrate locked: no paper/newsprint/oil paper/parchment drift, no mixed fonts, no tiny Chinese paragraphs
+- EN production boards do not ask for readable Chinese in-image text
+- exact Chinese text is isolated into TEXT_PROP_PLATE or post-production
+- character sheets include enough anchors to stop face/body/wardrobe drift
+- crowd boards include varied age/height/body/face/posture, no cloned extras
+- scene boards include 9-view/geography/floor-plan/camera-safe zones when recurring
+- prop boards lock shape/material/scale/hand-use/state for repeated props
+- Seedance prompts do not ask for too many shots/actions/characters in 15 seconds
+- references have one duty each; no mixed visual bible controls story content
+- every segment has start/end state and next-segment handoff
+- negative constraints cover identity, scene, prop, style, space, motion, edit, text, and era/domain drift
+
+## 11. Production Readability
 
 Remove contradictory instructions, repeated labels, dense tiny paragraphs, and vague commands such as "make it cinematic" without execution detail. Each prompt should be clear enough that another agent can use it without asking what you meant.
 
-## 11. Film Industry Master Checklist
+## 12. Film Industry Master Checklist
 
 Before final delivery, run through the `film-industry-master-checklist.md` — 10 departments, 40+ items. Mark each as satisfied or N/A with reason. At minimum, verify these high-risk items:
 

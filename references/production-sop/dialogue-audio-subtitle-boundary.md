@@ -6,7 +6,9 @@ Use this for spoken lines, voiceover, radio, public address, shouting, whisperin
 
 Dialogue is performance and sound. It is not automatically on-screen text.
 
-Storyboard may note dialogue intention. Seedance prompt may describe spoken delivery. Final subtitles should usually be added in post, not generated inside the video frame.
+When the user provides a script, every spoken line and voiceover line is a locked creative asset. Preserve the user's original wording exactly: character name, line text, dialect, punctuation, ellipses, dashes, quotation marks, numbers, and parenthetical performance notes. Do not summarize, rewrite, polish, shorten, merge, or delete script dialogue.
+
+Storyboard may note dialogue intention and should assign the exact line or exact fragment to the segment. Seedance prompt must include the exact line or exact fragment as spoken delivery. Final subtitles should usually be added in post, not generated inside the video frame.
 
 ## Responsibility Split
 
@@ -17,14 +19,14 @@ Storyboard board should show:
 - eye lines
 - body distance
 - reaction shot timing
-- short line intention such as `低声命令` or `不敢回答`
+- the exact script line or exact fragment assigned to this segment, kept in prompt text; if the board image cannot reliably render it, mark it as `VOICE`/`DIALOGUE` and keep the full exact line in the prompt body
 - sound cue marker such as `VOICE`, `RADIO`, `PA`, `WHISPER`
 
 Storyboard board should not put full dialogue paragraphs across thumbnails.
 
 Seedance prompt should write:
 
-- exact short line only when needed for performance or lip rhythm
+- exact original line or exact contiguous fragment from the script whenever the segment contains dialogue/voiceover
 - speech rate
 - pause before and after the line
 - breath, swallow, hesitation, interruption
@@ -63,7 +65,7 @@ For a line to land, add:
 - line delivery
 - post-line reaction or silence: 0.5-2.0s
 
-If the line cannot fit with reaction time, split the segment.
+If the line cannot fit with reaction time, split the segment. The split must use exact contiguous fragments and mark the continuation; never paraphrase or remove words.
 
 ## Dialogue Prompt Pattern
 
@@ -71,14 +73,21 @@ If the line cannot fit with reaction time, split the segment.
 对白: CHAR_A 低声说"[短句]"，语速慢，先吸气0.4s再开口；说完停0.8s，CHAR_B不立刻回答，眼神先下移再抬起。对白只作为声音/口型/表演节奏，不出现字幕或画面文字。
 ```
 
+For script work:
+
+```text
+原文台词锁：CHAR_A：（原稿动作/语气）"逐字保留用户剧本台词。"
+台词承接：如果本段只说前半句，下一段必须从下一个字继续，不得改写。
+```
+
 ## Hard Fail
 
 Fail or repair if:
 
 - subtitles appear in a clean narrative frame without request
+- any original script dialogue/voiceover line is omitted, paraphrased, shortened, polished, or moved without exact continuation
 - random text appears because dialogue was written on the storyboard thumbnail
 - speech is too fast for the emotion
 - the listener has no reaction beat
 - characters speak while their face/body performance contradicts the line
 - generated text replaces spoken performance
-

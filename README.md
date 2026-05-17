@@ -1,6 +1,6 @@
 # Image2 Seedance Control Skill
 
-> v1.8.2 | 2026-05-16
+> v1.8.5 | 2026-05-16
 
 一个面向 AI 视频创作者的 Image2 控制图 + Seedance 2.0 工业化生产 skill。
 
@@ -11,7 +11,7 @@
 ```text
 先用 GPT Image 2 生成职责清晰的资产板和故事板，
 再按参考职责上传到 Seedance 2.0，
-全局风格主要用 STYLE_LOCK_TEXT 写进每段提示词，
+全局风格作为文字内容直接写进每段提示词，
 避免混合视觉圣经图把人物、场景、道具和文字错误带进视频。
 ```
 
@@ -494,16 +494,13 @@ https://raw.githubusercontent.com/wp746/image2-seedance-control-skill/main/SKILL
 
 ## 最终输出格式
 
-这个 skill 默认输出一个 Markdown 文件，通常包含：
+这个 skill 默认输出一个 Markdown 文件，只保留用户可直接复制的提示词：
 
-- Project Settings
-- Director Recommendation
-- Usage
-- Production Control
-- Asset Design Prompts
-- Storyboard Prompts
-- Shot Seam Checklist
-- Seedance 最简输入句
+- Image2 Asset Design Prompts（CN/EN）
+- Image2 Storyboard Prompts（CN/EN）
+- Seedance 2.0 Prompts（CN/EN）
+
+画板系统、文字渲染边界、视觉参考边界、全局风格锁、参考图职责、工业化连续性控制都会在后台完成，并直接写进每条提示词里；默认不输出 `PROJECT_BOARD_SYSTEM`、`STYLE_LOCK_TEXT`、`Usage`、`Production Control` 等内部章节。
 
 默认文件名：
 
@@ -544,6 +541,6 @@ aigc-video-one-stop-skill -> 更完整的一站式项目打包
 
 ## 当前状态
 
-v1.8.2 | 2026-05-16
+v1.8.5 | 2026-05-16
 
-核心升级：**文字隔离 + 视觉圣经分层**。在原有工业级制片闭环基础上，新增 CN_REVIEW_BOARD / EN_PRODUCTION_BOARD / TEXT_PROP_PLATE 文字边界，以及 PROJECT_BOARD_SYSTEM / STYLE_LOCK_TEXT / STYLE_LOOK_SAFE 三层视觉圣经规则，避免中文乱码和全局风格图污染 Seedance 参考。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
+核心升级：**工业级剧本理解 + 模型风险预判**。现成剧本或自写剧本都必须先逐字逐段理解故事节奏、情绪基调、视听逻辑、角色/场景/道具/风格连续性和 Image2/Seedance 2.0 的模型边界；先内部完成节奏拆解、原文台词锁定、资产/场景/道具/故事板职责分离、复杂度预算和漂移风险预判，再输出可直接复制的 Image2 双语提示词和 Seedance 2.0 双语提示词。目标是减少用户反复测试，主动补全用户没想到的生产风险。完整模板详见 [提示词武器库索引](references/prompt-library-index.md)。
