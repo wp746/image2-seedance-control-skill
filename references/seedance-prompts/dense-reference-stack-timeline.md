@@ -15,14 +15,15 @@ Every Seedance prompt must include:
 3. `SEGMENT SETUP / 本段设定`
 4. `START STATE / 起始状态`
 5. `SCREEN DIRECTION / 180度轴线锁`
-6. `SHOT TIMELINE / 逐镜头时间线`
-7. `PERFORMANCE / 表演`
-8. `CAMERA + LENS / 摄影机与焦段`
-9. `LIGHT + COLOR / 光线与色彩`
-10. `SOUND + VFX / 声音与特效`
-11. `END STATE / 结尾状态`
-12. `CONTINUITY / 连续性`
-13. `NEGATIVE / 负面约束`
+6. `VOICE LOCK / 角色音色锁`
+7. `SHOT TIMELINE / 逐镜头时间线`
+8. `PERFORMANCE / 表演`
+9. `CAMERA + LENS / 摄影机与焦段`
+10. `LIGHT + COLOR / 光线与色彩`
+11. `SOUND + VFX / 声音与特效`
+12. `END STATE / 结尾状态`
+13. `CONTINUITY / 连续性`
+14. `NEGATIVE / 负面约束`
 
 ## Reference Stack Rule
 
@@ -99,6 +100,39 @@ Every Seedance prompt for narrative footage must keep the frame clean:
 
 ```text
 纯净电影画面；不要字幕、不要标题、不要画面内文字、不要控制板标签、不要随机中文/英文、不要水印、不要乱码。对白/旁白只作为声音/口型/表演节奏；历史字幕、地点字幕、文件可读文字和片名后期添加，除非本段明确使用单独TEXT_PROP_PLATE做特写。
+```
+
+## Voice Lock Rule
+
+Voice is a recurring character asset. Do not let Seedance improvise a new voice per segment. For every main or recurring speaking character, define a `VOICE_LOCK` in the Seedance prompt itself. This belongs in text/audio direction, not in Image2 visual boards.
+
+Each `VOICE_LOCK` should include:
+
+- age range and vocal age
+- pitch range: low / mid-low / mid / high
+- timbre: clear, hoarse, warm, cold, nasal, dry, thick, thin, metallic, breathy, etc.
+- breath support: shallow, steady, thick, broken, restrained
+- volume and projection: whisper, low voice, normal, command voice, never shouting unless scripted
+- rhythm and speech rate: normal Chinese dramatic speech is usually about 3-4 chars/sec; slower for tension
+- articulation: clipped, clear, soft consonants, regional cadence, educated diction, soldier-like brevity
+- accent/dialect: specify none/light/strong; avoid caricature unless the script requires it
+- emotional variation: what changes under fear, grief, anger, secrecy, command, or tenderness
+- forbidden voices: AI narrator, broadcast announcer, idol youth voice, theatrical recitation, shouting, wrong age, wrong gender, random accent
+
+Before every spoken line, repeat the relevant compact voice lock and performance state, then preserve the line verbatim.
+
+Chinese example:
+
+```text
+音色锁：李侠=30多岁男声，中低音，清冷克制，气息偏浅但稳定，咬字清楚，语速3-4字/秒；紧张时音量不升高，只让尾音更短，禁止播音腔、偶像青年音、AI朗读腔。
+李侠在压住眼泪、先吸气0.4秒后，用低而坚定的音色说：“只要我的工作对党有利，我义不容辞。”
+```
+
+English example:
+
+```text
+VOICE_LOCK: Li Xia = male voice in his 30s, mid-low pitch, cool restrained timbre, shallow but steady breath, clear articulation, 3-4 Chinese chars/sec; under tension his volume does not rise, only the line endings become shorter. Forbid announcer voice, idol-youth voice, AI narration, random accent.
+Li Xia, holding back tears and inhaling 0.4s first, says in this locked low firm voice: “只要我的工作对党有利，我义不容辞。”
 ```
 
 ## Shot Timeline Rule
@@ -191,9 +225,10 @@ Negative constraints must be specific to the project and segment:
 生成[时长]秒[画幅]视频。本段只使用本段内部时间码，从0:00开始。整体保持[直接写出的项目风格内容]。本段情绪目标：[情绪目标]。起始状态：[上一段末帧或本段起点]。不要把混有人物/场景/道具/文字的总视觉圣经图当全局参考。
 摄影系统：[ARRI/RED/Sony/Panasonic等具体机型]，[画幅/帧率/快门角度/镜头组/胶片颗粒/运动风格]。
 轴线锁：[写清180度轴线、可用机位侧、固定左右关系、眼线方向、入口/出口方向、是否允许通过中性镜头换轴]。
+音色锁：[按角色写清年龄音色、音高、音质、气息、音量、语速、咬字、口音、情绪变化和禁止错误声音]。
 
 逐镜头时间线：
-S01 / [0:00-0:xx] / [景别或B-roll/反应/空镜] / [焦段mm + 镜头高度 + 运镜]：[构图占位、人物动作、台词/画外音、声音、光线、情绪、轴线/左右关系、入帧和出帧状态]。
+S01 / [0:00-0:xx] / [景别或B-roll/反应/空镜] / [焦段mm + 镜头高度 + 运镜]：[构图占位、人物动作、台词/画外音、音色锁调用、声音、光线、情绪、轴线/左右关系、入帧和出帧状态]。
 S02 / ...
 
 表演：写清眼神、呼吸、停顿、手部动作、身体重量、台词力度。
@@ -221,9 +256,10 @@ Upload for this segment in order: @图片1=[board/content]; @图片2=[board/cont
 Generate a [duration]-second [aspect ratio] video. Use local segment timecode only, starting at 0:00. Overall style: [directly written project look]. Emotional goal: [goal]. Start state: [previous final frame or segment opening]. Do not use any mixed visual-bible image containing people/scenes/props/text as a global Seedance reference.
 Camera package: [specific ARRI/RED/Sony/Panasonic body], [format/frame rate/shutter angle/lens set/film grain/movement grammar].
 Screen-direction lock: [write the 180-degree axis, safe camera side, fixed left/right relationship, eyeline direction, entrance/exit direction, and whether an axis-change bridge is allowed].
+Voice lock: [write each speaking character's vocal age, pitch, timbre, breath, volume, speech rate, articulation, accent, emotional variation, and forbidden wrong voices].
 
 SHOT TIMELINE:
-S01 / [0:00-0:xx] / [shot size or B-roll/reaction/empty shot] / [focal length mm + camera height + move]: [composition, blocking, action, dialogue/VO, sound, light, emotion, axis/left-right relation, in-frame and out-frame state].
+S01 / [0:00-0:xx] / [shot size or B-roll/reaction/empty shot] / [focal length mm + camera height + move]: [composition, blocking, action, dialogue/VO with voice-lock callout, sound, light, emotion, axis/left-right relation, in-frame and out-frame state].
 S02 / ...
 
 PERFORMANCE: [eyes, breath, pauses, hand behavior, body weight, line delivery].
