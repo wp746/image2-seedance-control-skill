@@ -44,6 +44,35 @@ The board must include these zones in a consistent order:
 7. `SHOT GUIDE`: 1-8 shot rows or panels. Only include shot number, local timecode, shot size, composition/blocking, camera move, dialogue/VO cue, sound cue, edit-out frame.
 8. `NEGATIVE LOCKS`: production-critical drift prevention only.
 
+## Screen Direction + Axis Lock
+
+For dialogue, confrontation, chase, combat, entry, exit, and any scene where geography matters, the storyboard must lock screen direction like a professional floor plan.
+
+Draw in the `TOP-DOWN FLOOR PLAN`:
+
+- the 180-degree action axis between the two main subjects or along the movement path
+- the safe camera half with usable camera positions
+- the forbidden camera half with red hatch or clear no-camera marks
+- eyeline arrows for each character
+- fixed entrance/exit direction, road/door/river/stair direction, and prop anchors
+- any intentional axis-change bridge shot, such as neutral frontal shot, overhead plan shot, or motivated tracking move crossing the axis visibly
+
+If the scene does not intentionally change axis, every shot guide row must preserve the same left/right relationship. For example: `Li Xia remains screen-left, chief remains screen-right, eyelines do not reverse, exit continues toward screen front-right`.
+
+Do not use vague labels like "keep geography consistent" alone. Write the exact screen relationship, safe camera side, forbidden side, and exit direction into both storyboard and Seedance prompts.
+
+## B-Roll + Reaction Design
+
+Do not make every segment only A-roll talking heads. Add B-roll, inserts, reactions, and empty atmosphere when they serve a concrete function:
+
+- prop continuity: suitcase handle, pistol, telegram, radio key, document envelope, ring, watch
+- emotional reaction: listener eyes, swallowed breath, hand tightening, restrained nod
+- atmosphere: wind over loess, rain on street, lamp flicker, smoke, empty corridor, distant landmark
+- geography: road exit, doorway, river direction, stairwell, window light, blocking reset
+- pacing: silence before a line, breath after a line, transition from command to response
+
+B-roll must stay inside the same scene geography and axis lock unless it is an intentionally neutral detail shot. Avoid decorative filler that adds new locations, new props, readable text, or extra story facts.
+
 ## Absolutely No Character Sheet Inside Storyboard
 
 Do not include:
@@ -74,7 +103,7 @@ Choose shot count by dramatic need:
 - 2 shots: establish + reaction, reveal + consequence.
 - 3 shots: setup, turn, aftermath.
 - 4-6 shots: normal 10-15s dialogue/action/suspense segment.
-- 7-8 shots: fast action, chaos, montage, cause-effect chain.
+- 7-8 shots: fast action, chaos, montage, cause-effect chain, or dialogue segments that need reaction/inserts/B-roll without rushing the spoken line.
 
 If one held shot creates better rhythm and film quality, use one shot. More generated clips are acceptable if they preserve cinematic quality and continuity. If a scene needs 20+ seconds, split it into linked storyboard/Seedance segments and design the next segment to continue from the previous final frame or generated video.
 
@@ -119,7 +148,11 @@ Storyboard visual form must be director sketch / previs line-art, not photoreal 
 - no long paragraphs in the image
 - no default 5-shot formula
 - no unclear floor plan
+- no missing 180-degree axis in dialogue/action/geography-critical scenes
+- no axis crossing unless there is a designed neutral-axis bridge shot
+- no reversed eyeline, flipped left/right relationship, or reversed exit direction
 - no camera moves without story reason
 - no random shot count
+- no decorative B-roll without story, continuity, rhythm, or emotion function
 - no new props/locations not in assets
 - no duplicate responsibilities between storyboard and asset board

@@ -14,14 +14,15 @@ Every Seedance prompt must include:
 2. `GLOBAL LOCK / 全局锁定`
 3. `SEGMENT SETUP / 本段设定`
 4. `START STATE / 起始状态`
-5. `SHOT TIMELINE / 逐镜头时间线`
-6. `PERFORMANCE / 表演`
-7. `CAMERA + LENS / 摄影机与焦段`
-8. `LIGHT + COLOR / 光线与色彩`
-9. `SOUND + VFX / 声音与特效`
-10. `END STATE / 结尾状态`
-11. `CONTINUITY / 连续性`
-12. `NEGATIVE / 负面约束`
+5. `SCREEN DIRECTION / 180度轴线锁`
+6. `SHOT TIMELINE / 逐镜头时间线`
+7. `PERFORMANCE / 表演`
+8. `CAMERA + LENS / 摄影机与焦段`
+9. `LIGHT + COLOR / 光线与色彩`
+10. `SOUND + VFX / 声音与特效`
+11. `END STATE / 结尾状态`
+12. `CONTINUITY / 连续性`
+13. `NEGATIVE / 负面约束`
 
 ## Reference Stack Rule
 
@@ -115,6 +116,42 @@ Every shot must include:
 - light/color state
 - in/out handoff
 
+## Screen Direction + 180-Degree Axis Rule
+
+For every dialogue, confrontation, chase, combat, entry, exit, or geography-critical segment, Seedance prompts must explicitly lock the 180-degree axis. This is mandatory because multi-reference video generation can otherwise flip screen direction between shots.
+
+Write:
+
+- the action axis: which two characters or path endpoints define it
+- the safe camera side: which side of the axis all cameras stay on
+- the fixed screen relationship: who remains screen-left/screen-right, which way they look, which way they exit
+- the forbidden spatial drift: no axis crossing, no eyeline reversal, no flipped geography, no reversed exit direction
+- the only allowed exception: a clearly motivated neutral-axis bridge shot or visible tracking move that crosses the line on-screen
+
+Example:
+
+```text
+轴线锁：李侠与首长的连线为180度轴线，摄影机始终在观众侧同一半区；李侠保持画面左，首长保持画面右，过肩和反应镜头不反转眼线。李侠离开时沿画面右前方土路走，不得突然反向。禁止画面越轴、左右关系反转、眼线错位、出口方向反转。
+```
+
+English:
+
+```text
+Screen-direction lock: the line between Li Xia and the chief is the 180-degree axis; all cameras remain on the same audience-side half. Li Xia stays screen-left, the chief stays screen-right; OTS and reaction shots never reverse eyelines. Li Xia exits toward screen front-right along the dirt path, never the opposite direction. No axis crossing, reversed left/right relation, eyeline mismatch, or flipped exit direction.
+```
+
+## B-Roll + Reaction Rule
+
+Use B-roll, inserts, reaction shots, and empty atmosphere when they make the scene more cinematic or more controllable. They should not be decorative. Each B-roll shot must have one job:
+
+- preserve prop continuity, such as a suitcase handle, radio key, document, weapon, or hand position
+- hold emotional reaction, such as listener eyes, swallowed breath, hand tightening, restrained nod
+- create atmosphere and breath, such as wind, rain, dust, lamp flicker, empty road, distant landmark
+- reset geography, such as doorway, road exit, river direction, corridor, stairs, window light
+- bridge edits while keeping the same screen-direction axis
+
+Keep B-roll inside the same scene geography and style. Do not introduce new locations, new props, readable text, or story facts unless the script requires them.
+
 If the storyboard has only one 15-second shot, the Seedance prompt should still divide the performance internally by seconds while keeping it one shot:
 
 ```text
@@ -134,6 +171,7 @@ Negative constraints must be specific to the project and segment:
 - prop drift: shape, material, scale, hand, text, state
 - style drift: palette, contrast, texture, lens, era
 - spatial drift: left/right relationship, eyeline, distance, entrance/exit
+- axis drift: crossing the 180-degree line, reversed screen-left/screen-right relation, mismatched eyeline, flipped geography, reversed exit direction
 - motion drift: floating camera, random slow motion, skipped action, impossible body physics
 - edit drift: missing in/out frame, jump cut, merged shots, random extra shots
 - text drift: subtitles, watermarks, UI, garbled labels unless required
@@ -152,9 +190,10 @@ Negative constraints must be specific to the project and segment:
 
 生成[时长]秒[画幅]视频。本段只使用本段内部时间码，从0:00开始。整体保持[直接写出的项目风格内容]。本段情绪目标：[情绪目标]。起始状态：[上一段末帧或本段起点]。不要把混有人物/场景/道具/文字的总视觉圣经图当全局参考。
 摄影系统：[ARRI/RED/Sony/Panasonic等具体机型]，[画幅/帧率/快门角度/镜头组/胶片颗粒/运动风格]。
+轴线锁：[写清180度轴线、可用机位侧、固定左右关系、眼线方向、入口/出口方向、是否允许通过中性镜头换轴]。
 
 逐镜头时间线：
-S01 / [0:00-0:xx] / [景别] / [焦段mm + 镜头高度 + 运镜]：[构图占位、人物动作、台词/画外音、声音、光线、情绪、入帧和出帧状态]。
+S01 / [0:00-0:xx] / [景别或B-roll/反应/空镜] / [焦段mm + 镜头高度 + 运镜]：[构图占位、人物动作、台词/画外音、声音、光线、情绪、轴线/左右关系、入帧和出帧状态]。
 S02 / ...
 
 表演：写清眼神、呼吸、停顿、手部动作、身体重量、台词力度。
@@ -181,9 +220,10 @@ Upload for this segment in order: @图片1=[board/content]; @图片2=[board/cont
 
 Generate a [duration]-second [aspect ratio] video. Use local segment timecode only, starting at 0:00. Overall style: [directly written project look]. Emotional goal: [goal]. Start state: [previous final frame or segment opening]. Do not use any mixed visual-bible image containing people/scenes/props/text as a global Seedance reference.
 Camera package: [specific ARRI/RED/Sony/Panasonic body], [format/frame rate/shutter angle/lens set/film grain/movement grammar].
+Screen-direction lock: [write the 180-degree axis, safe camera side, fixed left/right relationship, eyeline direction, entrance/exit direction, and whether an axis-change bridge is allowed].
 
 SHOT TIMELINE:
-S01 / [0:00-0:xx] / [shot size] / [focal length mm + camera height + move]: [composition, blocking, action, dialogue/VO, sound, light, emotion, in-frame and out-frame state].
+S01 / [0:00-0:xx] / [shot size or B-roll/reaction/empty shot] / [focal length mm + camera height + move]: [composition, blocking, action, dialogue/VO, sound, light, emotion, axis/left-right relation, in-frame and out-frame state].
 S02 / ...
 
 PERFORMANCE: [eyes, breath, pauses, hand behavior, body weight, line delivery].
