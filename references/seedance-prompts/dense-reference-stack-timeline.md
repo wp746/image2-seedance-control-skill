@@ -4,7 +4,7 @@ Use this for every Seedance 2.0 prompt after assets and storyboards are ready.
 
 ## Goal
 
-Seedance prompts should actively use the available prompt budget. They should be detailed, exact, and reference-aware, usually aiming for a dense prompt under 2000 Chinese characters or an equivalent English length.
+Seedance prompts should actively use the available prompt budget. They should be detailed, exact, and reference-aware, usually aiming for a dense prompt under 5000 Chinese characters or an equivalent English length.
 
 ## Required Structure
 
@@ -44,6 +44,47 @@ Use @CHAR_MENGJUNQI, especially FULL BODY 4 VIEWS + FACE CLOSE-UP GRID + PERFORM
 Use @SCENE_FIELD_HQ, especially V04 CAMERA A, V08 LIGHT, and the top-down floor plan.
 Use @PROP_MAP_TABLE, especially the hand/map interaction panel.
 ```
+
+Final Seedance prompts must use the actual names displayed by the video tool after upload: `@图片1`, `@图片2`, `@图片3`... Do not circle references in the final prompt as `@A01-EN`, `@CHAR_A`, `@SCENE_01`, or `@STORYBOARD_S01`, because the tool will show only image numbers. The board/asset codes still matter, but they should appear inside parentheses after the numbered reference.
+
+Before every fenced Seedance prompt, add one Markdown upload note line for the user. This line is not part of the prompt to copy, and it must map every `@图片N` to the exact generated board and English label:
+
+```markdown
+> 上传参考图（这行不复制进 Seedance）：@图片1 = Prompt A01-EN / Character Asset Board / CHAR_LI_XIA；@图片2 = Prompt A06-EN / Scene Asset Board / SCENE_YANAN；@图片3 = Prompt S01-EN / Storyboard Board / STORYBOARD_01_EN。
+```
+
+The upload note must be outside the fenced ```text block. The fenced Seedance prompt itself still uses `@图片N(...)` references.
+
+Final Seedance prompts must not use vague delegation language such as "角色资产管脸/服装，场景资产管空间，道具资产管手持和位置，故事板管机位/路线" or "character assets control face/costume, scene assets control geography, prop assets control hand-use, storyboard controls camera/path."
+
+Replace vague duties with exact reference targeting:
+
+```text
+本段按顺序上传：@图片1=A01-EN角色板；@图片2=A06-EN场景板；@图片3=S01-EN故事板。
+@图片1（A01-EN/CHAR_LI_XIA）读FULL BODY 4 VIEWS + FACE GRID + 服装状态“延安灰长衫+行李箱” + 表情“使命坚定”，忽略上海雨夜/阁楼服装。
+@图片2（A06-EN/SCENE_YANAN_BAOTA）读上半区宝塔山送别九视角 + 下方TOP VIEW PLAN里李侠站位/首长站位/敬礼方向/光源方向，忽略窑洞面板。
+@图片3（S01-EN/STORYBOARD）读TOP VIEW + CAMERA A/B/C + SHOT PANELS + SOUND/VFX，忽略任何控制板标签，不把它们生成到画面里。
+```
+
+Every referenced board line should answer five questions: which upload number the platform will display; which image/board that number corresponds to; which asset code/module/panel/label inside that board should be read; what exact information should be extracted; which nearby modules/panels/text should be ignored to avoid contamination. If the same uploaded board contains two needed assets, reuse the same image number, e.g. `@图片1（A04-EN/CHAR_LIU_NINA）` and `@图片1（A04-EN/CHAR_YE_DANQIU）`.
+
+## Camera Package + Lens Rule
+
+Every Seedance prompt must include a project-appropriate camera package and per-shot focal lengths. Do not write only "cinematic camera" or "long lens." Use concrete specs, for example:
+
+```text
+Camera package: ARRI Alexa 35, 4.6K Open Gate downsampled to 4K 16:9, 24fps, 180-degree shutter, vintage Cooke Speed Panchro/i Classic prime set, Kodak 5219/5207 film-emulation grain, restrained handheld/dolly grammar.
+```
+
+Each shot in the timeline must include a focal length:
+
+```text
+S01 / 0:00-0:03 / WIDE / 32mm locked low tripod...
+S02 / 0:03-0:07 / MEDIUM CLOSE / 50mm slow push...
+S03 / 0:07-0:10 / CLOSE-UP / 75mm handheld micro drift...
+```
+
+Choose focal lengths from the same lens family unless a special macro/telephoto reason exists. Historical, realist, spy, war, police, and period projects should usually prefer restrained vintage primes and avoid ultra-wide distortion unless geography demands it.
 
 ## Visual Bible Boundary Rule
 
@@ -104,15 +145,16 @@ Negative constraints must be specific to the project and segment:
 参考图职责：
 全片影像风格：直接写出色彩、对比、镜头、颗粒、光线、天气、摄影机气质、禁止风格漂移；每段都要按当前剧情重复并微调，不要暴露内部变量名。
 @[STYLE_LOOK_SAFE] = 可选安全风格图：只控制色彩/光线/镜头/颗粒/质感；不得控制人物、服装、场景地理、道具、车辆、招牌、文字或剧情。
-@[CHAR_...] = 角色身份锁：脸、年龄、体型、发型、服装、姿态、表演基准。
-@[SCENE_...] = 场景空间锁：地理/室内布局、入口出口、固定物、光源方向、天气。
-@[PROP_...] = 道具锁：形状、材质、尺度、持握方式、状态。
-@[STORYBOARD_Sxx] = 当前导演故事板：镜头顺序、顶视动线、机位、构图、运镜、声音/VFX、结尾帧。
+本段按顺序上传：@图片1=[板名/内容]；@图片2=[板名/内容]；@图片3=[板名/内容]。
+@图片1（BOARD/CHAR_...）= 精确引用：写明哪个面板/标签/模块，以及忽略哪些同图内容。
+@图片2（BOARD/SCENE_...）= 精确引用：写明哪个九视角/顶视图/机位标签、哪些入口出口/固定物/光源方向。
+@图片3（BOARD/PROP_...或STORYBOARD_...）= 精确引用：写明道具细节图/手持状态，或当前故事板的TOP VIEW、CAMERA A/B/C、SHOT PANELS、LIGHT、SOUND/VFX和结尾帧。
 
 生成[时长]秒[画幅]视频。本段只使用本段内部时间码，从0:00开始。整体保持[直接写出的项目风格内容]。本段情绪目标：[情绪目标]。起始状态：[上一段末帧或本段起点]。不要把混有人物/场景/道具/文字的总视觉圣经图当全局参考。
+摄影系统：[ARRI/RED/Sony/Panasonic等具体机型]，[画幅/帧率/快门角度/镜头组/胶片颗粒/运动风格]。
 
 逐镜头时间线：
-S01 / [0:00-0:xx] / [景别] / [镜头焦段与运镜]：[构图占位、人物动作、台词/画外音、声音、光线、情绪、入帧和出帧状态]。
+S01 / [0:00-0:xx] / [景别] / [焦段mm + 镜头高度 + 运镜]：[构图占位、人物动作、台词/画外音、声音、光线、情绪、入帧和出帧状态]。
 S02 / ...
 
 表演：写清眼神、呼吸、停顿、手部动作、身体重量、台词力度。
@@ -132,15 +174,16 @@ The English version must be production-equivalent to the Chinese prompt, not sho
 REFERENCE STACK:
 Global look content: directly write the palette, contrast, lens, grain, light, weather, camera mood, and forbidden style drift. Repeat and adapt it in every segment; do not expose internal variable names.
 @[STYLE_LOOK_SAFE] = optional safe abstract style image: palette, lighting, lens texture, grain, material samples only; it must not control identity, wardrobe, geography, props, vehicles, signs, text, or story facts.
-@[CHAR_...] = character identity lock: face, age, body, hair, costume, posture, performance baseline.
-@[SCENE_...] = environment lock: geography/layout, entrances/exits, fixed objects, light direction, weather.
-@[PROP_...] = prop lock: shape, material, scale, hand use, state.
-@[STORYBOARD_Sxx] = current director storyboard: shot order, top-down blocking, camera positions, composition, camera movement, sound/VFX cues, final frame.
+Upload for this segment in order: @图片1=[board/content]; @图片2=[board/content]; @图片3=[board/content].
+@图片1 (BOARD/CHAR_...) = exact reference: panel/label/module to read, and nearby content to ignore.
+@图片2 (BOARD/SCENE_...) = exact reference: nine-view/top-plan/camera labels, entrances/exits, fixed objects, light direction.
+@图片3 (BOARD/PROP_... or STORYBOARD_...) = exact reference: prop detail/hand state, or current storyboard TOP VIEW, CAMERA A/B/C, SHOT PANELS, LIGHT, SOUND/VFX, final frame.
 
 Generate a [duration]-second [aspect ratio] video. Use local segment timecode only, starting at 0:00. Overall style: [directly written project look]. Emotional goal: [goal]. Start state: [previous final frame or segment opening]. Do not use any mixed visual-bible image containing people/scenes/props/text as a global Seedance reference.
+Camera package: [specific ARRI/RED/Sony/Panasonic body], [format/frame rate/shutter angle/lens set/film grain/movement grammar].
 
 SHOT TIMELINE:
-S01 / [0:00-0:xx] / [shot size] / [lens and camera move]: [composition, blocking, action, dialogue/VO, sound, light, emotion, in-frame and out-frame state].
+S01 / [0:00-0:xx] / [shot size] / [focal length mm + camera height + move]: [composition, blocking, action, dialogue/VO, sound, light, emotion, in-frame and out-frame state].
 S02 / ...
 
 PERFORMANCE: [eyes, breath, pauses, hand behavior, body weight, line delivery].
@@ -158,7 +201,7 @@ NEGATIVE: [project-specific constraints covering identity drift, scene drift, pr
 - Is global style controlled by descriptive text embedded in the prompt instead of an unsafe mixed visual bible image?
 - If a STYLE_LOOK_SAFE image is referenced, is it abstract and free of people/scenes/props/vehicles/maps/text?
 - Does every shot mirror the storyboard?
-- Is the prompt detailed enough to approach the 2000-character budget without rambling?
+- Is the prompt detailed enough to approach the 5000-character budget without rambling?
 - Does it include exact local timecodes?
 - Does it include start and end states?
 - Does the negative prompt cover likely failure modes for this specific project?

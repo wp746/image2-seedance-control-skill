@@ -1,6 +1,6 @@
 ---
 name: image2-seedance-control
-version: 1.8.5
+version: 1.8.7
 description: Transform vague AI video ideas, scripts, AI live-action drama episodes, webtoon episodes, creative shorts, product ads, MV concepts, reference images, or reference videos into a single deliverable file containing GPT Image 2 prompts for Seedance 2.0 control boards. Use when the user wants to produce AI video by first generating Image2 visual control charts/assets/storyboards/continuity bibles, then uploading those images to Seedance 2.0. Also use for industrialized AIGC video production requiring project continuity bibles, asset locking, shot seam review, multi-segment consistency, reference upload order, output acceptance scoring, prompt linting, or Seedance repair SOP. Trigger on requests such as "做成 image2 提示词", "拿图去 Seedance 出视频", "设计 Seedance 能看懂的图", "真人剧/漫剧按集生产", "模糊想法转分镜图", "工业化生产", "镜头接缝审核", "Seedance 返修", "出片验收", "多参考图上传顺序", or "只给我 image2 的提示词文件".
 ---
 
@@ -36,11 +36,25 @@ Always design with the real strengths and weaknesses of Image2 and Seedance 2.0 
 - Therefore every Image2 prompt must use stable board substrate, large short labels, controlled modules, clear asset codes, and separate text-prop plates or post-production for exact Chinese text.
 - Seedance 2.0 is strong when each segment has a small number of characters, one main action/emotional job, clean reference duties, clear start/end state, stable scene geography, and explicit camera/sound/performance timing.
 - Seedance 2.0 is weak when asked to handle too many shots, too many actions, too many characters, exact text rendering, unclear reference priorities, mixed visual bibles, long cumulative plot, or broad vague style commands.
-- Therefore every Seedance segment must have a complexity budget, exact reference duties, embedded global look text, clean-frame text ban, identity/scene/prop/style drift guards, and a specific handoff to the next segment.
+- Therefore every Seedance segment must have a complexity budget, exact reference duties, embedded global look text, clean-frame text ban, identity/scene/prop/style drift guards, a project-level camera/lens system, per-shot focal lengths, and a specific handoff to the next segment.
 
 ### Proactive Completion Duty
 
 Do not wait for the user to discover predictable problems. Before delivery, proactively fill production gaps the user did not mention: missing assets, crowd differentiation, scene geography, prop state changes, text handling, lens/light consistency, dialogue preservation, segment handoffs, negative constraints, and repair strategy. If the user's assumption is likely to hurt quality, state the better production choice briefly and implement it.
+
+### Script Viability + Runtime Audit
+
+Do not blindly execute a flawed or under-timed script. Before assets, storyboards, or Seedance prompts, audit the script as a film object:
+
+- missing information: unclear goal, missing motivation, missing transition, missing prop logic, missing geography, missing ending
+- logic risk: contradiction, impossible timing, unclear cause/effect, character action that does not follow the beat
+- runtime risk: too many spoken lines, actions, locations, or emotional turns for the requested duration
+- rhythm risk: no breath, no reaction time, no silence, no visual transition, rushed dialogue, no emotional landing
+- production risk: too many characters/references in one segment, text-rendering traps, crowd cloning, prop/scene drift, style contamination
+
+If the requested runtime is too short, proactively revise the runtime plan. Do not squeeze dialogue into unnatural speed. Increase the segment duration up to the model's reliable generation limit, split the beat into more segments, or recommend a longer total episode duration. Preserve the script's dramatic effect over the user's initial duration guess. State the runtime correction briefly in the deliverable only when it affects how the user should generate.
+
+For scenes that need more than one reliable Seedance generation, split by dramatic breath rather than by a fixed 15-second habit. A long emotional scene can become S03A, S03B, S03C, each with its own storyboard and Seedance prompt; the next segment should explicitly continue from the previous final frame or previous generated video when that is the cleanest handoff. The goal is rhythm, performance, and continuity, not forcing the whole scene into one clip.
 
 ## Modular Prompt Library
 
@@ -83,6 +97,25 @@ The file may contain multiple Image2 prompts depending on project length, but it
 2. **Storyboard prompts** — shot/timing boards for Seedance, using asset images as references.
 3. **Seedance 2.0 text prompts** — one per storyboard, translating it into explicit shot-by-shot execution language.
 
+Before every fenced Seedance prompt, add exactly one user-facing upload note line that is not part of the prompt to copy. It must tell the user which uploaded image number corresponds to which generated board and English label, for example:
+
+````markdown
+### Seedance Prompt S01-CN - Scene Name
+> 上传参考图（这行不复制进 Seedance）：@图片1 = Prompt A01-EN / Character Asset Board / CHAR_LI_XIA；@图片2 = Prompt A06-EN / Scene Asset Board / SCENE_YANAN；@图片3 = Prompt S01-EN / Storyboard Board / STORYBOARD_01_EN。
+```text
+[Seedance prompt starts here...]
+```
+````
+
+This note must match the `@图片N` references inside the prompt exactly. Do not rely on the user remembering which asset code maps to which uploaded image.
+
+All generated Image2 board images must have a machine-readable top title as the first visible title on the image:
+
+- Asset boards: top title must start with `A01 /`, `A02 /`, `A03 /`... matching the prompt number exactly. Example: `A01 / CHAR_LI_XIA / LI XIA CHARACTER ASSET BOARD`.
+- Storyboard boards: top title must start with `S01 /`, `S02 /`, `S03 /`... matching the storyboard prompt number exactly. Example: `S01 / YANAN FAREWELL / DIRECTOR STORYBOARD`.
+- The top title must be large, high-contrast, left-aligned, and separate from secondary labels. Do not start with only `CHAR_...`, `SCENE_...`, `PROP BOARD`, `STORYBOARD`, or a scene name. The A/S number is the user's gallery index and Seedance upload anchor.
+- Seedance upload notes must refer to these same `Prompt A01-EN`, `Prompt S01-EN` board names so the user can find the correct image in a crowded gallery.
+
 Do **not** expose planning/SOP sections in the final file. Do not output visible sections named `Project Settings`, `Usage`, `Production Control`, `PROJECT_BOARD_SYSTEM`, `Text Rendering Boundary`, `Visual Bible Reference Boundary`, `STYLE_LOCK_TEXT`, `Director Recommendation`, `Reference Upload Order`, `Self-Review`, or similar internal process notes. Use those concepts internally, then bake their content into each prompt.
 
 **Critical rules:**
@@ -91,15 +124,18 @@ Do **not** expose planning/SOP sections in the final file. Do not output visible
 - EN production boards must use English labels and asset codes only. Do not ask an English board to render readable Chinese signs, wall slogans, documents, subtitles, or small Chinese labels. Chinese in-world text must be blurred/unreadable texture, isolated into a `TEXT_PROP_PLATE` / `UI_TEXT_PROP_BOARD`, or added in post.
 - CN review boards may use Simplified Chinese labels, but labels must be large and short. Never ask Image2 to render long Chinese paragraphs or many small Chinese labels inside a board.
 - The Image2 board + Seedance text prompt form a **complementary dual-control pair** — not redundant, not conflicting. The board visualizes what words can't precisely express (movement paths, camera positions, light direction, emotional arc). The Seedance prompt writes what the image can't show (micro-expressions, camera texture, light quality, sound design, performance timing). Use `references/production-sop/storyboard-seedance-pairing-principle.md` internally; do not explain the philosophy in the final file.
-- Storyboard text is minimal: logic labels and annotations only. Seedance prompt ≤ 2000 characters (**hard limit** — count before delivering, compress if over). When the scene is complex, use most of the available budget with dense, exact execution language instead of short generic instructions. See `references/production-sop/storyboard-seedance-pairing-principle.md` and `references/seedance-prompts/dense-reference-stack-timeline.md`.
+- Storyboard text is minimal: logic labels and annotations only. Seedance prompt ≤ 5000 characters (**hard limit** — count before delivering, compress if over). When the scene is complex, use most of the available budget with dense, exact execution language instead of short generic instructions. See `references/production-sop/storyboard-seedance-pairing-principle.md` and `references/seedance-prompts/dense-reference-stack-timeline.md`.
+- Storyboard boards must be drawn as **director sketch / previs line-art control boards**, not photoreal production stills or live-action scene renders. Use rough silhouettes, simple scene outlines, floor plans, arrows, lens labels, light zones, sound/VFX icons, and limited grayscale/accent colors so Seedance reads structure without copying unwanted faces, textures, locations, or wardrobe. Asset boards remain the source for identity/scene/prop detail.
 - Before finalizing, self-review every prompt against `references/production-sop/prompt-self-review-checklist.md` (10-point check).
 - The ultimate quality benchmark is `references/production-sop/film-industry-master-checklist.md` — 10 departments, a master checklist covering every professional filmmaking discipline. Before delivery, verify all applicable items.
-- For production or multi-reference work, follow `references/production-sop/reference-upload-order.md` internally so every uploaded image has one clear duty. In the final Seedance prompt, express this as compact `@[asset]` reference-duty language, not as a separate upload-order essay.
+- For production or multi-reference work, follow `references/production-sop/reference-upload-order.md` internally so every uploaded image has one clear duty. In the final Seedance prompt, use the platform-visible reference names that users actually see after upload: `@图片1`, `@图片2`, `@图片3`... The user must be told the per-segment upload order in the prompt itself, and every reference line must bind `@图片N` to the board identity, asset code, exact panel/module/label, what to read, and what to ignore. Do not circle assets as `@A01-EN`, `@CHAR_A`, or `@STORYBOARD_S01` in the final Seedance prompt, because the tool will not display those names. Keep those codes only inside parentheses, for example `@图片1（A01-EN/CHAR_LI_XIA）读FACE GRID+服装状态...`.
 - For script-driven work, create a segment plan before prompt writing. Do not compress raw script paragraphs directly into Seedance segments.
-- For dialogue and voiceover, treat the user's script text as a locked creative asset. Preserve every original spoken line, voiceover line, dialect phrase, punctuation, pause marker, and parenthetical performance note verbatim. Do not summarize, rewrite, polish, shorten, merge, or delete dialogue. If one 15-second segment cannot carry the full line, split it across adjacent segments using exact contiguous fragments and mark the handoff; never remove words. Treat lines as sound/performance timing, not on-screen subtitles. Add subtitles/title cards in post unless explicitly requested.
+- For script-driven work, audit duration before prompt writing. If the user-provided duration forces rushed dialogue, missing reaction beats, or montage without emotional landing, revise the production duration or split into more segments. Never protect a bad runtime at the expense of the film.
+- For dialogue and voiceover, treat the user's script text as a locked creative asset. Preserve every original spoken line, voiceover line, dialect phrase, punctuation, pause marker, and parenthetical performance note verbatim. Do not summarize, rewrite, polish, shorten, merge, or delete dialogue. Before every spoken line in the Seedance prompt, write the speaker's current emotion, psychology, facial expression, breath/pause, volume, tone, and the listener's reaction target; then include the exact line. Normal Chinese dramatic speech should usually stay around 3-4 characters/second, slower for tension and only briefly faster for urgent commands. If one 15-second segment cannot carry the full line with reaction time, split it across adjacent segments using exact contiguous fragments and mark the handoff; never remove words. Treat lines as sound/performance timing, not on-screen subtitles. Add subtitles/title cards in post unless explicitly requested.
 - For industrial-grade delivery, run department signoff gates and do not call the package industrial if any gate is unresolved.
 - For local prompt files, run `scripts/prompt_lint.py` before delivery when possible. It checks Seedance character limits, segment timecodes, and basic structural risks.
 - For multi-segment work, every segment's timecode starts at `0:00` and ends ≤ `0:15`. Track total runtime only in production notes.
+- For every Seedance prompt, specify the project's camera package and lens family, then specify the focal length for every shot. Use professional cinema camera language appropriate to the project, e.g. ARRI Alexa 35 / RED V-RAPTOR / Sony Venice / Panasonic Varicam, recording format, frame rate, shutter angle, lens set, and texture. Do not leave lensing at a generic "cinematic" level.
 - Final response: only link to the created file and say it's ready. Do not paste the full prompt in chat unless asked.
 
 User-facing output skeleton:
@@ -131,7 +167,7 @@ User-facing output skeleton:
 ## Seedance 2.0 Prompts
 ### Seedance Prompt S01-CN - Scene 01 Segment 01 Video
 ```text
-[A self-contained Seedance prompt under 2000 chars. It directly contains global look content, current references, segment budget, clean-frame rules, per-shot timeline, sound, end state, continuity, and negative constraints. It must not expose internal variable names such as STYLE_LOCK_TEXT.]
+[A self-contained Seedance prompt under 5000 chars. It directly contains global look content, current references, segment budget, clean-frame rules, per-shot timeline, sound, end state, continuity, and negative constraints. It must not expose internal variable names such as STYLE_LOCK_TEXT.]
 ```
 ```
 
@@ -236,7 +272,7 @@ Scene assets must follow `references/asset-prompts/scene-nine-view-layout-bible.
 
 Prop assets must follow `references/asset-prompts/prop-layout-bible.md`: hero props get dedicated boards; multi-prop boards are allowed only when each prop remains readable and clearly labeled with reference duties. Repeating props need multi-view shape, material, scale, wear, state changes, hand-use logic, scene anchors, and forbidden drift. Text/UI props require isolated large-text treatment and should not be buried inside storyboards.
 
-Storyboard boards must follow `references/storyboard-prompts/director-storyboard-layout-bible.md`: no character turnaround sheets inside the storyboard; include top-down movement floor plan, camera setup, motion route, light/atmosphere, blocking, sound/VFX, negative constraints, and a concise 15-second shot guide. Shot count is directed by rhythm and emotion, not by a fixed 5-shot template; a single 15-second shot is valid when it carries the scene better.
+Storyboard boards must follow `references/storyboard-prompts/director-storyboard-layout-bible.md`: no character turnaround sheets inside the storyboard; use director sketch / previs line-art instead of photoreal scene rendering; include top-down movement floor plan, camera setup, motion route, light/atmosphere, blocking, sound/VFX, negative constraints, and a concise shot guide. Shot count and duration are directed by rhythm and emotion, not by a fixed 5-shot or fixed-15s template; a single held shot is valid when it carries the scene better, and a long scene should continue across multiple linked Seedance segments.
 
 Board responsibility matrix:
 
@@ -306,7 +342,7 @@ Choose board count by story need, not by maximum capacity:
 - 15s simple clip: 1-3 asset prompts + 1 storyboard
 - 30-60s short: assets for all recurring elements + 3-5 storyboards
 - 1-3min drama: per-episode assets + storyboards per scene
-- Each Seedance segment: 4-15s (15s is the max, not the default)
+- Each Seedance segment: usually 4-15s per reliable generation; longer scenes continue across linked segments rather than being rushed
 
 ### Rhythm-Driven Shot Count
 
@@ -323,6 +359,8 @@ Shot count is **driven by rhythm and emotion, never a formula.** One continuous 
 Start from the emotion. Ask: how few shots can carry this? Add shots only when the story demands a new perspective.
 
 Hard rule for drama and war-film segments: do not compress a full plot paragraph into one 15-second clip by fast cutting. If the emotional beat needs silence, fear, waiting, command hesitation, mourning, or moral weight, use 1-3 shots or one continuous take. Split into more Seedance segments instead of forcing 6-8 cuts into a beat that should breathe.
+
+When splitting a scene for continuation, write the previous segment's final-frame state as the next segment's start state: body position, eyeline, prop position, light, sound tail, emotion, and camera direction. If the user will upload the previous final frame or generated video, bind it as the first reference only for continuity of start state, then keep the current asset/scene/prop/storyboard references in their exact duties.
 
 ### Film-Level Quality Standard
 
@@ -356,7 +394,7 @@ For CN boards, use only short Simplified Chinese labels plus asset codes. For EN
 
 Each prompt must specify: canvas ratio, visual style, board title, panel count, region contents, label readability, continuity constraints, negative constraints.
 
-Storyboard prompts additionally require: shot number, timecode, shot size, visual content, action, dialogue/line, camera method, camera parameters, edit note, asset references.
+Storyboard prompts additionally require: shot number, timecode, shot size, visual content, action, dialogue/line, camera method, camera parameters, edit note, asset references. Storyboard thumbnails must be sketch/previs diagrams, not realistic frames.
 
 ## Script Dialogue Verbatim Rule
 
@@ -367,6 +405,7 @@ When the user provides a script, first extract a `DIALOGUE_LOCK` internally:
 - A prompt may add camera language, performance detail, sound design, and pauses around the line, but it must not alter the line itself.
 - If a line is too long for one Seedance prompt, split the scene into more segments or split the line into exact contiguous fragments. Record the split as `台词承接/Dialogue continuation`; never paraphrase.
 - Storyboard prompts must mention the exact line or exact fragment assigned to the segment. Seedance prompts must include the exact line or exact fragment as spoken audio/performance timing.
+- Seedance prompts must write performance before text: the speaker's current emotion, hidden intention, facial/breath state, volume and tone, then the exact original line; also write the listener's reaction beat. Normal Chinese dramatic speech should usually be 3-4 characters/second, tense whispering 2-3 characters/second, urgent commands only briefly faster.
 - If the prompt budget is tight, compress visual description first. Dialogue is higher priority than optional camera adjectives, mood prose, extra negative clauses, or reference explanation.
 - Before delivery, compare every script line against the final prompt file and verify no spoken line has been dropped or rewritten.
 
@@ -377,7 +416,7 @@ Design boards and Seedance text prompts as dual-control pairs — the board is r
 - **Asset boards** visually encode: stable references, drift prohibitions, exact identity, source-of-truth when based on user assets.
 - **Storyboard boards** visually encode: who appears, where, what changes over time, camera movement, shot size, dialogue intention, start/end state, next-shot handoff.
 - **Seedance prompts** textually encode: same shot order/timecodes as storyboard, same character/scene/prop/VFX/dialogue/sound/emotion, same camera logic, explicit continuity and forbidden drift.
-- **Dense prompt structure**: every Seedance prompt names exact `@` reference duties, embeds the global look content directly, segment setup, start state, per-shot timeline, performance, camera/lens, light/color, sound/VFX, end state, continuity handoff, and multi-dimensional negative constraints under the 2000-character limit.
+- **Dense prompt structure**: every Seedance prompt names exact `@` reference duties, embeds the global look content directly, segment setup, start state, per-shot timeline, performance, camera/lens, light/color, sound/VFX, end state, continuity handoff, and multi-dimensional negative constraints under the 5000-character limit.
 - **Style lock boundary**: Seedance should be controlled primarily by the repeated global look text embedded in every segment. Upload an abstract safe style image only when it is free of people, scene geography, vehicles, props, maps, and readable text. Never upload a mixed visual bible globally as a style reference.
 - **Style reference boundary**: style references control palette, contrast, lighting, lens language, grain/texture, composition, camera mood, and pacing tendencies. They must not override character identity, scene geography, props, story facts, clean-frame rules, or crowd diversity.
 - **Clean-frame boundary**: storyboard labels, S01/S02 markers, dialogue notes, and production annotations exist only on the control board. They must not appear in the generated video frame. Seedance prompts for narrative footage must explicitly say: no subtitles, no captions, no shot labels, no UI text, no random Chinese/English text, no watermarks, clean cinematic image only.

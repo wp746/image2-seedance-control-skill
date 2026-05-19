@@ -14,6 +14,7 @@ Use this before delivering any Image2 prompt file. Audit and fix against every r
 - Global style is controlled primarily by `STYLE_LOCK_TEXT` repeated in every Seedance prompt.
 - `STYLE_LOOK_SAFE` may be uploaded only if it is abstract and contains no people, scenes, vehicles, props, maps, signs, or readable text.
 - Storyboard boards lock shot order, timing, staging, camera, action, dialogue intention, and handoff.
+- Storyboard boards are director sketch/previs diagrams, not photoreal stills; asset boards carry realistic identity, scene, and prop detail.
 
 Do not let one board accidentally perform another board's job unless the chosen reference pattern explicitly requires an integrated board.
 
@@ -27,7 +28,7 @@ For crowd scenes, do the inverse: do not accidentally clone a named character ac
 
 ## 3. Storyboard as Execution Board
 
-Check that the storyboard focuses on props, scene, camera map, placeholders, palette, sound, VFX, notes, and shot table. It should not contain detailed character turnarounds, facial identity studies, wardrobe breakdowns, or competing character designs when separate asset boards exist.
+Check that the storyboard focuses on props, scene, camera map, placeholders, palette, sound, VFX, notes, and shot table. It should be drawn as sketch/previs line-art with rough silhouettes and diagrams. It should not contain photoreal thumbnails, cinematic production stills, detailed character turnarounds, facial identity studies, wardrobe breakdowns, or competing character designs when separate asset boards exist.
 
 ## 4. UI and Text Control
 
@@ -55,11 +56,11 @@ Check that every asset code used in storyboards exists. Check that every Seedanc
 
 For Seedance generation segments, verify every storyboard and matching Seedance prompt starts at `0:00` and ends at or before `0:15`. Do not use cumulative episode timestamps inside segment prompts.
 
-**Seedance prompt MUST be ≤ 2000 characters.** This is a hard limit — if exceeded, Seedance 2.0 will truncate the prompt. Count characters before delivering. If >2000, compress using the techniques in `storyboard-seedance-pairing-principle.md` (merge reference stack, symbols over connecting words, imperative fragments, inline specs). If compression still fails, reduce shot count — the segment has too many shots to describe with quality.
+**Seedance prompt MUST be ≤ 5000 characters.** This is a hard limit — if exceeded, Seedance 2.0 will truncate the prompt. Count characters before delivering. If >5000, compress using the techniques in `storyboard-seedance-pairing-principle.md` (merge reference stack, symbols over connecting words, imperative fragments, inline specs). If compression still fails, reduce shot count or split the segment — the segment has too many shots to describe with quality.
 
 Run `segment-complexity-budget.md` before writing each pair. Do not allow high-risk segments to pass by relying on stronger wording.
 
-If preserving exact dialogue or emotional breath pushes a Seedance prompt over 2000 characters, split the segment instead of deleting dialogue or collapsing the scene. Compress camera adjectives and reference prose first; script lines and continuity are higher priority.
+If preserving exact dialogue or emotional breath pushes a Seedance prompt over 5000 characters, split the segment instead of deleting dialogue or collapsing the scene. Compress camera adjectives and reference prose first; script lines and continuity are higher priority.
 
 ## 8. Shot Count and Rhythm
 
@@ -85,13 +86,14 @@ For scripts, compare the original script line list against the final prompt file
 - every voiceover/dialogue/radio/chant/crowd line appears verbatim or as exact contiguous fragments
 - no line is polished, paraphrased, shortened, merged, or deleted
 - every split line has a continuation segment
-- every line has speech rhythm, pause, listener reaction, and no-subtitle boundary when applicable
+- every line has pre-line emotion/psychology/expression/breath/tone, speech rhythm, pause, listener reaction, and no-subtitle boundary when applicable
 
 ## 10. Model Capability + Bug Risk Gate
 
 Before delivery, inspect the package through Image2 and Seedance limits:
 
 - Image2 board substrate locked: no paper/newsprint/oil paper/parchment drift, no mixed fonts, no tiny Chinese paragraphs
+- Storyboard board style locked: sketch/previs only, no photoreal storyboard frames that can pollute Seedance references
 - EN production boards do not ask for readable Chinese in-image text
 - exact Chinese text is isolated into TEXT_PROP_PLATE or post-production
 - character sheets include enough anchors to stop face/body/wardrobe drift

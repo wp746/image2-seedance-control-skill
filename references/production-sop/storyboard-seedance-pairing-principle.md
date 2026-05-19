@@ -17,6 +17,8 @@ They are **complementary, not redundant**. Each does what the other cannot.
 
 The storyboard image visualizes what text cannot precisely express. Text on the board is minimal — logic labels, annotations, behavioral rules. The board IS the visual expression.
 
+For Seedance reference safety, storyboard visuals are **director sketch / previs diagrams**, not photoreal frames. They should guide blocking, camera, rhythm, sound, VFX, and handoff while avoiding realistic faces, costume detail, rich scene textures, or finished lighting that can pollute the asset references.
+
 **Must visualize:**
 
 1. **俯视动线图 / Top-Down Movement Diagram**
@@ -71,9 +73,9 @@ The storyboard image visualizes what text cannot precisely express. Text on the 
 
 Dialogue belongs to sound and performance. Storyboards may show `低声命令`, `犹豫回答`, `RADIO VOICE`, or `PA SPEECH`, but should not place full dialogue paragraphs inside frame thumbnails. If exact dialogue is needed, write it in the Seedance prompt as spoken audio timing and explicitly forbid subtitles. See `dialogue-audio-subtitle-boundary.md`.
 
-### Seedance Prompt's Job (Textual — 2000字符上限)
+### Seedance Prompt's Job (Textual — 5000字符上限)
 
-The Seedance prompt fills in everything the storyboard image cannot express. Stay under the 2000-character hard limit; prioritize clarity over density and do not try to use all available characters unless the segment truly needs it.
+The Seedance prompt fills in everything the storyboard image cannot express. Stay under the 5000-character hard limit; prioritize clarity over density and do not try to use all available characters unless the segment truly needs it.
 
 **Must describe (in detail the board only hints at):**
 
@@ -109,6 +111,8 @@ The Seedance prompt fills in everything the storyboard image cannot express. Sta
    - Beat spacing between lines
    - Physical business between dialogue
    - When stillness speaks louder than movement
+   - Speaker emotion, hidden intention, facial state, breath, volume, and tone before each exact script line
+   - Normal Chinese dramatic speech around 3-4 characters/second; tense whisper 2-3; urgent command only briefly faster
 
 6. **材质质感 / Material Texture**
    - Skin: pore visibility, oil sheen, age texture, not AI plastic
@@ -193,18 +197,18 @@ Shot count is NEVER a formula. It is always rhythm and emotion.
 
 The storyboard exists to serve the emotion, not to fill panels. Choose the minimum number of shots that carry the emotional weight. Add shots only when the story demands a new perspective.
 
-## 2000-Character Hard Limit
+## 5000-Character Hard Limit
 
-**Seedance 2.0 accepts a maximum of 2000 characters per prompt. This is a HARD limit, not a target.** If you exceed it, the prompt will be truncated — losing critical continuity, micro-expression, or forbidden-drift instructions.
+**Seedance 2.0 accepts a maximum of 5000 characters per prompt. This is a HARD limit, not a target.** If you exceed it, the prompt will be truncated — losing critical continuity, micro-expression, or forbidden-drift instructions.
 
 Recommended ranges:
 
-- transition / B-roll: 400-800 characters
-- dialogue / suspense / emotional drama: 900-1500 characters
-- action / product / multi-reference segments: 1200-1800 characters
-- only approach 2000 when complexity is justified and the segment budget remains safe
+- transition / B-roll: 600-1200 characters
+- dialogue / suspense / emotional drama: 1800-3500 characters
+- action / product / multi-reference segments: 2500-4200 characters
+- only approach 5000 when complexity is justified and the segment budget remains safe
 
-Before delivering any Seedance prompt, count the characters. If >2000, compress using the techniques below. Do NOT split the prompt — one prompt per segment.
+Before delivering any Seedance prompt, count the characters. If >5000, compress using the techniques below. Do NOT split one segment's prompt across multiple prompts — split the story segment itself if the beat has too much action/dialogue.
 
 ### Compression Techniques
 
@@ -292,10 +296,10 @@ When you need characters, cut in this order:
 ### The Rule
 
 ```
-Every Seedance prompt MUST be ≤ 2000 characters.
+Every Seedance prompt MUST be ≤ 5000 characters.
 Count before delivering.
-If >2000: compress, don't split.
-If still >2000 after compression: the segment has too many shots. Reduce shot count.
+If >5000: compress.
+If still >5000 after compression: the segment has too many shots or too much dialogue. Reduce shot count, extend duration with fewer actions, or split the beat.
 ```
 
 A weak prompt (wastes characters, AI-looking):
@@ -303,7 +307,7 @@ A weak prompt (wastes characters, AI-looking):
 S01 0-3s: Character walks into room, looks around, sits down. Camera follows. Sad mood. Cinematic lighting.
 ```
 
-A strong prompt (dense, film-level, 2000-char fit):
+A strong prompt (dense, film-level, 5000-char fit):
 ```
 S01/0:00-0:03.2 WS/35mm/CAM2手持胸高 呼吸微动2px。CHAR_A左手推门，指节触木纹，门有阻力不轻不重。迈门槛右脚先落，体重转移在地板旧木上出声。0:45停步——眼球从左到右跳转(非扫视)，依次定格:窗(0:52)/空椅(1:10)/桌上照片(1:35)。微表情1:35:下唇收紧2mm→释放。屏息0.8s→鼻呼。走向椅4步每步不同木板呻吟。2:50坐下——控制下降非塌，手放大腿手指微蜷入布。
 光:下午4时窗光画面右,4300K,薄纱柔化,尘粒可见光束中。影侧落至近黑，无补光。台灯灭。

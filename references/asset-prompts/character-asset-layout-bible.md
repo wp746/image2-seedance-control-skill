@@ -87,18 +87,19 @@ Every character prompt must explicitly say:
 
 ```text
 Use the fixed Character Asset Layout Bible. Do not invent a new layout. Keep the same board substrate, palette, typography, margins, panel style, label style, and module order as the project board system.
+The first visible top title must start with the asset board index: A01 / CHAR_CODE / ENGLISH CHARACTER ASSET BOARD. The A-number must match the prompt number exactly and be the largest left-aligned title. Do not start the board title with only CHAR_CODE or the character name.
 ```
 
 Chinese injection:
 
 ```text
-必须使用固定角色资产版式：顶部身份锁，主体为全身四视图，右侧为人脸特写网格，下方为表情/服装材质/道具互动/场景互动/身高剪影/禁止漂移。不要重新发明版式。单主角一张；辅助角色一张最多两人；超过两人拆下一张；群像板必须重点区分年龄、职业、发型、服饰、高矮胖瘦和五官。
+必须使用固定角色资产版式：顶部主标题必须以本资产编号开头，例如 A01 / CHAR_CODE / CHARACTER ASSET BOARD，并且 A编号必须和提示词编号完全一致、最大号、左对齐；顶部身份锁，主体为全身四视图，右侧为人脸特写网格，下方为表情/服装材质/道具互动/场景互动/身高剪影/禁止漂移。不要重新发明版式。单主角一张；辅助角色一张最多两人；超过两人拆下一张；群像板必须重点区分年龄、职业、发型、服饰、高矮胖瘦和五官。
 ```
 
 English injection:
 
 ```text
-Use the fixed character asset layout: header identity lock, dominant full-body four-view sheet, face close-up grid, expression/performance row, costume/material row, prop interaction, scene interaction, height/silhouette scale, and forbidden drift strip. Do not invent a new layout. One main character per board; at most two supporting characters per 16:9 board; split if more than two; group boards must clearly differentiate age, occupation, hair, wardrobe, height, body type, and facial features.
+Use the fixed character asset layout. The first visible top title must begin with the asset number, for example A01 / CHAR_CODE / CHARACTER ASSET BOARD; the A-number must match the prompt number exactly, largest and left-aligned. Then show header identity lock, dominant full-body four-view sheet, face close-up grid, expression/performance row, costume/material row, prop interaction, scene interaction, height/silhouette scale, and forbidden drift strip. Do not invent a new layout. One main character per board; at most two supporting characters per 16:9 board; split if more than two; group boards must clearly differentiate age, occupation, hair, wardrobe, height, body type, and facial features.
 ```
 
 ## Negative Rules

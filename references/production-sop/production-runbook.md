@@ -155,7 +155,7 @@ Gate to continue:
 - If STYLE_BIBLE exists, storyboard and Seedance prompt include the relevant compact style lock.
 - Dialogue is scoped as sound/performance and not as rendered subtitles unless the user explicitly asks.
 - Seedance prompt explicitly forbids rendered subtitles, captions, shot labels, UI text, watermarks, random text, and garbled text.
-- Seedance prompt is at or below 2000 characters.
+- Seedance prompt is at or below 5000 characters.
 - Shot count matches dramatic rhythm. Slow emotional beats are not allowed to become fast-cut coverage.
 - Segment duration is 4-15s unless the user explicitly asks for shorter.
 

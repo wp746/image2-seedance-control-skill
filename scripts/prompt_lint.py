@@ -12,9 +12,10 @@ import re
 import sys
 from pathlib import Path
 
+SEEDANCE_CHAR_LIMIT = 5000
 
 FENCE_RE = re.compile(
-    r"^###\s+(?P<title>[^\n]*Seedance[^\n]*)\n\s*```text\n(?P<body>.*?)\n```",
+    r"^###\s+(?P<title>[^\n]*Seedance[^\n]*)\n(?:[ \t]*(?:>[^\n]*)?\n)*[ \t]*```text\n(?P<body>.*?)\n```",
     re.MULTILINE | re.DOTALL,
 )
 STORYBOARD_TITLE_RE = re.compile(r"^###\s+(?P<title>[^\n]*(?:Storyboard|故事板)[^\n]*)$", re.MULTILINE)
@@ -156,8 +157,8 @@ def lint_file(path: Path) -> list[str]:
         line = line_for_offset(text, match.start())
         char_count = len(body)
 
-        if char_count > 2000:
-            errors.append(f"{path}:{line}: {title}: {char_count} chars exceeds Seedance 2000-char hard limit")
+        if char_count > SEEDANCE_CHAR_LIMIT:
+            errors.append(f"{path}:{line}: {title}: {char_count} chars exceeds Seedance {SEEDANCE_CHAR_LIMIT}-char hard limit")
 
         if "0:00" not in body:
             errors.append(f"{path}:{line}: {title}: missing local start timecode 0:00")

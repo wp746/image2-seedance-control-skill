@@ -18,6 +18,7 @@ Build these fields internally and repeat the compact lock inside every Image2 pr
 - Text rule: large labels only, no long paragraphs inside the image. Image2 prompt carries detail; board image carries visual structure.
 - Grid rule: consistent margins, gutters, header height, label style, icon style, arrows, color-coded zones.
 - Label language: CN board uses short Chinese labels with optional asset codes; EN board uses English labels and asset codes only.
+- Top title index: every generated board must start with a large visible index title matching the prompt number. Asset boards use `A01 / ...`, `A02 / ...`; storyboard boards use `S01 / ...`, `S02 / ...`. This title is the gallery lookup key.
 - Text boundary: EN production boards must not contain readable Chinese in-world text. Any Chinese sign, wall slogan, document, newspaper, map label, or subtitle must be blurred/unreadable texture, isolated into a TEXT_PROP_PLATE, or added in post-production.
 - Negative substrate: no torn paper, no paper aging, no random texture, no poster art, no decorative collage, no mixed fonts, no tiny text.
 ```
@@ -46,6 +47,10 @@ English variant:
 
 ## Typography Rules
 
+- The first visible title on every board must begin with the board index:
+  - Asset: `A01 / CHAR_CODE / ENGLISH BOARD TYPE`
+  - Storyboard: `S01 / SCENE OR BEAT NAME / DIRECTOR STORYBOARD`
+- Do not let Image2 start the image title with only `CHAR_...`, `SCENE_...`, `PROP BOARD`, `STORYBOARD`, or a scene name. The A/S number must be first, large, and left-aligned.
 - Do not ask Image2 to render long Chinese paragraphs.
 - Chinese board labels must be short: 2-6 Chinese characters where possible.
 - English production boards must not render readable Chinese in-world text.

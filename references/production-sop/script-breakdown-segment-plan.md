@@ -31,7 +31,33 @@ Before any asset/storyboard/Seedance prompt, build an internal reading map:
 - Image2 risk: text density, crowd cloning, board overcrowding, mixed labels, substrate/font drift
 - Seedance risk: too many characters, too many actions, overlong dialogue, unclear reference priority, exact text rendering, scene/prop/style drift
 
-If the reading map shows a beat is too dense for one 15-second segment, split it. Do not compress the story or delete lines.
+## Script Viability + Runtime Gate
+
+Before producing final prompts, decide whether the script can actually work at the requested duration. Do not assume the user-provided runtime is correct.
+
+Check:
+
+- Does every important line have enough time to be spoken at natural speed?
+- Does every emotional turn have a reaction beat or silence after it?
+- Does the story need establishing space before the first line?
+- Are there enough visual transitions between locations?
+- Are action beats being compressed into dialogue time?
+- Does the ending land, or does it cut off because the runtime is too short?
+- Are there missing motivations, missing prop handoffs, missing geography, or logical contradictions?
+
+If the answer is no, revise the production plan: extend total runtime, split one scene into more Seedance segments, turn a dense paragraph into a slower one-shot or two-shot, add silent reaction beats, move readable text to post, or recommend script repair before prompt generation if the logic itself is broken.
+
+Do not create a prompt package that will predictably become a rushed or incoherent video.
+
+If the reading map shows a beat is too dense for one segment, split it or extend the segment within the model's reliable duration range. Do not compress the story or delete lines.
+
+When a scene needs 20+ seconds to breathe, design it as linked segments instead of forcing it into one overloaded prompt. Each continuation segment must define:
+
+- previous segment final-frame/video state to inherit
+- first-frame body position, eyeline, prop position, light, sound tail, and emotional carryover
+- exact dialogue continuation point if a line was split
+- what the new segment adds emotionally or narratively
+- clean end-state for the next continuation
 
 ## Dramatic Beat Table
 
@@ -63,6 +89,7 @@ Rules:
 - If one segment contains multiple dramatic functions, decide the dominant function and push the rest into another segment unless the transition is essential.
 - Do not use fast cutting to hide unclear script breakdown.
 - Preserve emotional breath. If a line, silence, look, or command needs time to land, create another segment instead of rushing it.
+- Normal Chinese dramatic speech should usually be planned at 3-4 characters/second, tense whispering at 2-3 characters/second, and urgent commands only briefly faster; add pre-line breath and listener reaction before accepting the segment duration.
 - Dialogue/voiceover is not optional metadata. Assign every original line or exact line fragment to one or more segments before writing prompts.
 - Keep every segment's job narrow enough that Seedance can execute it without inventing new action, new faces, new props, or new geography.
 
@@ -106,8 +133,9 @@ Before writing final prompts, confirm:
 
 - segment plan exists
 - every segment has one dramatic job
-- every segment starts at `0:00` and ends at or before `0:15`
+- every segment starts at `0:00`; duration is chosen by performance rhythm and platform capability, not by a fixed 8-second habit
 - every segment has a rhythm strategy
+- every long scene has a continuation strategy when needed: previous final frame/video reference, start-state match, exact dialogue carryover, and next end-state
 - every segment has complexity risk checked
 - every storyboard has a matching Seedance prompt planned
 - no raw script paragraph is being compressed into one overfull segment

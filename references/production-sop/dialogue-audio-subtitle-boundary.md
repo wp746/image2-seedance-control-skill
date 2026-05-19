@@ -27,6 +27,8 @@ Storyboard board should not put full dialogue paragraphs across thumbnails.
 Seedance prompt should write:
 
 - exact original line or exact contiguous fragment from the script whenever the segment contains dialogue/voiceover
+- speaker's immediate emotion, hidden intention, psychology, facial expression, and body tension before the line
+- delivery tone: volume, breath, hesitation, tempo, firmness/weakness, and whether the voice breaks or stays controlled
 - speech rate
 - pause before and after the line
 - breath, swallow, hesitation, interruption
@@ -54,9 +56,9 @@ Never make characters rush because the segment is only 15 seconds.
 
 Defaults:
 
-- whispered or tense line: 2-5 Chinese characters per second
-- normal dramatic speech: 4-7 Chinese characters per second
-- urgent command: short burst, then reaction pause
+- whispered or tense line: 2-3 Chinese characters per second
+- normal dramatic speech: 3-4 Chinese characters per second
+- urgent command: 4-6 Chinese characters per second only for a short burst, then reaction pause
 - public speech: split across multiple segments unless it is one slogan-like line
 
 For a line to land, add:
@@ -70,13 +72,13 @@ If the line cannot fit with reaction time, split the segment. The split must use
 ## Dialogue Prompt Pattern
 
 ```text
-对白: CHAR_A 低声说"[短句]"，语速慢，先吸气0.4s再开口；说完停0.8s，CHAR_B不立刻回答，眼神先下移再抬起。对白只作为声音/口型/表演节奏，不出现字幕或画面文字。
+对白: CHAR_A 此刻强压恐惧，眼神先避开再重新盯住对方，嘴角发紧，先吸气0.4s；用压低但稳定的声音说"[逐字保留原文短句]"，约3-4字/秒；说完停0.8s，CHAR_B不立刻回答，眼神先下移再抬起。对白只作为声音/口型/表演节奏，不出现字幕或画面文字。
 ```
 
 For script work:
 
 ```text
-原文台词锁：CHAR_A：（原稿动作/语气）"逐字保留用户剧本台词。"
+原文台词锁：CHAR_A：（先写当下情绪/心理/表情/呼吸/音量/语气，再接原稿动作或语气）"逐字保留用户剧本台词。"
 台词承接：如果本段只说前半句，下一段必须从下一个字继续，不得改写。
 ```
 
